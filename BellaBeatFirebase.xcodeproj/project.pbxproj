@@ -1,0 +1,764 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		7AEF2EF64A44CBE1EC1AB33E /* Pods_BellaBeatFirebaseTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 236770F46A2435F41484785E /* Pods_BellaBeatFirebaseTests.framework */; };
+		9CF38AFE25504A6500A0D63E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CF38AFD25504A6500A0D63E /* AppDelegate.swift */; };
+		9CF38B0025504A6500A0D63E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CF38AFF25504A6500A0D63E /* SceneDelegate.swift */; };
+		9CF38B0225504A6500A0D63E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CF38B0125504A6500A0D63E /* ViewController.swift */; };
+		9CF38B0525504A6500A0D63E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9CF38B0325504A6500A0D63E /* Main.storyboard */; };
+		9CF38B0825504A6500A0D63E /* BellaBeatFirebase.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9CF38B0625504A6500A0D63E /* BellaBeatFirebase.xcdatamodeld */; };
+		9CF38B0A25504A6C00A0D63E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9CF38B0925504A6C00A0D63E /* Assets.xcassets */; };
+		9CF38B0D25504A6C00A0D63E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9CF38B0B25504A6C00A0D63E /* LaunchScreen.storyboard */; };
+		9CF38B1825504A6D00A0D63E /* BellaBeatFirebaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CF38B1725504A6D00A0D63E /* BellaBeatFirebaseTests.swift */; };
+		9CF38B2325504A6D00A0D63E /* BellaBeatFirebaseUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CF38B2225504A6D00A0D63E /* BellaBeatFirebaseUITests.swift */; };
+		9CF38B3125504AB000A0D63E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9CF38B3025504AB000A0D63E /* GoogleService-Info.plist */; };
+		9E2C0ACE143A00B64D327501 /* Pods_BellaBeatFirebaseUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DD1B2E6543A54F2773B41A6 /* Pods_BellaBeatFirebaseUITests.framework */; };
+		F633BC406DE840DC200C5E1D /* Pods_BellaBeatFirebase.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 68C2C3F562C78FD857085D5E /* Pods_BellaBeatFirebase.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		9CF38B1425504A6D00A0D63E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9CF38AF225504A6400A0D63E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 9CF38AF925504A6400A0D63E;
+			remoteInfo = BellaBeatFirebase;
+		};
+		9CF38B1F25504A6D00A0D63E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9CF38AF225504A6400A0D63E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 9CF38AF925504A6400A0D63E;
+			remoteInfo = BellaBeatFirebase;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		1B08E8219CA62A55AE0AECCD /* Pods-BellaBeatFirebaseUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BellaBeatFirebaseUITests.debug.xcconfig"; path = "Target Support Files/Pods-BellaBeatFirebaseUITests/Pods-BellaBeatFirebaseUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		236770F46A2435F41484785E /* Pods_BellaBeatFirebaseTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BellaBeatFirebaseTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		3DD1B2E6543A54F2773B41A6 /* Pods_BellaBeatFirebaseUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BellaBeatFirebaseUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		41D747A1C4214222C29DB75F /* Pods-BellaBeatFirebaseTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BellaBeatFirebaseTests.debug.xcconfig"; path = "Target Support Files/Pods-BellaBeatFirebaseTests/Pods-BellaBeatFirebaseTests.debug.xcconfig"; sourceTree = "<group>"; };
+		57284376BD7E601DC46E89F2 /* Pods-BellaBeatFirebase.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BellaBeatFirebase.debug.xcconfig"; path = "Target Support Files/Pods-BellaBeatFirebase/Pods-BellaBeatFirebase.debug.xcconfig"; sourceTree = "<group>"; };
+		68C2C3F562C78FD857085D5E /* Pods_BellaBeatFirebase.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BellaBeatFirebase.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		9CE36FA169FBBD1578BA29D9 /* Pods-BellaBeatFirebase.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BellaBeatFirebase.release.xcconfig"; path = "Target Support Files/Pods-BellaBeatFirebase/Pods-BellaBeatFirebase.release.xcconfig"; sourceTree = "<group>"; };
+		9CF38AFA25504A6400A0D63E /* BellaBeatFirebase.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BellaBeatFirebase.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		9CF38AFD25504A6500A0D63E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		9CF38AFF25504A6500A0D63E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		9CF38B0125504A6500A0D63E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		9CF38B0425504A6500A0D63E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		9CF38B0725504A6500A0D63E /* BellaBeatFirebase.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = BellaBeatFirebase.xcdatamodel; sourceTree = "<group>"; };
+		9CF38B0925504A6C00A0D63E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		9CF38B0C25504A6C00A0D63E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		9CF38B0E25504A6C00A0D63E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9CF38B1325504A6D00A0D63E /* BellaBeatFirebaseTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BellaBeatFirebaseTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		9CF38B1725504A6D00A0D63E /* BellaBeatFirebaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BellaBeatFirebaseTests.swift; sourceTree = "<group>"; };
+		9CF38B1925504A6D00A0D63E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9CF38B1E25504A6D00A0D63E /* BellaBeatFirebaseUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BellaBeatFirebaseUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		9CF38B2225504A6D00A0D63E /* BellaBeatFirebaseUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BellaBeatFirebaseUITests.swift; sourceTree = "<group>"; };
+		9CF38B2425504A6D00A0D63E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9CF38B3025504AB000A0D63E /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		B3A6FD89ED2BAEED60373354 /* Pods-BellaBeatFirebaseTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BellaBeatFirebaseTests.release.xcconfig"; path = "Target Support Files/Pods-BellaBeatFirebaseTests/Pods-BellaBeatFirebaseTests.release.xcconfig"; sourceTree = "<group>"; };
+		C17BC1EB19E32A4DC840627D /* Pods-BellaBeatFirebaseUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BellaBeatFirebaseUITests.release.xcconfig"; path = "Target Support Files/Pods-BellaBeatFirebaseUITests/Pods-BellaBeatFirebaseUITests.release.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		9CF38AF725504A6400A0D63E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F633BC406DE840DC200C5E1D /* Pods_BellaBeatFirebase.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9CF38B1025504A6D00A0D63E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7AEF2EF64A44CBE1EC1AB33E /* Pods_BellaBeatFirebaseTests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9CF38B1B25504A6D00A0D63E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9E2C0ACE143A00B64D327501 /* Pods_BellaBeatFirebaseUITests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		9CF38AF125504A6400A0D63E = {
+			isa = PBXGroup;
+			children = (
+				9CF38AFC25504A6400A0D63E /* BellaBeatFirebase */,
+				9CF38B1625504A6D00A0D63E /* BellaBeatFirebaseTests */,
+				9CF38B2125504A6D00A0D63E /* BellaBeatFirebaseUITests */,
+				9CF38AFB25504A6400A0D63E /* Products */,
+				C24F91BA7E3570AF3985CD97 /* Pods */,
+				AA7CF006D14CE3945CDC5BAF /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		9CF38AFB25504A6400A0D63E /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				9CF38AFA25504A6400A0D63E /* BellaBeatFirebase.app */,
+				9CF38B1325504A6D00A0D63E /* BellaBeatFirebaseTests.xctest */,
+				9CF38B1E25504A6D00A0D63E /* BellaBeatFirebaseUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		9CF38AFC25504A6400A0D63E /* BellaBeatFirebase */ = {
+			isa = PBXGroup;
+			children = (
+				9CF38AFD25504A6500A0D63E /* AppDelegate.swift */,
+				9CF38AFF25504A6500A0D63E /* SceneDelegate.swift */,
+				9CF38B0125504A6500A0D63E /* ViewController.swift */,
+				9CF38B0325504A6500A0D63E /* Main.storyboard */,
+				9CF38B0925504A6C00A0D63E /* Assets.xcassets */,
+				9CF38B0B25504A6C00A0D63E /* LaunchScreen.storyboard */,
+				9CF38B0E25504A6C00A0D63E /* Info.plist */,
+				9CF38B3025504AB000A0D63E /* GoogleService-Info.plist */,
+				9CF38B0625504A6500A0D63E /* BellaBeatFirebase.xcdatamodeld */,
+			);
+			path = BellaBeatFirebase;
+			sourceTree = "<group>";
+		};
+		9CF38B1625504A6D00A0D63E /* BellaBeatFirebaseTests */ = {
+			isa = PBXGroup;
+			children = (
+				9CF38B1725504A6D00A0D63E /* BellaBeatFirebaseTests.swift */,
+				9CF38B1925504A6D00A0D63E /* Info.plist */,
+			);
+			path = BellaBeatFirebaseTests;
+			sourceTree = "<group>";
+		};
+		9CF38B2125504A6D00A0D63E /* BellaBeatFirebaseUITests */ = {
+			isa = PBXGroup;
+			children = (
+				9CF38B2225504A6D00A0D63E /* BellaBeatFirebaseUITests.swift */,
+				9CF38B2425504A6D00A0D63E /* Info.plist */,
+			);
+			path = BellaBeatFirebaseUITests;
+			sourceTree = "<group>";
+		};
+		AA7CF006D14CE3945CDC5BAF /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				68C2C3F562C78FD857085D5E /* Pods_BellaBeatFirebase.framework */,
+				236770F46A2435F41484785E /* Pods_BellaBeatFirebaseTests.framework */,
+				3DD1B2E6543A54F2773B41A6 /* Pods_BellaBeatFirebaseUITests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		C24F91BA7E3570AF3985CD97 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				57284376BD7E601DC46E89F2 /* Pods-BellaBeatFirebase.debug.xcconfig */,
+				9CE36FA169FBBD1578BA29D9 /* Pods-BellaBeatFirebase.release.xcconfig */,
+				41D747A1C4214222C29DB75F /* Pods-BellaBeatFirebaseTests.debug.xcconfig */,
+				B3A6FD89ED2BAEED60373354 /* Pods-BellaBeatFirebaseTests.release.xcconfig */,
+				1B08E8219CA62A55AE0AECCD /* Pods-BellaBeatFirebaseUITests.debug.xcconfig */,
+				C17BC1EB19E32A4DC840627D /* Pods-BellaBeatFirebaseUITests.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		9CF38AF925504A6400A0D63E /* BellaBeatFirebase */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9CF38B2725504A6D00A0D63E /* Build configuration list for PBXNativeTarget "BellaBeatFirebase" */;
+			buildPhases = (
+				0D8B1151808C67F8A1B6824D /* [CP] Check Pods Manifest.lock */,
+				9CF38AF625504A6400A0D63E /* Sources */,
+				9CF38AF725504A6400A0D63E /* Frameworks */,
+				9CF38AF825504A6400A0D63E /* Resources */,
+				26B8CECA2FE114BA55B50B80 /* [CP] Embed Pods Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = BellaBeatFirebase;
+			productName = BellaBeatFirebase;
+			productReference = 9CF38AFA25504A6400A0D63E /* BellaBeatFirebase.app */;
+			productType = "com.apple.product-type.application";
+		};
+		9CF38B1225504A6D00A0D63E /* BellaBeatFirebaseTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9CF38B2A25504A6D00A0D63E /* Build configuration list for PBXNativeTarget "BellaBeatFirebaseTests" */;
+			buildPhases = (
+				B31AFC14DC4D009ED988FFCA /* [CP] Check Pods Manifest.lock */,
+				9CF38B0F25504A6D00A0D63E /* Sources */,
+				9CF38B1025504A6D00A0D63E /* Frameworks */,
+				9CF38B1125504A6D00A0D63E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				9CF38B1525504A6D00A0D63E /* PBXTargetDependency */,
+			);
+			name = BellaBeatFirebaseTests;
+			productName = BellaBeatFirebaseTests;
+			productReference = 9CF38B1325504A6D00A0D63E /* BellaBeatFirebaseTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		9CF38B1D25504A6D00A0D63E /* BellaBeatFirebaseUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9CF38B2D25504A6D00A0D63E /* Build configuration list for PBXNativeTarget "BellaBeatFirebaseUITests" */;
+			buildPhases = (
+				7B9D596144A0C0576811A0BE /* [CP] Check Pods Manifest.lock */,
+				9CF38B1A25504A6D00A0D63E /* Sources */,
+				9CF38B1B25504A6D00A0D63E /* Frameworks */,
+				9CF38B1C25504A6D00A0D63E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				9CF38B2025504A6D00A0D63E /* PBXTargetDependency */,
+			);
+			name = BellaBeatFirebaseUITests;
+			productName = BellaBeatFirebaseUITests;
+			productReference = 9CF38B1E25504A6D00A0D63E /* BellaBeatFirebaseUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		9CF38AF225504A6400A0D63E /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1130;
+				LastUpgradeCheck = 1130;
+				ORGANIZATIONNAME = "Marina Huber";
+				TargetAttributes = {
+					9CF38AF925504A6400A0D63E = {
+						CreatedOnToolsVersion = 11.3.1;
+					};
+					9CF38B1225504A6D00A0D63E = {
+						CreatedOnToolsVersion = 11.3.1;
+						TestTargetID = 9CF38AF925504A6400A0D63E;
+					};
+					9CF38B1D25504A6D00A0D63E = {
+						CreatedOnToolsVersion = 11.3.1;
+						TestTargetID = 9CF38AF925504A6400A0D63E;
+					};
+				};
+			};
+			buildConfigurationList = 9CF38AF525504A6400A0D63E /* Build configuration list for PBXProject "BellaBeatFirebase" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 9CF38AF125504A6400A0D63E;
+			productRefGroup = 9CF38AFB25504A6400A0D63E /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				9CF38AF925504A6400A0D63E /* BellaBeatFirebase */,
+				9CF38B1225504A6D00A0D63E /* BellaBeatFirebaseTests */,
+				9CF38B1D25504A6D00A0D63E /* BellaBeatFirebaseUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		9CF38AF825504A6400A0D63E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9CF38B0D25504A6C00A0D63E /* LaunchScreen.storyboard in Resources */,
+				9CF38B3125504AB000A0D63E /* GoogleService-Info.plist in Resources */,
+				9CF38B0A25504A6C00A0D63E /* Assets.xcassets in Resources */,
+				9CF38B0525504A6500A0D63E /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9CF38B1125504A6D00A0D63E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9CF38B1C25504A6D00A0D63E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		0D8B1151808C67F8A1B6824D /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-BellaBeatFirebase-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		26B8CECA2FE114BA55B50B80 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-BellaBeatFirebase/Pods-BellaBeatFirebase-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
+				"${BUILT_PRODUCTS_DIR}/PromisesObjC/FBLPromises.framework",
+				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBLPromises.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-BellaBeatFirebase/Pods-BellaBeatFirebase-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		7B9D596144A0C0576811A0BE /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-BellaBeatFirebaseUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B31AFC14DC4D009ED988FFCA /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-BellaBeatFirebaseTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		9CF38AF625504A6400A0D63E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9CF38B0225504A6500A0D63E /* ViewController.swift in Sources */,
+				9CF38AFE25504A6500A0D63E /* AppDelegate.swift in Sources */,
+				9CF38B0025504A6500A0D63E /* SceneDelegate.swift in Sources */,
+				9CF38B0825504A6500A0D63E /* BellaBeatFirebase.xcdatamodeld in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9CF38B0F25504A6D00A0D63E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9CF38B1825504A6D00A0D63E /* BellaBeatFirebaseTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9CF38B1A25504A6D00A0D63E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9CF38B2325504A6D00A0D63E /* BellaBeatFirebaseUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		9CF38B1525504A6D00A0D63E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 9CF38AF925504A6400A0D63E /* BellaBeatFirebase */;
+			targetProxy = 9CF38B1425504A6D00A0D63E /* PBXContainerItemProxy */;
+		};
+		9CF38B2025504A6D00A0D63E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 9CF38AF925504A6400A0D63E /* BellaBeatFirebase */;
+			targetProxy = 9CF38B1F25504A6D00A0D63E /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		9CF38B0325504A6500A0D63E /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				9CF38B0425504A6500A0D63E /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		9CF38B0B25504A6C00A0D63E /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				9CF38B0C25504A6C00A0D63E /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		9CF38B2525504A6D00A0D63E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		9CF38B2625504A6D00A0D63E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		9CF38B2825504A6D00A0D63E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 57284376BD7E601DC46E89F2 /* Pods-BellaBeatFirebase.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = HBS2B82CVU;
+				INFOPLIST_FILE = BellaBeatFirebase/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.marinahuber.BellaBeatFirebase;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		9CF38B2925504A6D00A0D63E /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9CE36FA169FBBD1578BA29D9 /* Pods-BellaBeatFirebase.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = HBS2B82CVU;
+				INFOPLIST_FILE = BellaBeatFirebase/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.marinahuber.BellaBeatFirebase;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+		9CF38B2B25504A6D00A0D63E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 41D747A1C4214222C29DB75F /* Pods-BellaBeatFirebaseTests.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = HBS2B82CVU;
+				INFOPLIST_FILE = BellaBeatFirebaseTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.marinahuber.BellaBeatFirebaseTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BellaBeatFirebase.app/BellaBeatFirebase";
+			};
+			name = Debug;
+		};
+		9CF38B2C25504A6D00A0D63E /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = B3A6FD89ED2BAEED60373354 /* Pods-BellaBeatFirebaseTests.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = HBS2B82CVU;
+				INFOPLIST_FILE = BellaBeatFirebaseTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.marinahuber.BellaBeatFirebaseTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BellaBeatFirebase.app/BellaBeatFirebase";
+			};
+			name = Release;
+		};
+		9CF38B2E25504A6D00A0D63E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1B08E8219CA62A55AE0AECCD /* Pods-BellaBeatFirebaseUITests.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = HBS2B82CVU;
+				INFOPLIST_FILE = BellaBeatFirebaseUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.marinahuber.BellaBeatFirebaseUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = BellaBeatFirebase;
+			};
+			name = Debug;
+		};
+		9CF38B2F25504A6D00A0D63E /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = C17BC1EB19E32A4DC840627D /* Pods-BellaBeatFirebaseUITests.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = HBS2B82CVU;
+				INFOPLIST_FILE = BellaBeatFirebaseUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.marinahuber.BellaBeatFirebaseUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = BellaBeatFirebase;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		9CF38AF525504A6400A0D63E /* Build configuration list for PBXProject "BellaBeatFirebase" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9CF38B2525504A6D00A0D63E /* Debug */,
+				9CF38B2625504A6D00A0D63E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		9CF38B2725504A6D00A0D63E /* Build configuration list for PBXNativeTarget "BellaBeatFirebase" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9CF38B2825504A6D00A0D63E /* Debug */,
+				9CF38B2925504A6D00A0D63E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		9CF38B2A25504A6D00A0D63E /* Build configuration list for PBXNativeTarget "BellaBeatFirebaseTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9CF38B2B25504A6D00A0D63E /* Debug */,
+				9CF38B2C25504A6D00A0D63E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		9CF38B2D25504A6D00A0D63E /* Build configuration list for PBXNativeTarget "BellaBeatFirebaseUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9CF38B2E25504A6D00A0D63E /* Debug */,
+				9CF38B2F25504A6D00A0D63E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		9CF38B0625504A6500A0D63E /* BellaBeatFirebase.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				9CF38B0725504A6500A0D63E /* BellaBeatFirebase.xcdatamodel */,
+			);
+			currentVersion = 9CF38B0725504A6500A0D63E /* BellaBeatFirebase.xcdatamodel */;
+			path = BellaBeatFirebase.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = 9CF38AF225504A6400A0D63E /* Project object */;
+}
