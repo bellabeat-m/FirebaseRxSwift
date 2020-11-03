@@ -8,10 +8,13 @@
 
 /* Begin PBXBuildFile section */
 		7AEF2EF64A44CBE1EC1AB33E /* Pods_BellaBeatFirebaseTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 236770F46A2435F41484785E /* Pods_BellaBeatFirebaseTests.framework */; };
+		9C5462E52551750D0010C9C0 /* ToDoList.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9C5462E42551750D0010C9C0 /* ToDoList.storyboard */; };
+		9C5462E825520CA50010C9C0 /* ToDoItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C5462E725520CA50010C9C0 /* ToDoItem.swift */; };
+		9C5462EA25520E500010C9C0 /* Detail.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9C5462E925520E500010C9C0 /* Detail.storyboard */; };
+		9C5462ED25520ED00010C9C0 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C5462EC25520ED00010C9C0 /* DetailViewController.swift */; };
 		9CF38AFE25504A6500A0D63E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CF38AFD25504A6500A0D63E /* AppDelegate.swift */; };
 		9CF38B0025504A6500A0D63E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CF38AFF25504A6500A0D63E /* SceneDelegate.swift */; };
-		9CF38B0225504A6500A0D63E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CF38B0125504A6500A0D63E /* ViewController.swift */; };
-		9CF38B0525504A6500A0D63E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9CF38B0325504A6500A0D63E /* Main.storyboard */; };
+		9CF38B0225504A6500A0D63E /* ListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CF38B0125504A6500A0D63E /* ListTableViewController.swift */; };
 		9CF38B0825504A6500A0D63E /* BellaBeatFirebase.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9CF38B0625504A6500A0D63E /* BellaBeatFirebase.xcdatamodeld */; };
 		9CF38B0A25504A6C00A0D63E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9CF38B0925504A6C00A0D63E /* Assets.xcassets */; };
 		9CF38B0D25504A6C00A0D63E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9CF38B0B25504A6C00A0D63E /* LaunchScreen.storyboard */; };
@@ -46,12 +49,15 @@
 		41D747A1C4214222C29DB75F /* Pods-BellaBeatFirebaseTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BellaBeatFirebaseTests.debug.xcconfig"; path = "Target Support Files/Pods-BellaBeatFirebaseTests/Pods-BellaBeatFirebaseTests.debug.xcconfig"; sourceTree = "<group>"; };
 		57284376BD7E601DC46E89F2 /* Pods-BellaBeatFirebase.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BellaBeatFirebase.debug.xcconfig"; path = "Target Support Files/Pods-BellaBeatFirebase/Pods-BellaBeatFirebase.debug.xcconfig"; sourceTree = "<group>"; };
 		68C2C3F562C78FD857085D5E /* Pods_BellaBeatFirebase.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BellaBeatFirebase.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		9C5462E42551750D0010C9C0 /* ToDoList.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ToDoList.storyboard; sourceTree = "<group>"; };
+		9C5462E725520CA50010C9C0 /* ToDoItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoItem.swift; sourceTree = "<group>"; };
+		9C5462E925520E500010C9C0 /* Detail.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Detail.storyboard; sourceTree = "<group>"; };
+		9C5462EC25520ED00010C9C0 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		9CE36FA169FBBD1578BA29D9 /* Pods-BellaBeatFirebase.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BellaBeatFirebase.release.xcconfig"; path = "Target Support Files/Pods-BellaBeatFirebase/Pods-BellaBeatFirebase.release.xcconfig"; sourceTree = "<group>"; };
 		9CF38AFA25504A6400A0D63E /* BellaBeatFirebase.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BellaBeatFirebase.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9CF38AFD25504A6500A0D63E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9CF38AFF25504A6500A0D63E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		9CF38B0125504A6500A0D63E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		9CF38B0425504A6500A0D63E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		9CF38B0125504A6500A0D63E /* ListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListTableViewController.swift; sourceTree = "<group>"; };
 		9CF38B0725504A6500A0D63E /* BellaBeatFirebase.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = BellaBeatFirebase.xcdatamodel; sourceTree = "<group>"; };
 		9CF38B0925504A6C00A0D63E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9CF38B0C25504A6C00A0D63E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -95,6 +101,32 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		9C5462E3255174DD0010C9C0 /* Storyboard */ = {
+			isa = PBXGroup;
+			children = (
+				9C5462E42551750D0010C9C0 /* ToDoList.storyboard */,
+				9C5462E925520E500010C9C0 /* Detail.storyboard */,
+			);
+			path = Storyboard;
+			sourceTree = "<group>";
+		};
+		9C5462E625520C8D0010C9C0 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				9C5462E725520CA50010C9C0 /* ToDoItem.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		9C5462EB25520EB10010C9C0 /* Scene */ = {
+			isa = PBXGroup;
+			children = (
+				9CF38B0125504A6500A0D63E /* ListTableViewController.swift */,
+				9C5462EC25520ED00010C9C0 /* DetailViewController.swift */,
+			);
+			path = Scene;
+			sourceTree = "<group>";
+		};
 		9CF38AF125504A6400A0D63E = {
 			isa = PBXGroup;
 			children = (
@@ -120,10 +152,11 @@
 		9CF38AFC25504A6400A0D63E /* BellaBeatFirebase */ = {
 			isa = PBXGroup;
 			children = (
+				9C5462EB25520EB10010C9C0 /* Scene */,
+				9C5462E625520C8D0010C9C0 /* Model */,
+				9C5462E3255174DD0010C9C0 /* Storyboard */,
 				9CF38AFD25504A6500A0D63E /* AppDelegate.swift */,
 				9CF38AFF25504A6500A0D63E /* SceneDelegate.swift */,
-				9CF38B0125504A6500A0D63E /* ViewController.swift */,
-				9CF38B0325504A6500A0D63E /* Main.storyboard */,
 				9CF38B0925504A6C00A0D63E /* Assets.xcassets */,
 				9CF38B0B25504A6C00A0D63E /* LaunchScreen.storyboard */,
 				9CF38B0E25504A6C00A0D63E /* Info.plist */,
@@ -171,7 +204,6 @@
 				1B08E8219CA62A55AE0AECCD /* Pods-BellaBeatFirebaseUITests.debug.xcconfig */,
 				C17BC1EB19E32A4DC840627D /* Pods-BellaBeatFirebaseUITests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -286,7 +318,8 @@
 				9CF38B0D25504A6C00A0D63E /* LaunchScreen.storyboard in Resources */,
 				9CF38B3125504AB000A0D63E /* GoogleService-Info.plist in Resources */,
 				9CF38B0A25504A6C00A0D63E /* Assets.xcassets in Resources */,
-				9CF38B0525504A6500A0D63E /* Main.storyboard in Resources */,
+				9C5462E52551750D0010C9C0 /* ToDoList.storyboard in Resources */,
+				9C5462EA25520E500010C9C0 /* Detail.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -408,8 +441,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9CF38B0225504A6500A0D63E /* ViewController.swift in Sources */,
+				9CF38B0225504A6500A0D63E /* ListTableViewController.swift in Sources */,
 				9CF38AFE25504A6500A0D63E /* AppDelegate.swift in Sources */,
+				9C5462E825520CA50010C9C0 /* ToDoItem.swift in Sources */,
+				9C5462ED25520ED00010C9C0 /* DetailViewController.swift in Sources */,
 				9CF38B0025504A6500A0D63E /* SceneDelegate.swift in Sources */,
 				9CF38B0825504A6500A0D63E /* BellaBeatFirebase.xcdatamodeld in Sources */,
 			);
@@ -447,14 +482,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		9CF38B0325504A6500A0D63E /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				9CF38B0425504A6500A0D63E /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		9CF38B0B25504A6C00A0D63E /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
