@@ -16,22 +16,22 @@ class ListTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.allowsMultipleSelectionDuringEditing = false
+        FireAPI.shared.getData(with: tasks)
         
-        FireAPI.shared.taskDB.observe(.value, with: { snapshot in
-          var newTasks: [ToDoItem] = []
-          for child in snapshot.children {
-            if let snapshot = child as? DataSnapshot,
-               let task = ToDoItem(snapshot: snapshot) {
-              newTasks.append(task)
+        FireAPI.shared.taskDB.observe(.value, with: { [weak self] (snapshot) in
+            var newTasks: [ToDoItem] = []
+            for child in snapshot.children {
+                if let snapshot = child as? DataSnapshot, let task = ToDoItem(snapshot: snapshot) {
+                    newTasks.append(task)
+                }
             }
-          }
-
-          self.tasks = newTasks
-          self.tableView.reloadData()
+            
+            self?.tasks = newTasks
+            self?.tableView.reloadData()
         })
-
+        
     }
-    
+ 
 // MARK: UITableView Delegate methods
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -112,8 +112,7 @@ class ListTableViewController: UITableViewController {
 
             let item = ToDoItem(name: text,
                                      completed: false)
-            let ref = Database.database().reference(withPath: "tasks")
-            let itemRef = ref.child(text.lowercased())
+            let itemRef = FireAPI.shared.taskDB.child(text.lowercased())
 
             itemRef.setValue(item.toAnyObject())
             self.tasks.append(item)
