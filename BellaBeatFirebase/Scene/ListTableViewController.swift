@@ -16,14 +16,29 @@ class ListTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.allowsMultipleSelectionDuringEditing = false
-        let ref = Database.database().reference()
         
+        FireAPI.shared.taskDB.observe(.value, with: { snapshot in
+          var newTasks: [ToDoItem] = []
+          for child in snapshot.children {
+            if let snapshot = child as? DataSnapshot,
+               let task = ToDoItem(snapshot: snapshot) {
+              newTasks.append(task)
+            }
+          }
+
+          self.tasks = newTasks
+          self.tableView.reloadData()
+        })
+
     }
-    // MARK: UITableView Delegate methods
+    
+// MARK: UITableView Delegate methods
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
       return tasks.count
     }
+    
+    
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
       let cell = tableView.dequeueReusableCell(withIdentifier: "ItemCell", for: indexPath)
@@ -36,6 +51,8 @@ class ListTableViewController: UITableViewController {
       return cell
     }
     
+    
+    
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
       return true
     }
@@ -43,9 +60,14 @@ class ListTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
       if editingStyle == .delete {
         tasks.remove(at: indexPath.row)
+        
+        let task = tasks[indexPath.row]
+        task.ref?.removeValue()
+        
         tableView.reloadData()
       }
     }
+    
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
       guard let cell = tableView.cellForRow(at: indexPath) else { return }
@@ -54,8 +76,16 @@ class ListTableViewController: UITableViewController {
       
       toggleCellCheckbox(cell, isCompleted: toggledCompletion)
       item.completed = toggledCompletion
+        
+        
+      item.ref?.updateChildValues([
+          "completed": toggledCompletion
+        ])
+        
+        
       tableView.reloadData()
     }
+    
     
     func toggleCellCheckbox(_ cell: UITableViewCell, isCompleted: Bool) {
       if !isCompleted {
@@ -68,7 +98,7 @@ class ListTableViewController: UITableViewController {
     }
 
 
-    // MARK: Add Item
+// MARK: Add Task
     
     @IBAction func addButtonDidTouch(_ sender: AnyObject) {
         let alert = UIAlertController(title: "Things to do",

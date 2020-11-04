@@ -12,6 +12,7 @@
 		9C5462E825520CA50010C9C0 /* ToDoItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C5462E725520CA50010C9C0 /* ToDoItem.swift */; };
 		9C5462EA25520E500010C9C0 /* Detail.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9C5462E925520E500010C9C0 /* Detail.storyboard */; };
 		9C5462ED25520ED00010C9C0 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C5462EC25520ED00010C9C0 /* DetailViewController.swift */; };
+		9C91BCDC2552D9D100CA8BAD /* FireAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C91BCDB2552D9D100CA8BAD /* FireAPI.swift */; };
 		9CF38AFE25504A6500A0D63E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CF38AFD25504A6500A0D63E /* AppDelegate.swift */; };
 		9CF38B0025504A6500A0D63E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CF38AFF25504A6500A0D63E /* SceneDelegate.swift */; };
 		9CF38B0225504A6500A0D63E /* ListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CF38B0125504A6500A0D63E /* ListTableViewController.swift */; };
@@ -53,6 +54,7 @@
 		9C5462E725520CA50010C9C0 /* ToDoItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoItem.swift; sourceTree = "<group>"; };
 		9C5462E925520E500010C9C0 /* Detail.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Detail.storyboard; sourceTree = "<group>"; };
 		9C5462EC25520ED00010C9C0 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		9C91BCDB2552D9D100CA8BAD /* FireAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FireAPI.swift; sourceTree = "<group>"; };
 		9CE36FA169FBBD1578BA29D9 /* Pods-BellaBeatFirebase.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BellaBeatFirebase.release.xcconfig"; path = "Target Support Files/Pods-BellaBeatFirebase/Pods-BellaBeatFirebase.release.xcconfig"; sourceTree = "<group>"; };
 		9CF38AFA25504A6400A0D63E /* BellaBeatFirebase.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BellaBeatFirebase.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9CF38AFD25504A6500A0D63E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -127,6 +129,14 @@
 			path = Scene;
 			sourceTree = "<group>";
 		};
+		9C91BCDA2552D9B800CA8BAD /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				9C91BCDB2552D9D100CA8BAD /* FireAPI.swift */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
 		9CF38AF125504A6400A0D63E = {
 			isa = PBXGroup;
 			children = (
@@ -152,6 +162,7 @@
 		9CF38AFC25504A6400A0D63E /* BellaBeatFirebase */ = {
 			isa = PBXGroup;
 			children = (
+				9C91BCDA2552D9B800CA8BAD /* Service */,
 				9C5462EB25520EB10010C9C0 /* Scene */,
 				9C5462E625520C8D0010C9C0 /* Model */,
 				9C5462E3255174DD0010C9C0 /* Storyboard */,
@@ -443,6 +454,7 @@
 			files = (
 				9CF38B0225504A6500A0D63E /* ListTableViewController.swift in Sources */,
 				9CF38AFE25504A6500A0D63E /* AppDelegate.swift in Sources */,
+				9C91BCDC2552D9D100CA8BAD /* FireAPI.swift in Sources */,
 				9C5462E825520CA50010C9C0 /* ToDoItem.swift in Sources */,
 				9C5462ED25520ED00010C9C0 /* DetailViewController.swift in Sources */,
 				9CF38B0025504A6500A0D63E /* SceneDelegate.swift in Sources */,

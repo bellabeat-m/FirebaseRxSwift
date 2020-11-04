@@ -41,8 +41,8 @@
                             </tableViewCell>
                         </prototypes>
                         <connections>
-                            <outlet property="dataSource" destination="BdN-xQ-e24" id="DlV-xc-ZvB"/>
-                            <outlet property="delegate" destination="BdN-xQ-e24" id="jL7-V7-xwb"/>
+                            <outlet property="dataSource" destination="BdN-xQ-e24" id="qgP-eH-IGE"/>
+                            <outlet property="delegate" destination="BdN-xQ-e24" id="bvT-eO-szi"/>
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="To do List" id="ZNa-h1-ZCC">
