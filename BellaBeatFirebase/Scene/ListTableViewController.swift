@@ -59,7 +59,6 @@ class ListTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
       if editingStyle == .delete {
-        tasks.remove(at: indexPath.row)
         
         let task = tasks[indexPath.row]
         task.ref?.removeValue()
