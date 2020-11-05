@@ -8,9 +8,9 @@
 
 import Foundation
 
-protocol FireAPIProtocol {
+protocol FireAPIProtocol: class {
 
     func getData(with tasks: [ToDoItem])
-    func setData(with tasks: [ToDoItem])
+    func setData(with tasks: ToDoItem)
     func removeData(with task: ToDoItem)
 }

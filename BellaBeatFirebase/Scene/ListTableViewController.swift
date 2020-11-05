@@ -12,34 +12,28 @@ import FirebaseDatabase
 class ListTableViewController: UIViewController {
     
     @IBOutlet private weak var tableView: UITableView!
-    var tasks: [ToDoItem] = []
+    private var tasks: [ToDoItem] = []
 
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.allowsMultipleSelectionDuringEditing = false
-        getData(with: tasks)
-
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        FireAPI.shared.getData(completed: { [weak self] tasks in
+            self?.tasks = tasks
+            self?.tableView.reloadData()
+            
+        })
         
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        FireAPI.shared.taskDB.removeAllObservers()
-        
-    }
-    
-    func getData(with tasks: [ToDoItem]) {
-        
-        var tasksMutated = tasks
-        FireAPI.shared.taskDB.observe(.value, with: { snapshot in
-            for child in snapshot.children {
-                if let snapshot = child as? DataSnapshot, let task = ToDoItem(snapshot: snapshot) {
-                    tasksMutated.append(task)
-                }
-            }
-            self.tasks = tasksMutated
-            self.tableView.reloadData()
-        })
+        FireAPI.shared.taskPathAppending.removeAllObservers()
+
     }
     
  // MARK: Add Task
@@ -56,7 +50,7 @@ class ListTableViewController: UIViewController {
 
             let item = ToDoItem(name: text,
                                      completed: false)
-            let itemRef = FireAPI.shared.taskDB.child(text.lowercased())
+            let itemRef = FireAPI.shared.taskPathAppending.child(text.lowercased())
 
             itemRef.setValue(item.toAnyObject())
             self.tasks.append(item)
@@ -67,7 +61,6 @@ class ListTableViewController: UIViewController {
                                          style: .cancel)
         
         alert.addTextField()
-        
         alert.addAction(saveAction)
         alert.addAction(cancelAction)
         
@@ -77,7 +70,7 @@ class ListTableViewController: UIViewController {
  
 // MARK: UITableView Delegate methods
 
-extension ListTableViewController: UITableViewDelegate, UITableViewDataSource {
+extension ListTableViewController: UITableViewDataSource {
     
      func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
       return tasks.count
@@ -108,7 +101,7 @@ extension ListTableViewController: UITableViewDelegate, UITableViewDataSource {
         let task = tasks[indexPath.row]
         task.ref?.removeValue()
         
-        tableView.reloadData()
+       tableView.reloadData()
       }
     }
     
@@ -125,7 +118,7 @@ extension ListTableViewController: UITableViewDelegate, UITableViewDataSource {
       item.ref?.updateChildValues([
           "completed": toggledCompletion
         ])
-        
+
         
       tableView.reloadData()
     }

@@ -59,11 +59,38 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="vZk-A9-Bfy"/>
                     </view>
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" title="Tasks" id="mqw-9p-FiV">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="CYu-vk-FtQ">
+                            <connections>
+                                <action selector="addButtonDidTouch:" destination="o4o-e8-A2a" id="HHs-Hr-Abd"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="tableView" destination="yTp-h1-afe" id="37Y-5X-2m3"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x7q-2a-C73" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2771.0144927536235" y="-275.22321428571428"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="xax-9d-qrG">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="BHc-xh-gG2" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="BdF-Ue-zFU">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="o4o-e8-A2a" kind="relationship" relationship="rootViewController" id="rgz-JH-DdX"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="VKA-cM-k2m" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1860.8695652173915" y="-275.22321428571428"/>
         </scene>

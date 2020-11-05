@@ -9,33 +9,34 @@
 import FirebaseDatabase
 
 
-class FireAPI: FireAPIProtocol {
+class FireAPI {
     
     static let shared = FireAPI()
-    let taskDB: DatabaseReference = Database.database().reference(withPath: "tasks")
+    let taskPathAppending: DatabaseReference = Database.database().reference(withPath: "tasks")
     
     fileprivate init() { }
     
     
-    func getData(with tasks: [ToDoItem]) {
+    func getData(completed: @escaping ([ToDoItem]) ->()) {
         
-        var tasksMutated = tasks
-        FireAPI.shared.taskDB.observe(.value, with: { snapshot in
-            for child in snapshot.children {
+        var tasks: [ToDoItem] = []
+        FireAPI.shared.taskPathAppending.observe(.value, with: { snapshot in
+            for child in snapshot.children.allObjects {
                 if let snapshot = child as? DataSnapshot, let task = ToDoItem(snapshot: snapshot) {
-                    tasksMutated.append(task)
+                    tasks.append(task)
                 }
             }
+            completed(tasks)
         })
     }
     
-    func setData(with tasks: [ToDoItem]) {
+    func setData(with task: ToDoItem) {
         
-        var tasksMutated = tasks
-        let task = ToDoItem(name: "", completed: false)
-        let itemRef = taskDB.child(task.name)
-        itemRef.setValue(task.toAnyObject())
-        tasksMutated.append(task)
+        //var tasksMutated = tasks
+//        let task = ToDoItem(name: "", completed: false)
+//        let itemRef = taskDB.child(task.name)
+//        itemRef.setValue(task.toAnyObject())
+//        tasksMutated.append(task)
     }
     
     func removeData(with task: ToDoItem) {
