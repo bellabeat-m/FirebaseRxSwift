@@ -16,20 +16,29 @@ class ListTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.allowsMultipleSelectionDuringEditing = false
-        FireAPI.shared.getData(with: tasks)
+        getData(with: tasks)
+
         
-        FireAPI.shared.taskDB.observe(.value, with: { [weak self] (snapshot) in
-            var newTasks: [ToDoItem] = []
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        FireAPI.shared.taskDB.removeAllObservers()
+        
+    }
+    
+    func getData(with tasks: [ToDoItem]) {
+        
+        var tasksMutated = tasks
+        FireAPI.shared.taskDB.observe(.value, with: { snapshot in
             for child in snapshot.children {
                 if let snapshot = child as? DataSnapshot, let task = ToDoItem(snapshot: snapshot) {
-                    newTasks.append(task)
+                    tasksMutated.append(task)
                 }
             }
-            
-            self?.tasks = newTasks
-            self?.tableView.reloadData()
+            self.tasks = tasksMutated
+            self.tableView.reloadData()
         })
-        
     }
  
 // MARK: UITableView Delegate methods
