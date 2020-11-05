@@ -10,13 +10,11 @@ import FirebaseDatabase
 
 struct ToDoItem {
     
-    let ref: DatabaseReference?
     let key: String
     let name: String
     var completed: Bool
     
     init(name: String, completed: Bool, key: String = "") {
-        self.ref = nil
         self.key = key
         self.name = name
         self.completed = completed
@@ -30,7 +28,6 @@ struct ToDoItem {
                 return nil
         }
         
-        self.ref = snapshot.ref
         self.key = snapshot.key
         self.name = name
         self.completed = completed

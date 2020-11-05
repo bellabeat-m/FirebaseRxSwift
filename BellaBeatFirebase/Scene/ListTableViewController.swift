@@ -100,19 +100,19 @@ extension ListTableViewController: UITableViewDataSource {
             tasks.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .fade)
             let task = tasks[indexPath.row]
-            task.ref?.removeValue()
+            FireAPI.shared.taskPathAppending.child(task.key).removeValue()
         }
     }
     
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let cell = tableView.cellForRow(at: indexPath) else { return }
-        var item = tasks[indexPath.row]
-        let toggledCompletion = !item.completed
+        var task = tasks[indexPath.row]
+        let toggledCompletion = !task.completed
         
         toggleCellCheckbox(cell, isCompleted: toggledCompletion)
-        item.completed = toggledCompletion
-        item.ref?.updateChildValues([
+        task.completed = toggledCompletion
+        FireAPI.shared.taskPathAppending.child(task.key).updateChildValues([
             "completed": toggledCompletion
         ])
 
