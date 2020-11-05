@@ -9,8 +9,9 @@
 import UIKit
 import FirebaseDatabase
 
-class ListTableViewController: UITableViewController {
+class ListTableViewController: UIViewController {
     
+    @IBOutlet private weak var tableView: UITableView!
     var tasks: [ToDoItem] = []
 
     override func viewDidLoad() {
@@ -40,73 +41,8 @@ class ListTableViewController: UITableViewController {
             self.tableView.reloadData()
         })
     }
- 
-// MARK: UITableView Delegate methods
     
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-      return tasks.count
-    }
-    
-    
-    
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-      let cell = tableView.dequeueReusableCell(withIdentifier: "ItemCell", for: indexPath)
-      let item = tasks[indexPath.row]
-      
-      cell.textLabel?.text = item.name
-      
-      toggleCellCheckbox(cell, isCompleted: item.completed)
-      
-      return cell
-    }
-    
-    
-    
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-      return true
-    }
-    
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-      if editingStyle == .delete {
-        
-        let task = tasks[indexPath.row]
-        task.ref?.removeValue()
-        
-        tableView.reloadData()
-      }
-    }
-    
-    
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-      guard let cell = tableView.cellForRow(at: indexPath) else { return }
-      var item = tasks[indexPath.row]
-      let toggledCompletion = !item.completed
-      
-      toggleCellCheckbox(cell, isCompleted: toggledCompletion)
-      item.completed = toggledCompletion
-        
-        
-      item.ref?.updateChildValues([
-          "completed": toggledCompletion
-        ])
-        
-        
-      tableView.reloadData()
-    }
-    
-    
-    func toggleCellCheckbox(_ cell: UITableViewCell, isCompleted: Bool) {
-      if !isCompleted {
-        cell.accessoryType = .none
-        cell.textLabel?.textColor = .black
-      } else {
-        cell.accessoryType = .checkmark
-        cell.textLabel?.textColor = .gray
-      }
-    }
-
-
-// MARK: Add Task
+ // MARK: Add Task
     
     @IBAction func addButtonDidTouch(_ sender: AnyObject) {
         let alert = UIAlertController(title: "Things to do",
@@ -137,5 +73,73 @@ class ListTableViewController: UITableViewController {
         
         present(alert, animated: true, completion: nil)
     }
+}
+ 
+// MARK: UITableView Delegate methods
+
+extension ListTableViewController: UITableViewDelegate, UITableViewDataSource {
+    
+     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+      return tasks.count
+    }
+    
+    
+    
+     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+      let cell = tableView.dequeueReusableCell(withIdentifier: "ItemCell", for: indexPath)
+      let item = tasks[indexPath.row]
+      
+      cell.textLabel?.text = item.name
+      
+      toggleCellCheckbox(cell, isCompleted: item.completed)
+      
+      return cell
+    }
+    
+    
+    
+     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+      return true
+    }
+    
+     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+      if editingStyle == .delete {
+        
+        let task = tasks[indexPath.row]
+        task.ref?.removeValue()
+        
+        tableView.reloadData()
+      }
+    }
+    
+    
+     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+      guard let cell = tableView.cellForRow(at: indexPath) else { return }
+      var item = tasks[indexPath.row]
+      let toggledCompletion = !item.completed
+      
+      toggleCellCheckbox(cell, isCompleted: toggledCompletion)
+      item.completed = toggledCompletion
+        
+        
+      item.ref?.updateChildValues([
+          "completed": toggledCompletion
+        ])
+        
+        
+      tableView.reloadData()
+    }
+    
+    
+    func toggleCellCheckbox(_ cell: UITableViewCell, isCompleted: Bool) {
+      if !isCompleted {
+        cell.accessoryType = .none
+        cell.textLabel?.textColor = .black
+      } else {
+        cell.accessoryType = .checkmark
+        cell.textLabel?.textColor = .gray
+      }
+    }
+
 }
 
