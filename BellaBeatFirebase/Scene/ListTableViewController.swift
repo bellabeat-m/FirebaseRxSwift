@@ -97,11 +97,10 @@ extension ListTableViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            
+            tasks.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .fade)
             let task = tasks[indexPath.row]
             task.ref?.removeValue()
-            
-            tableView.reloadData()
         }
     }
     
@@ -113,8 +112,6 @@ extension ListTableViewController: UITableViewDataSource {
         
         toggleCellCheckbox(cell, isCompleted: toggledCompletion)
         item.completed = toggledCompletion
-        
-        
         item.ref?.updateChildValues([
             "completed": toggledCompletion
         ])
@@ -127,9 +124,11 @@ extension ListTableViewController: UITableViewDataSource {
         if !isCompleted {
             cell.accessoryType = .none
             cell.textLabel?.textColor = .black
+            cell.detailTextLabel?.textColor = .black
         } else {
             cell.accessoryType = .checkmark
             cell.textLabel?.textColor = .gray
+            cell.detailTextLabel?.textColor = .gray
         }
     }
 }
