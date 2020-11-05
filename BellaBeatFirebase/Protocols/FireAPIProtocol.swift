@@ -11,7 +11,8 @@ import Foundation
 protocol FireAPIProtocol {
 
     typealias TaskCompletion = ([ToDoItem]) -> Void
+    
     func getData(completed: @escaping TaskCompletion)
-    func setData(with tasks: [ToDoItem])
+    func setData(with task: ToDoItem, completed: @escaping TaskCompletion)
     func removeData(with task: ToDoItem)
 }

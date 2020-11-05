@@ -9,18 +9,16 @@
 import FirebaseDatabase
 
 
-class FireAPI {
+class FireAPI: FireAPIProtocol {
     
     static let shared = FireAPI()
-    let taskPathAppending: DatabaseReference = Database.database().reference(withPath: "tasks")
-    
+    var databaseRef: DatabaseReference?
     fileprivate init() { }
     
-    
     func getData(completed: @escaping ([ToDoItem]) ->()) {
-        
+        databaseRef = Database.database().reference(withPath: "tasks")
         var tasks: [ToDoItem] = []
-        FireAPI.shared.taskPathAppending.observeSingleEvent(of: .value, with: { snapshot in
+        databaseRef?.observeSingleEvent(of: .value, with: { snapshot in
             for child in snapshot.children {
                 if let snapshot = child as? DataSnapshot, let task = ToDoItem(snapshot: snapshot) {
                     tasks.append(task)
@@ -30,7 +28,13 @@ class FireAPI {
         })
     }
     
-    func setData(with task: ToDoItem) {
+    func setData(with task: ToDoItem, completed: @escaping ([ToDoItem]) ->()) {
+        var tasks: [ToDoItem] = []
+        databaseRef = Database.database().reference(withPath: "tasks")
+        let itemRef = databaseRef?.child(task.name)
+        itemRef?.setValue(task.toAnyObject())
+        tasks.append(task)
+        completed(tasks)
         
     }
     

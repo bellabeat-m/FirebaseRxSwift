@@ -32,7 +32,9 @@ class ListTableViewController: UIViewController {
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        FireAPI.shared.taskPathAppending.removeAllObservers()
+        FireAPI.shared.databaseRef = Database.database().reference(withPath: "tasks")
+        FireAPI.shared.databaseRef?.removeAllObservers()
+        //TODO remove children too
         
     }
     
@@ -47,14 +49,20 @@ class ListTableViewController: UIViewController {
             
             guard let textField = alert.textFields?.first,
                 let text = textField.text else { return }
+            let item = ToDoItem(name: text, completed: false)
+            FireAPI.shared.setData(with: item, completed: {  [weak self] tasks in
+                self?.tasks = tasks
+                self?.tableView.reloadData()
+            })
+//            let item = ToDoItem(name: text,
+//                                completed: false)
+//            FireAPI.shared.databaseRef = Database.database().reference(withPath: "tasks")
+//            let itemRef = FireAPI.shared.databaseRef?.child(text.lowercased())
+//            
+//            itemRef?.setValue(item.toAnyObject())
+//            self.tasks.append(item)
             
-            let item = ToDoItem(name: text,
-                                completed: false)
-            let itemRef = FireAPI.shared.taskPathAppending.child(text.lowercased())
-            
-            itemRef.setValue(item.toAnyObject())
-            self.tasks.append(item)
-            self.tableView.reloadData()
+//            self.tableView.reloadData()
         }
         
         let cancelAction = UIAlertAction(title: "Cancel",
@@ -70,7 +78,7 @@ class ListTableViewController: UIViewController {
 
 // MARK: UITableView Delegate & DataSource methods
 
-extension ListTableViewController: UITableViewDataSource {
+extension ListTableViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return tasks.count
@@ -97,26 +105,27 @@ extension ListTableViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
+            let task = tasks[indexPath.row]
             tasks.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .fade)
-            let task = tasks[indexPath.row]
-            FireAPI.shared.taskPathAppending.child(task.key).removeValue()
+            
+            FireAPI.shared.databaseRef = Database.database().reference(withPath: "tasks")
+            FireAPI.shared.databaseRef?.child(task.name).removeValue()
         }
     }
     
-    
+ // Samo jednom selektiranje taskova
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let cell = tableView.cellForRow(at: indexPath) else { return }
-        var task = tasks[indexPath.row]
+        let task = tasks[indexPath.row]
         let toggledCompletion = !task.completed
-        
         toggleCellCheckbox(cell, isCompleted: toggledCompletion)
-        task.completed = toggledCompletion
-        FireAPI.shared.taskPathAppending.child(task.key).updateChildValues([
+        
+        FireAPI.shared.databaseRef = Database.database().reference(withPath: "tasks")
+        FireAPI.shared.databaseRef?.child(task.name).updateChildValues([
             "completed": toggledCompletion
         ])
 
-        tableView.reloadData()
     }
     
     
