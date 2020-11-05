@@ -20,8 +20,8 @@ class FireAPI {
     func getData(completed: @escaping ([ToDoItem]) ->()) {
         
         var tasks: [ToDoItem] = []
-        FireAPI.shared.taskPathAppending.observe(.value, with: { snapshot in
-            for child in snapshot.children.allObjects {
+        FireAPI.shared.taskPathAppending.observeSingleEvent(of: .value, with: { snapshot in
+            for child in snapshot.children {
                 if let snapshot = child as? DataSnapshot, let task = ToDoItem(snapshot: snapshot) {
                     tasks.append(task)
                 }
@@ -32,16 +32,10 @@ class FireAPI {
     
     func setData(with task: ToDoItem) {
         
-        //var tasksMutated = tasks
-//        let task = ToDoItem(name: "", completed: false)
-//        let itemRef = taskDB.child(task.name)
-//        itemRef.setValue(task.toAnyObject())
-//        tasksMutated.append(task)
     }
     
     func removeData(with task: ToDoItem) {
-        
-        task.ref?.removeValue()
+
     }
     
 }
