@@ -23,9 +23,10 @@ class ListTableViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         FireAPI.shared.getData(completed: { [weak self] tasks in
-            self?.tasks = tasks
-            self?.tableView.reloadData()
-            
+            DispatchQueue.main.async(execute: {
+                self?.tasks = tasks
+                self?.tableView.reloadData()
+            })
         })
         
     }
@@ -51,8 +52,10 @@ class ListTableViewController: UIViewController {
                 let text = textField.text else { return }
             let item = ToDoItem(name: text, completed: false)
             FireAPI.shared.setData(with: item, completed: {  [weak self] tasks in
+                 DispatchQueue.main.async(execute: {
                 self?.tasks = tasks
                 self?.tableView.reloadData()
+                })
             })
 //            let item = ToDoItem(name: text,
 //                                completed: false)
