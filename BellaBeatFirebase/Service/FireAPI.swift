@@ -51,11 +51,11 @@ class FireAPI {
     }
         
     func removeData(for task: ToDoItem) {
-        databaseRef.child(task.name).removeValue()
+        databaseRef.child(task.key).removeValue()
     }
     
     func updateData(for task: ToDoItem) {
-        databaseRef.child(task.name).updateChildValues([
+        databaseRef.child(task.key).updateChildValues([
             "completed": task.completed
         ])
     }
