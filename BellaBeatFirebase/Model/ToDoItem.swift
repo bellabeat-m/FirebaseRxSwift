@@ -19,6 +19,9 @@ struct ToDoItem {
         self.name = name
         self.completed = completed
     }
+/**
+  Use this method to retrieve information of DataSnapshot(Any) and create the instance.
+*/
     
     init?(snapshot: DataSnapshot) {
         guard

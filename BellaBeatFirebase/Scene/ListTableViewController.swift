@@ -22,7 +22,7 @@ class ListTableViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        FireAPI.shared.getData(completed: { [weak self] tasks in
+        FireAPI.shared.getData(update: { [weak self] tasks in
             DispatchQueue.main.async(execute: {
                 self?.tasks = tasks
                 self?.tableView.reloadData()
@@ -33,13 +33,11 @@ class ListTableViewController: UIViewController {
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        FireAPI.shared.databaseRef = Database.database().reference(withPath: "tasks")
-        FireAPI.shared.databaseRef?.removeAllObservers()
-        //TODO remove children too
+        FireAPI.shared.removeAllObservers()
         
     }
     
-// MARK: Add Task: TODO extract
+// MARK: Add Task
     
     @IBAction func addButtonDidTouch(_ sender: AnyObject) {
         let alert = UIAlertController(title: "Things to do",
@@ -50,22 +48,12 @@ class ListTableViewController: UIViewController {
             
             guard let textField = alert.textFields?.first,
                 let text = textField.text else { return }
-            let item = ToDoItem(name: text, completed: false)
-            FireAPI.shared.setData(with: item, completed: {  [weak self] tasks in
-                 DispatchQueue.main.async(execute: {
-                self?.tasks = tasks
-                self?.tableView.reloadData()
+            FireAPI.shared.setData(with: text, update: { [weak self] tasks in
+                DispatchQueue.main.async(execute: {
+                    self?.tasks = tasks
+                    self?.tableView.reloadData()
                 })
             })
-//            let item = ToDoItem(name: text,
-//                                completed: false)
-//            FireAPI.shared.databaseRef = Database.database().reference(withPath: "tasks")
-//            let itemRef = FireAPI.shared.databaseRef?.child(text.lowercased())
-//            
-//            itemRef?.setValue(item.toAnyObject())
-//            self.tasks.append(item)
-            
-//            self.tableView.reloadData()
         }
         
         let cancelAction = UIAlertAction(title: "Cancel",
@@ -94,7 +82,6 @@ extension ListTableViewController: UITableViewDataSource, UITableViewDelegate {
         let item = tasks[indexPath.row]
         
         cell.textLabel?.text = item.name
-        
         toggleCellCheckbox(cell, isCompleted: item.completed)
         
         return cell
@@ -112,22 +99,19 @@ extension ListTableViewController: UITableViewDataSource, UITableViewDelegate {
             tasks.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .fade)
             
-            FireAPI.shared.databaseRef = Database.database().reference(withPath: "tasks")
-            FireAPI.shared.databaseRef?.child(task.name).removeValue()
+            FireAPI.shared.removeData(for: task)
         }
     }
     
- // Samo jednom selektiranje taskova
+// Samo jednom selektiranje taskova
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let cell = tableView.cellForRow(at: indexPath) else { return }
         let task = tasks[indexPath.row]
         let toggledCompletion = !task.completed
         toggleCellCheckbox(cell, isCompleted: toggledCompletion)
+        tableView.deselectRow(at: indexPath, animated: true)
         
-        FireAPI.shared.databaseRef = Database.database().reference(withPath: "tasks")
-        FireAPI.shared.databaseRef?.child(task.name).updateChildValues([
-            "completed": toggledCompletion
-        ])
+        FireAPI.shared.updateData(for: task)
 
     }
     
@@ -143,4 +127,13 @@ extension ListTableViewController: UITableViewDataSource, UITableViewDelegate {
             cell.detailTextLabel?.textColor = .gray
         }
     }
+}
+
+
+extension ListTableViewController {
+
+    func addFirebaseObservers() {
+        
+    }
+
 }
