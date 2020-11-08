@@ -13,11 +13,14 @@ class FireAPI {
     
     static let shared = FireAPI()
     
-    var databaseRef: DatabaseReference {
-        return Database.database().reference().child("tasks")
+    var rootRef: DatabaseReference {
+        return Database.database().reference(withPath: "tasks")
+    }
+    var taskKey: String? {
+        return rootRef.childByAutoId().key
     }
     
-    var taskList: [ToDoItem] = []
+    var tasksList = [ToDoItem]()
 //TOFIX: need this to set observers once in UI?
     var didGetTaskData = false
     
@@ -25,44 +28,44 @@ class FireAPI {
     
     func getData(update: @escaping ([ToDoItem]) -> Void) {
         
-        databaseRef.observeSingleEvent(of: .value, with: { snapshot in
-            self.taskList.removeAll()
+        rootRef.observeSingleEvent(of: .value, with: { snapshot in
+            self.tasksList.removeAll()
+            self.tasksList = []
             for child in snapshot.children {
                 if let snapshot = child as? DataSnapshot, let task = ToDoItem(snapshot: snapshot) {
-                    self.taskList.append(task)
+                    self.tasksList.append(task)
                 }
             }
-            update(self.taskList)
+            update(self.tasksList)
         }) {
             (error) in
             print(error.localizedDescription)
         }
     }
     
-    func setData(with name: String, update: @escaping ([ToDoItem]) -> Void) {
-        
-        guard let taskName = databaseRef.childByAutoId().key else { return }
+    func insertData(with name: String, update: @escaping ([ToDoItem]) -> Void) {
+        guard let key = taskKey else { return }
         let item = ToDoItem(name: name, completed: false)
-        let itemRef = self.databaseRef.child(taskName)
+        let itemRef = self.rootRef.child(key)
         itemRef.setValue(item.toAnyObject())
-        self.taskList.append(item)
-        update(self.taskList)
+        self.tasksList.insert(item, at: 0)        
+        update(self.tasksList)
         
     }
         
     func removeData(for task: ToDoItem) {
-        databaseRef.child(task.key).removeValue()
+        rootRef.child(task.key).removeValue()
     }
     
     func updateData(for task: ToDoItem) {
-        databaseRef.child(task.key).updateChildValues([
+        rootRef.child(task.key).updateChildValues([
             "completed": task.completed
         ])
     }
     
     func removeAllObservers() {
-        taskList.removeAll()
-        databaseRef.childByAutoId().removeAllObservers()
+        tasksList.removeAll()
+        rootRef.childByAutoId().removeAllObservers()
         didGetTaskData = false
     }
 }

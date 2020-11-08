@@ -12,7 +12,7 @@ import FirebaseDatabase
 class ListTableViewController: UIViewController {
     
     @IBOutlet private weak var tableView: UITableView!
-    private var tasks: [ToDoItem] = []
+    private var tasks = [ToDoItem]()
     
     
     override func viewDidLoad() {
@@ -48,7 +48,7 @@ class ListTableViewController: UIViewController {
             
             guard let textField = alert.textFields?.first,
                 let text = textField.text else { return }
-            FireAPI.shared.setData(with: text, update: { [weak self] tasks in
+            FireAPI.shared.insertData(with: text, update: { [weak self] tasks in
                 DispatchQueue.main.async(execute: {
                     self?.tasks = tasks
                     self?.tableView.reloadData()
@@ -96,10 +96,10 @@ extension ListTableViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             let task = tasks[indexPath.row]
+            FireAPI.shared.removeData(for: task)
             tasks.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .fade)
-            
-            FireAPI.shared.removeData(for: task)
+            self.tableView.reloadData()
         }
     }
     
@@ -115,17 +115,10 @@ extension ListTableViewController: UITableViewDataSource, UITableViewDelegate {
 
     }
     
-    
     func toggleCellCheckbox(_ cell: UITableViewCell, isCompleted: Bool) {
-        if !isCompleted {
-            cell.accessoryType = .none
-            cell.textLabel?.textColor = .black
-            cell.detailTextLabel?.textColor = .black
-        } else {
-            cell.accessoryType = .checkmark
-            cell.textLabel?.textColor = .gray
-            cell.detailTextLabel?.textColor = .gray
-        }
+        cell.accessoryType = isCompleted ? .checkmark : .none
+        cell.textLabel?.textColor = isCompleted ? .gray : .black
+        cell.detailTextLabel?.textColor = isCompleted ? .gray : .black
     }
 }
 
