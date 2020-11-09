@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		7AEF2EF64A44CBE1EC1AB33E /* Pods_BellaBeatFirebaseTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 236770F46A2435F41484785E /* Pods_BellaBeatFirebaseTests.framework */; };
-		9C2A8EE925589B3E00F43F8A /* ObserverHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C2A8EE825589B3E00F43F8A /* ObserverHandler.swift */; };
 		9C5462E52551750D0010C9C0 /* ToDoList.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9C5462E42551750D0010C9C0 /* ToDoList.storyboard */; };
 		9C5462E825520CA50010C9C0 /* ToDoItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C5462E725520CA50010C9C0 /* ToDoItem.swift */; };
 		9C5462EA25520E500010C9C0 /* Detail.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9C5462E925520E500010C9C0 /* Detail.storyboard */; };
@@ -52,7 +51,6 @@
 		41D747A1C4214222C29DB75F /* Pods-BellaBeatFirebaseTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BellaBeatFirebaseTests.debug.xcconfig"; path = "Target Support Files/Pods-BellaBeatFirebaseTests/Pods-BellaBeatFirebaseTests.debug.xcconfig"; sourceTree = "<group>"; };
 		57284376BD7E601DC46E89F2 /* Pods-BellaBeatFirebase.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BellaBeatFirebase.debug.xcconfig"; path = "Target Support Files/Pods-BellaBeatFirebase/Pods-BellaBeatFirebase.debug.xcconfig"; sourceTree = "<group>"; };
 		68C2C3F562C78FD857085D5E /* Pods_BellaBeatFirebase.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BellaBeatFirebase.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		9C2A8EE825589B3E00F43F8A /* ObserverHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObserverHandler.swift; sourceTree = "<group>"; };
 		9C5462E42551750D0010C9C0 /* ToDoList.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ToDoList.storyboard; sourceTree = "<group>"; };
 		9C5462E725520CA50010C9C0 /* ToDoItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoItem.swift; sourceTree = "<group>"; };
 		9C5462E925520E500010C9C0 /* Detail.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Detail.storyboard; sourceTree = "<group>"; };
@@ -137,7 +135,6 @@
 			isa = PBXGroup;
 			children = (
 				9C91BCDB2552D9D100CA8BAD /* FireAPI.swift */,
-				9C2A8EE825589B3E00F43F8A /* ObserverHandler.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -466,7 +463,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9C2A8EE925589B3E00F43F8A /* ObserverHandler.swift in Sources */,
 				9CF38B0225504A6500A0D63E /* ListTableViewController.swift in Sources */,
 				9CF38AFE25504A6500A0D63E /* AppDelegate.swift in Sources */,
 				9C91BCE4255357F200CA8BAD /* FireAPIProtocol.swift in Sources */,

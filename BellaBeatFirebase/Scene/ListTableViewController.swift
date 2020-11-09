@@ -18,17 +18,12 @@ class ListTableViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.allowsMultipleSelectionDuringEditing = false
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
         FireAPI.shared.getData(update: { [weak self] tasks in
             DispatchQueue.main.async(execute: {
                 self?.tasks = tasks
                 self?.tableView.reloadData()
             })
         })
-        
     }
     
     override func viewWillDisappear(_ animated: Bool) {

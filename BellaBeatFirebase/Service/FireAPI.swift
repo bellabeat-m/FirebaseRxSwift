@@ -21,8 +21,6 @@ class FireAPI {
     }
     
     var tasksList = [ToDoItem]()
-//TOFIX: need this to set observers once in UI?
-    var didGetTaskData = false
     
     fileprivate init() { }
     
@@ -46,11 +44,10 @@ class FireAPI {
     func insertData(with name: String, update: @escaping ([ToDoItem]) -> Void) {
         guard let key = taskKey else { return }
         let item = ToDoItem(name: name, completed: false)
-        let itemRef = self.rootRef.child(key)
-        itemRef.setValue(item.toAnyObject())
-        self.tasksList.insert(item, at: 0)        
+        let childUpdates = ["\(key)" : item.toAnyObject()]
+        rootRef.updateChildValues(childUpdates)
+        self.tasksList.insert(item, at: 0)
         update(self.tasksList)
-        
     }
         
     func removeData(for task: ToDoItem) {
@@ -66,6 +63,30 @@ class FireAPI {
     func removeAllObservers() {
         tasksList.removeAll()
         rootRef.childByAutoId().removeAllObservers()
-        didGetTaskData = false
+    }
+    
+ //Wrapper for Firebase db callbacks
+
+    func listenForAllChildEvents(update: @escaping(_ snapshot: DataSnapshot?, _ error: Error?, _ eventType: DataEventType?) -> ()) {
+        let taskRef = rootRef
+        taskRef.observe(.childAdded, with: { (snapshot) in
+             //childAdded append to array
+            update(snapshot, nil, .childAdded)
+            
+        }) { (error) in
+            update(nil, error, nil)
+        }
+        taskRef.observe(.childRemoved, with: { (snapshot) in
+            //childRemoved delete it from the array
+            update(snapshot, nil, .childRemoved)
+        }) { (error) in
+            update(nil, error, nil)
+        }
+        taskRef.observe(.childChanged, with: { (snapshot) in
+            //childChanged update a row from the array
+            update(snapshot, nil, .childChanged)
+        }) { (error) in
+            update(nil, error, nil)
+        }
     }
 }
