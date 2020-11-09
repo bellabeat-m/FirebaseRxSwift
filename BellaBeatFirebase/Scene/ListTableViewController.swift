@@ -12,15 +12,13 @@ import FirebaseDatabase
 class ListTableViewController: UIViewController {
     
     @IBOutlet private weak var tableView: UITableView!
-    private var tasks = [ToDoItem]()
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.allowsMultipleSelectionDuringEditing = false
         FireAPI.shared.getData(update: { [weak self] tasks in
             DispatchQueue.main.async(execute: {
-                self?.tasks = tasks
+                FireAPI.shared.tasksList = tasks
                 self?.tableView.reloadData()
             })
         })
@@ -44,11 +42,14 @@ class ListTableViewController: UIViewController {
             guard let textField = alert.textFields?.first,
                 let text = textField.text else { return }
             FireAPI.shared.insertData(with: text, update: { [weak self] tasks in
-                DispatchQueue.main.async(execute: {
-                    self?.tasks = tasks
+               // DispatchQueue.main.async(execute: {
+
+                    //self?.tasks.removeAll()
+                    FireAPI.shared.tasksList = tasks
                     self?.tableView.reloadData()
+
                 })
-            })
+           // })
         }
         
         let cancelAction = UIAlertAction(title: "Cancel",
@@ -67,16 +68,16 @@ class ListTableViewController: UIViewController {
 extension ListTableViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return tasks.count
+        return FireAPI.shared.tasksList.count
     }
     
     
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ItemCell", for: indexPath)
-        let item = tasks[indexPath.row]
+        let item = FireAPI.shared.tasksList[indexPath.row]
         
-        cell.textLabel?.text = item.name
+        cell.textLabel?.text = FireAPI.shared.tasksList[indexPath.row].name
         toggleCellCheckbox(cell, isCompleted: item.completed)
         
         return cell
@@ -90,18 +91,19 @@ extension ListTableViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            let task = tasks[indexPath.row]
-            FireAPI.shared.removeData(for: task)
-            tasks.remove(at: indexPath.row)
-            tableView.deleteRows(at: [indexPath], with: .fade)
-            self.tableView.reloadData()
+
+            let task = FireAPI.shared.tasksList[indexPath.row]
+            FireAPI.shared.removeData(for: task) // remove from Firebase
+            FireAPI.shared.tasksList.remove(at: indexPath.row) // remove from datasource
+            tableView.deleteRows(at: [indexPath], with: .fade) // delete the row
+
         }
     }
     
 // Samo jednom selektiranje taskova
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let cell = tableView.cellForRow(at: indexPath) else { return }
-        let task = tasks[indexPath.row]
+        let task = FireAPI.shared.tasksList[indexPath.row]
         let toggledCompletion = !task.completed
         toggleCellCheckbox(cell, isCompleted: toggledCompletion)
         tableView.deselectRow(at: indexPath, animated: true)
@@ -121,6 +123,15 @@ extension ListTableViewController: UITableViewDataSource, UITableViewDelegate {
 extension ListTableViewController {
 
     func addFirebaseObservers() {
+        FireAPI.shared.listenForAllChildEvents(with: "", update: { snapshot, error, type in
+            switch type {
+                case .some(.childAdded): break
+                case .some(.childRemoved): break
+                case .some(.childChanged): break
+                default: break
+
+            }
+        })
         
     }
 
