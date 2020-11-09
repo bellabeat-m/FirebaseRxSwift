@@ -10,7 +10,7 @@ import FirebaseDatabase
 
 struct ToDoItem {
     
-    let key: String
+    var key: String
     let name: String
     var completed: Bool
     

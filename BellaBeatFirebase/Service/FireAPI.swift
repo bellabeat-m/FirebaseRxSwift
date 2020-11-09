@@ -49,16 +49,15 @@ class FireAPI {
     
     func insertData(with name: String, update: @escaping ([ToDoItem]) -> Void) {
         guard let key = taskKey else { return }
-        let item = ToDoItem(name: name, completed: false)
-        let childUpdates = ["\(key)" : item.toAnyObject()]
-        rootRef.updateChildValues(childUpdates)
-        self.tasksList.append(item)
+        let item = ToDoItem(name: name, completed: false, key: key)
+        let taskRef = rootRef.child(key)
+        taskRef.setValue(item.toAnyObject())
+        self.tasksList.insert(item, at: 0)
         update(self.tasksList)
     }
         
-    func removeData(for task: ToDoItem) {
-        rootRef.child(task.key).removeValue()
-        rootRef.child(task.key).removeAllObservers()
+    func removeData(for taskID: String) {
+        rootRef.child(taskID).removeValue()
     }
     
     func updateData(for task: ToDoItem) {

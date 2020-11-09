@@ -42,14 +42,11 @@ class ListTableViewController: UIViewController {
             guard let textField = alert.textFields?.first,
                 let text = textField.text else { return }
             FireAPI.shared.insertData(with: text, update: { [weak self] tasks in
-               // DispatchQueue.main.async(execute: {
 
-                    //self?.tasks.removeAll()
                     FireAPI.shared.tasksList = tasks
                     self?.tableView.reloadData()
 
                 })
-           // })
         }
         
         let cancelAction = UIAlertAction(title: "Cancel",
@@ -92,10 +89,11 @@ extension ListTableViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
 
-            let task = FireAPI.shared.tasksList[indexPath.row]
-            FireAPI.shared.removeData(for: task) // remove from Firebase
+            let taskSelected = FireAPI.shared.tasksList[indexPath.row].key
             FireAPI.shared.tasksList.remove(at: indexPath.row) // remove from datasource
             tableView.deleteRows(at: [indexPath], with: .fade) // delete the row
+            
+            FireAPI.shared.removeData(for: taskSelected) // remove from Firebase
 
         }
     }

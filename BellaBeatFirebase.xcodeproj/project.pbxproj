@@ -8,12 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		7AEF2EF64A44CBE1EC1AB33E /* Pods_BellaBeatFirebaseTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 236770F46A2435F41484785E /* Pods_BellaBeatFirebaseTests.framework */; };
-		9C5462E52551750D0010C9C0 /* ToDoList.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9C5462E42551750D0010C9C0 /* ToDoList.storyboard */; };
 		9C5462E825520CA50010C9C0 /* ToDoItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C5462E725520CA50010C9C0 /* ToDoItem.swift */; };
-		9C5462EA25520E500010C9C0 /* Detail.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9C5462E925520E500010C9C0 /* Detail.storyboard */; };
 		9C5462ED25520ED00010C9C0 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C5462EC25520ED00010C9C0 /* DetailViewController.swift */; };
 		9C91BCDC2552D9D100CA8BAD /* FireAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C91BCDB2552D9D100CA8BAD /* FireAPI.swift */; };
 		9C91BCE4255357F200CA8BAD /* FireAPIProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C91BCE3255357F200CA8BAD /* FireAPIProtocol.swift */; };
+		9CB024D325598CD2005F03EC /* ToDoList.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9CB024D225598CD2005F03EC /* ToDoList.storyboard */; };
 		9CF38AFE25504A6500A0D63E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CF38AFD25504A6500A0D63E /* AppDelegate.swift */; };
 		9CF38B0025504A6500A0D63E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CF38AFF25504A6500A0D63E /* SceneDelegate.swift */; };
 		9CF38B0225504A6500A0D63E /* ListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CF38B0125504A6500A0D63E /* ListTableViewController.swift */; };
@@ -51,12 +50,11 @@
 		41D747A1C4214222C29DB75F /* Pods-BellaBeatFirebaseTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BellaBeatFirebaseTests.debug.xcconfig"; path = "Target Support Files/Pods-BellaBeatFirebaseTests/Pods-BellaBeatFirebaseTests.debug.xcconfig"; sourceTree = "<group>"; };
 		57284376BD7E601DC46E89F2 /* Pods-BellaBeatFirebase.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BellaBeatFirebase.debug.xcconfig"; path = "Target Support Files/Pods-BellaBeatFirebase/Pods-BellaBeatFirebase.debug.xcconfig"; sourceTree = "<group>"; };
 		68C2C3F562C78FD857085D5E /* Pods_BellaBeatFirebase.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BellaBeatFirebase.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		9C5462E42551750D0010C9C0 /* ToDoList.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ToDoList.storyboard; sourceTree = "<group>"; };
 		9C5462E725520CA50010C9C0 /* ToDoItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoItem.swift; sourceTree = "<group>"; };
-		9C5462E925520E500010C9C0 /* Detail.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Detail.storyboard; sourceTree = "<group>"; };
 		9C5462EC25520ED00010C9C0 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		9C91BCDB2552D9D100CA8BAD /* FireAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FireAPI.swift; sourceTree = "<group>"; };
 		9C91BCE3255357F200CA8BAD /* FireAPIProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FireAPIProtocol.swift; sourceTree = "<group>"; };
+		9CB024D225598CD2005F03EC /* ToDoList.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ToDoList.storyboard; sourceTree = "<group>"; };
 		9CE36FA169FBBD1578BA29D9 /* Pods-BellaBeatFirebase.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BellaBeatFirebase.release.xcconfig"; path = "Target Support Files/Pods-BellaBeatFirebase/Pods-BellaBeatFirebase.release.xcconfig"; sourceTree = "<group>"; };
 		9CF38AFA25504A6400A0D63E /* BellaBeatFirebase.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BellaBeatFirebase.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9CF38AFD25504A6500A0D63E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -108,8 +106,7 @@
 		9C5462E3255174DD0010C9C0 /* Storyboard */ = {
 			isa = PBXGroup;
 			children = (
-				9C5462E42551750D0010C9C0 /* ToDoList.storyboard */,
-				9C5462E925520E500010C9C0 /* Detail.storyboard */,
+				9CB024D225598CD2005F03EC /* ToDoList.storyboard */,
 			);
 			path = Storyboard;
 			sourceTree = "<group>";
@@ -337,11 +334,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9CB024D325598CD2005F03EC /* ToDoList.storyboard in Resources */,
 				9CF38B0D25504A6C00A0D63E /* LaunchScreen.storyboard in Resources */,
 				9CF38B3125504AB000A0D63E /* GoogleService-Info.plist in Resources */,
 				9CF38B0A25504A6C00A0D63E /* Assets.xcassets in Resources */,
-				9C5462E52551750D0010C9C0 /* ToDoList.storyboard in Resources */,
-				9C5462EA25520E500010C9C0 /* Detail.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
