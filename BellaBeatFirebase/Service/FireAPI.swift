@@ -20,18 +20,17 @@ class FireAPI {
         return rootRef.childByAutoId().key
     }
     
-    var tasksList = [ToDoItem]()
+    private var tasksList = [ToDoItem]()
     var taskAddedIndex = 0
     
     fileprivate init() { }
     
-    func getData(update: @escaping ([ToDoItem]) -> Void) {
+    func getData(update: @escaping ([ToDoItem], Error?) -> Void) {
         
         rootRef.observeSingleEvent(of: .value, with: { snapshot in
             
             self.tasksList.removeAll()
             
-            self.tasksList = []
             if snapshot.hasChildren() {
                 for snap in snapshot.children {
                     
@@ -40,7 +39,7 @@ class FireAPI {
                     }
                 }
             }
-            update(self.tasksList)
+            update(self.tasksList, nil)
         }) {
             (error) in
             print(error.localizedDescription)
@@ -49,10 +48,12 @@ class FireAPI {
     
     func insertTaskData(with name: String, update: @escaping ([ToDoItem]) -> Void) {
         guard let key = taskKey else { return }
+        
         let item = ToDoItem(name: name, completed: false, key: key)
         let taskRef = rootRef.child(key)
         taskRef.setValue(item.toAnyObject())
         self.tasksList.insert(item, at: 0)
+        
         update(self.tasksList)
     }
         
@@ -71,8 +72,8 @@ class FireAPI {
         rootRef.childByAutoId().removeAllObservers()
     }
     
- //Wrapper for Firebase db callbacks
 
+//Wrapper
     func listenForAllChildEvents(with name: String?, update: @escaping(_ snapshot: DataSnapshot?, _ error: Error?, _ eventType: DataEventType?) -> ()) {
         let taskRef = rootRef
         taskRef.observe(.childAdded, with: { (snapshot) in

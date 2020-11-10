@@ -12,16 +12,18 @@ import FirebaseDatabase
 class ListTableViewController: UIViewController {
     
     @IBOutlet private weak var tableView: UITableView!
-    var selectedRows:[IndexPath] = []
+    private var tasksList = [ToDoItem]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.allowsMultipleSelectionDuringEditing = false
-        FireAPI.shared.getData(update: { [weak self] tasks in
-            DispatchQueue.main.async(execute: {
-                FireAPI.shared.tasksList = tasks
+        FireAPI.shared.getData(update: { [weak self] tasks, error in
+            if let error = error {
+               print(error.localizedDescription)
+               return
+            }
+                self?.tasksList = tasks
                 self?.tableView.reloadData()
-            })
         })
     }
     
@@ -44,11 +46,16 @@ class ListTableViewController: UIViewController {
                 let text = textField.text else { return }
             FireAPI.shared.insertTaskData(with: text, update: { [weak self] tasks in
                 
-                let selectedIndexPath = IndexPath(row: 0, section: 0)
-                self?.tableView.beginUpdates() // insert only the row added to Firebase
-                self?.tableView.insertRows(at: [selectedIndexPath], with: .automatic)
-                FireAPI.shared.tasksList = tasks
-                self?.tableView.endUpdates()
+//                let selectedIndexPath = IndexPath(row: 0, section: 0)
+//                self?.tableView.beginUpdates() // insert only the row added to Firebase
+//                self?.tableView.insertRows(at: [selectedIndexPath], with: .automatic)
+//                self?.tasksList = tasks
+//                self?.tableView.endUpdates()
+                
+                self?.tasksList = tasks
+                self?.tableView.reloadData()
+                
+
                 
             })
         }
@@ -69,16 +76,16 @@ class ListTableViewController: UIViewController {
 extension ListTableViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return FireAPI.shared.tasksList.count
+        return tasksList.count
     }
     
     
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ItemCell", for: indexPath)
-        let item = FireAPI.shared.tasksList[indexPath.row]
+        let item = tasksList[indexPath.row]
         
-        cell.textLabel?.text = FireAPI.shared.tasksList[indexPath.row].name
+        cell.textLabel?.text = tasksList[indexPath.row].name
         toggleCellCheckbox(cell, isCompleted: item.completed)
         
         return cell
@@ -92,8 +99,8 @@ extension ListTableViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            let taskSelected = FireAPI.shared.tasksList[indexPath.row].key
-            FireAPI.shared.tasksList.remove(at: indexPath.row) // remove from datasource
+            let taskSelected = tasksList[indexPath.row].key
+            self.tasksList.remove(at: indexPath.row) // remove from datasource
             tableView.deleteRows(at: [indexPath], with: .fade) // delete the row
             
             FireAPI.shared.removeData(for: taskSelected) // remove from Firebase
@@ -105,7 +112,7 @@ extension ListTableViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let cell = tableView.cellForRow(at: indexPath) else { return }
         
-        var task = FireAPI.shared.tasksList[indexPath.row]
+        var task = tasksList[indexPath.row]
         let toggledCompletion = !task.completed
         toggleCellCheckbox(cell, isCompleted: toggledCompletion)
         task.completed = toggledCompletion
@@ -135,7 +142,12 @@ extension ListTableViewController {
 
             }
         })
+    }
+    
+    func addObservers() {
         
     }
+    
+    
 
 }
