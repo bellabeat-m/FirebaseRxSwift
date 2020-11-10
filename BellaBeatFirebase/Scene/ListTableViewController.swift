@@ -17,7 +17,7 @@ class ListTableViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.allowsMultipleSelectionDuringEditing = false
-        getTasks()
+        updateTasks()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -25,7 +25,7 @@ class ListTableViewController: UIViewController {
         FireAPI.shared.removeAllObservers()
         
     }
-    func getTasks() {
+    func updateTasks() {
         FireAPI.shared.getData(update: { [weak self] tasks, error in
             if let error = error {
                 print(error.localizedDescription)
@@ -47,12 +47,9 @@ class ListTableViewController: UIViewController {
             
             guard let textField = alert.textFields?.first,
                 let text = textField.text else { return }
-            FireAPI.shared.insertTaskData(with: text, update: { [weak self] tasks in
+            FireAPI.shared.insertTask(with: text, update: {
+                self.updateTasks()
                 
-                self?.tasksList = tasks
-                self?.tableView.reloadData()
-                self?.getTasks()
-       
             })
         }
         

@@ -13,15 +13,14 @@ class FireAPI {
     
     static let shared = FireAPI()
     
-    var rootRef: DatabaseReference {
+    private var rootRef: DatabaseReference {
         return Database.database().reference(withPath: "tasks")
     }
-    var taskKey: String? {
+    private var taskKey: String? {
         return rootRef.childByAutoId().key
     }
     
     private var tasksList = [ToDoItem]()
-    var taskAddedIndex = 0
     
     fileprivate init() { }
     
@@ -40,21 +39,20 @@ class FireAPI {
                 }
             }
             update(self.tasksList, nil)
-        }) {
-            (error) in
+        }) { (error) in
             print(error.localizedDescription)
         }
     }
     
-    func insertTaskData(with name: String, update: @escaping ([ToDoItem]) -> Void) {
+    func insertTask(with name: String, update: @escaping () -> Void) {
         guard let key = taskKey else { return }
-        
+
         let item = ToDoItem(name: name, completed: false, key: key)
         let taskRef = rootRef.child(key)
         taskRef.setValue(item.toAnyObject())
-        self.tasksList.append(item)
+
+        update()
         
-        update(self.tasksList)
     }
         
     func removeData(for taskKeyID: String) {
@@ -66,14 +64,16 @@ class FireAPI {
             "completed": task.completed
         ])
     }
-    
+//this removes from client not Firebase db
     func removeAllObservers() {
         tasksList.removeAll()
         rootRef.childByAutoId().removeAllObservers()
+        rootRef.childByAutoId().removeValue()
+        rootRef.removeValue()
     }
     
 
-//Wrapper
+//TODO: Wrapper
     func listenForAllChildEvents(with name: String?, update: @escaping(_ snapshot: DataSnapshot?, _ error: Error?, _ eventType: DataEventType?) -> ()) {
         let taskRef = rootRef
         taskRef.observe(.childAdded, with: { (snapshot) in
