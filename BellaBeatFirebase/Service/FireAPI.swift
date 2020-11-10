@@ -56,8 +56,8 @@ class FireAPI {
         update(self.tasksList)
     }
         
-    func removeData(for taskID: String) {
-        rootRef.child(taskID).removeValue()
+    func removeData(for taskKeyID: String) {
+        rootRef.child(taskKeyID).removeValue()
     }
     
     func updateData(for task: ToDoItem) {

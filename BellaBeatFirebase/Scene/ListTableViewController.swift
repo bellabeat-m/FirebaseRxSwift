@@ -101,7 +101,9 @@ extension ListTableViewController: UITableViewDataSource, UITableViewDelegate {
 // Samo jednom selektiranje taskova
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let cell = tableView.cellForRow(at: indexPath) else { return }
+        
         let task = FireAPI.shared.tasksList[indexPath.row]
+        
         let toggledCompletion = !task.completed
         toggleCellCheckbox(cell, isCompleted: toggledCompletion)
         tableView.deselectRow(at: indexPath, animated: true)
