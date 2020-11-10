@@ -18,7 +18,8 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="yTp-h1-afe">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <color key="separatorColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="separatorColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ItemCell" textLabel="aFB-Sq-Znx" detailTextLabel="x3f-TB-Xhy" style="IBUITableViewCellStyleSubtitle" id="H5D-Xg-RTG">
                                         <rect key="frame" x="0.0" y="28" width="414" height="55.5"/>
@@ -63,6 +64,7 @@
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="Tasks" id="mqw-9p-FiV">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="CYu-vk-FtQ">
+                            <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <connections>
                                 <action selector="addButtonDidTouch:" destination="o4o-e8-A2a" id="HHs-Hr-Abd"/>
                             </connections>

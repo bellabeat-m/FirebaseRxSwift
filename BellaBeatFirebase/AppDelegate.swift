@@ -14,11 +14,10 @@ import Firebase
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
-
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         FirebaseApp.configure()
         //offline updates
-       // Database.database().isPersistenceEnabled = true
+        Database.database().isPersistenceEnabled = true
         return true
     }
 
@@ -79,6 +78,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
             }
         }
+    }
+
+}
+
+extension SceneDelegate {
+
+    var statusBarView: UIView? {
+        return value(forKey: "statusBar") as? UIView
     }
 
 }
