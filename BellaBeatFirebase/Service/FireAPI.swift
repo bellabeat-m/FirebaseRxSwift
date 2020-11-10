@@ -47,7 +47,7 @@ class FireAPI {
         }
     }
     
-    func insertData(with name: String, update: @escaping ([ToDoItem]) -> Void) {
+    func insertTaskData(with name: String, update: @escaping ([ToDoItem]) -> Void) {
         guard let key = taskKey else { return }
         let item = ToDoItem(name: name, completed: false, key: key)
         let taskRef = rootRef.child(key)

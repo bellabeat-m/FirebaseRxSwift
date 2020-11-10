@@ -12,6 +12,7 @@ import FirebaseDatabase
 class ListTableViewController: UIViewController {
     
     @IBOutlet private weak var tableView: UITableView!
+    var selectedRows:[IndexPath] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,12 +42,15 @@ class ListTableViewController: UIViewController {
             
             guard let textField = alert.textFields?.first,
                 let text = textField.text else { return }
-            FireAPI.shared.insertData(with: text, update: { [weak self] tasks in
-
-                    FireAPI.shared.tasksList = tasks
-                    self?.tableView.reloadData()
-
-                })
+            FireAPI.shared.insertTaskData(with: text, update: { [weak self] tasks in
+                
+                let selectedIndexPath = IndexPath(row: 0, section: 0)
+                self?.tableView.beginUpdates() // insert only the row added to Firebase
+                self?.tableView.insertRows(at: [selectedIndexPath], with: .automatic)
+                FireAPI.shared.tasksList = tasks
+                self?.tableView.endUpdates()
+                
+            })
         }
         
         let cancelAction = UIAlertAction(title: "Cancel",
@@ -88,7 +92,6 @@ extension ListTableViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-
             let taskSelected = FireAPI.shared.tasksList[indexPath.row].key
             FireAPI.shared.tasksList.remove(at: indexPath.row) // remove from datasource
             tableView.deleteRows(at: [indexPath], with: .fade) // delete the row
@@ -102,13 +105,13 @@ extension ListTableViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let cell = tableView.cellForRow(at: indexPath) else { return }
         
-        let task = FireAPI.shared.tasksList[indexPath.row]
-        
+        var task = FireAPI.shared.tasksList[indexPath.row]
         let toggledCompletion = !task.completed
         toggleCellCheckbox(cell, isCompleted: toggledCompletion)
-        tableView.deselectRow(at: indexPath, animated: true)
+        task.completed = toggledCompletion
         
         FireAPI.shared.updateData(for: task)
+        tableView.deselectRow(at: indexPath, animated: true)
 
     }
     
