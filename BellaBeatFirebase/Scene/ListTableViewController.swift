@@ -47,10 +47,7 @@ class ListTableViewController: UIViewController {
             
             guard let textField = alert.textFields?.first,
                 let text = textField.text else { return }
-            FireAPI.shared.insertTask(with: text, update: {
-                self.updateTasks()
-                
-            })
+            FireAPI.shared.insertTask(with: text)
         }
         
         let cancelAction = UIAlertAction(title: "Cancel",
@@ -96,7 +93,7 @@ extension ListTableViewController: UITableViewDataSource, UITableViewDelegate {
             self.tasksList.remove(at: indexPath.row) // remove from datasource
             tableView.deleteRows(at: [indexPath], with: .fade) // delete the row
             
-            FireAPI.shared.removeData(for: taskSelected) // remove from Firebase
+            FireAPI.shared.removeTask(for: taskSelected) // remove from Firebase
 
         }
     }
@@ -110,9 +107,7 @@ extension ListTableViewController: UITableViewDataSource, UITableViewDelegate {
         toggleCellCheckbox(cell, isCompleted: toggledCompletion)
         task.completed = toggledCompletion
         
-        FireAPI.shared.updateData(for: task)
-        tableView.deselectRow(at: indexPath, animated: true)
-
+        FireAPI.shared.updateCheck(for: task)
     }
     
     func toggleCellCheckbox(_ cell: UITableViewCell, isCompleted: Bool) {
