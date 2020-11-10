@@ -52,7 +52,7 @@ class FireAPI {
         let item = ToDoItem(name: name, completed: false, key: key)
         let taskRef = rootRef.child(key)
         taskRef.setValue(item.toAnyObject())
-        self.tasksList.insert(item, at: 0)
+        self.tasksList.append(item)
         
         update(self.tasksList)
     }

@@ -17,20 +17,23 @@ class ListTableViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.allowsMultipleSelectionDuringEditing = false
-        FireAPI.shared.getData(update: { [weak self] tasks, error in
-            if let error = error {
-               print(error.localizedDescription)
-               return
-            }
-                self?.tasksList = tasks
-                self?.tableView.reloadData()
-        })
+        getTasks()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         FireAPI.shared.removeAllObservers()
         
+    }
+    func getTasks() {
+        FireAPI.shared.getData(update: { [weak self] tasks, error in
+            if let error = error {
+                print(error.localizedDescription)
+                return
+            }
+            self?.tasksList = tasks
+            self?.tableView.reloadData()
+        })
     }
     
 // MARK: Add Task
@@ -46,17 +49,10 @@ class ListTableViewController: UIViewController {
                 let text = textField.text else { return }
             FireAPI.shared.insertTaskData(with: text, update: { [weak self] tasks in
                 
-//                let selectedIndexPath = IndexPath(row: 0, section: 0)
-//                self?.tableView.beginUpdates() // insert only the row added to Firebase
-//                self?.tableView.insertRows(at: [selectedIndexPath], with: .automatic)
-//                self?.tasksList = tasks
-//                self?.tableView.endUpdates()
-                
                 self?.tasksList = tasks
                 self?.tableView.reloadData()
-                
-
-                
+                self?.getTasks()
+       
             })
         }
         
