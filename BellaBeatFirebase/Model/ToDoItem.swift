@@ -39,7 +39,7 @@ struct ToDoItem {
     func toAnyObject() -> Any {
         return [
             "name": name,
-            "completed": completed
+            "completed": completed,
         ]
     }
 }

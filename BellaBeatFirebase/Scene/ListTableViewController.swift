@@ -18,14 +18,7 @@ class ListTableViewController: UIViewController {
         super.viewDidLoad()
         tableView.allowsMultipleSelectionDuringEditing = false
         navigationController?.navigationBar.prefersLargeTitles = true
-        navigationController?.navigationBar.backgroundColor = .red
-        let navBarAppearance = UINavigationBarAppearance()
-        navBarAppearance.configureWithOpaqueBackground()
-        navBarAppearance.titleTextAttributes = [.foregroundColor: UIColor.white]
-        navBarAppearance.largeTitleTextAttributes = [.foregroundColor: UIColor.white]
-        navBarAppearance.backgroundColor = .red
-        navigationController?.navigationBar.standardAppearance = navBarAppearance
-        navigationController?.navigationBar.scrollEdgeAppearance = navBarAppearance
+        navigationItem.largeTitleDisplayMode = .always
         updateTasks()
     }
     
@@ -117,6 +110,9 @@ extension ListTableViewController: UITableViewDataSource, UITableViewDelegate {
         task.completed = toggledCompletion
         
         FireAPI.shared.updateCheck(for: task)
+         let storyboard: UIStoryboard = UIStoryboard(name: "Detail", bundle: nil)
+        let controller: DetailViewController = storyboard.instantiateViewController(withIdentifier: "detail") as! DetailViewController
+        navigationController?.pushViewController(controller, animated: true)
     }
     
     func toggleCellCheckbox(_ cell: UITableViewCell, isCompleted: Bool) {
@@ -130,15 +126,15 @@ extension ListTableViewController: UITableViewDataSource, UITableViewDelegate {
 extension ListTableViewController {
 
     func addFirebaseObservers() {
-        FireAPI.shared.listenForAllChildEvents(with: "", update: { snapshot, error, type in
-            switch type {
-                case .some(.childAdded): break
-                case .some(.childRemoved): break
-                case .some(.childChanged): break
-                default: break
-
-            }
-        })
+//        FireAPI.shared.listenForAllChildEvents(with: "", update: { snapshot, error, type in
+//            switch type {
+//                case .some(.childAdded): break
+//                case .some(.childRemoved): break
+//                case .some(.childChanged): break
+//                default: break
+//
+//            }
+//        })
     }
     
     func addObservers() {

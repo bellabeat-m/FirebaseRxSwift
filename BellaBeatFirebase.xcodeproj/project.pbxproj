@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		7AEF2EF64A44CBE1EC1AB33E /* Pods_BellaBeatFirebaseTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 236770F46A2435F41484785E /* Pods_BellaBeatFirebaseTests.framework */; };
+		9C394E2D255D418B00815D86 /* Detail.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9C394E2C255D418B00815D86 /* Detail.storyboard */; };
 		9C5462E825520CA50010C9C0 /* ToDoItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C5462E725520CA50010C9C0 /* ToDoItem.swift */; };
 		9C5462ED25520ED00010C9C0 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C5462EC25520ED00010C9C0 /* DetailViewController.swift */; };
 		9C91BCDC2552D9D100CA8BAD /* FireAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C91BCDB2552D9D100CA8BAD /* FireAPI.swift */; };
@@ -50,6 +51,7 @@
 		41D747A1C4214222C29DB75F /* Pods-BellaBeatFirebaseTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BellaBeatFirebaseTests.debug.xcconfig"; path = "Target Support Files/Pods-BellaBeatFirebaseTests/Pods-BellaBeatFirebaseTests.debug.xcconfig"; sourceTree = "<group>"; };
 		57284376BD7E601DC46E89F2 /* Pods-BellaBeatFirebase.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BellaBeatFirebase.debug.xcconfig"; path = "Target Support Files/Pods-BellaBeatFirebase/Pods-BellaBeatFirebase.debug.xcconfig"; sourceTree = "<group>"; };
 		68C2C3F562C78FD857085D5E /* Pods_BellaBeatFirebase.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BellaBeatFirebase.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		9C394E2C255D418B00815D86 /* Detail.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Detail.storyboard; sourceTree = "<group>"; };
 		9C5462E725520CA50010C9C0 /* ToDoItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoItem.swift; sourceTree = "<group>"; };
 		9C5462EC25520ED00010C9C0 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		9C91BCDB2552D9D100CA8BAD /* FireAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FireAPI.swift; sourceTree = "<group>"; };
@@ -103,9 +105,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		9C394E2E255D41F500815D86 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		9C5462E3255174DD0010C9C0 /* Storyboard */ = {
 			isa = PBXGroup;
 			children = (
+				9C394E2C255D418B00815D86 /* Detail.storyboard */,
 				9CB024D225598CD2005F03EC /* ToDoList.storyboard */,
 			);
 			path = Storyboard;
@@ -169,6 +179,7 @@
 		9CF38AFC25504A6400A0D63E /* BellaBeatFirebase */ = {
 			isa = PBXGroup;
 			children = (
+				9C394E2E255D41F500815D86 /* Views */,
 				9C91BCE2255357B200CA8BAD /* Protocols */,
 				9C91BCDA2552D9B800CA8BAD /* Service */,
 				9C5462EB25520EB10010C9C0 /* Scene */,
@@ -337,6 +348,7 @@
 				9CB024D325598CD2005F03EC /* ToDoList.storyboard in Resources */,
 				9CF38B0D25504A6C00A0D63E /* LaunchScreen.storyboard in Resources */,
 				9CF38B3125504AB000A0D63E /* GoogleService-Info.plist in Resources */,
+				9C394E2D255D418B00815D86 /* Detail.storyboard in Resources */,
 				9CF38B0A25504A6C00A0D63E /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -389,8 +401,10 @@
 			);
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-BellaBeatFirebase/Pods-BellaBeatFirebase-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
 				"${BUILT_PRODUCTS_DIR}/PromisesObjC/FBLPromises.framework",
+				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
 				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
@@ -398,8 +412,10 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBLPromises.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);

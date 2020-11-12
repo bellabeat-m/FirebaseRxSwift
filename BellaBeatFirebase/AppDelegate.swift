@@ -18,6 +18,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         FirebaseApp.configure()
         //offline updates
         Database.database().isPersistenceEnabled = true
+        
+        let appearance = UINavigationBarAppearance()
+        appearance.backgroundColor = UIColor(red: 1, green: 108.0/255, blue: 0, alpha: 1.0)
+        UINavigationBar.appearance().scrollEdgeAppearance = appearance
+        UINavigationBar.appearance().standardAppearance = appearance
         return true
     }
 

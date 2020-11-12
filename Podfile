@@ -7,7 +7,8 @@ target 'BellaBeatFirebase' do
 
   pod 'Firebase/Analytics'
   pod 'Firebase/Database'
-
+  pod 'Firebase/Storage'
+  pod 'SnapKit' 
 
   target 'BellaBeatFirebaseTests' do
     inherit! :search_paths
