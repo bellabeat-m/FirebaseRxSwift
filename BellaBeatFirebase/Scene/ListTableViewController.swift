@@ -112,6 +112,7 @@ extension ListTableViewController: UITableViewDataSource, UITableViewDelegate {
         FireAPI.shared.updateCheck(for: task)
          let storyboard: UIStoryboard = UIStoryboard(name: "Detail", bundle: nil)
         let controller: DetailViewController = storyboard.instantiateViewController(withIdentifier: "detail") as! DetailViewController
+        controller.task = task
         navigationController?.pushViewController(controller, animated: true)
     }
     
@@ -136,11 +137,6 @@ extension ListTableViewController {
 //            }
 //        })
     }
-    
-    func addObservers() {
-        
-    }
-    
     
 
 }

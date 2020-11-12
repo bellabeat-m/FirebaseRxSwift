@@ -21,16 +21,15 @@ extension DetailViewController {
     }
     
     lblCompleted.snp.makeConstraints { make in
-      make.top.equalTo(lblTask.snp.bottom).offset(24)
+      make.top.equalTo(lblTask.snp.bottom).offset(34)
       make.leading.equalTo(view.safeAreaLayoutGuide).offset(24)
     }
     
     
     emojiIconView.snp.makeConstraints { make in
-      make.leading.trailing.equalTo(30)
-      make.top.equalTo(lblCompleted.snp.bottom).offset(16)
-      make.height.equalTo(180)
-      make.width.equalTo(180)
+      make.leading.trailing.equalTo(view.safeAreaLayoutGuide)
+      make.top.equalTo(lblCompleted.snp.bottom).offset(26)
+      make.height.equalTo(200)
     }
   }
 

@@ -10,6 +10,8 @@ import UIKit
 
 class DetailViewController: UIViewController {
     
+    public var task: ToDoItem?
+    
     lazy var lblTask: UILabel = {
       let lbl = UILabel(frame: .zero)
       lbl.textAlignment = .center
@@ -48,6 +50,9 @@ class DetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupConstraints()
+        lblTask.text = task?.name
+        lblCompleted.text = "\(task?.completed ?? false)"
+        
     }
 
 }
