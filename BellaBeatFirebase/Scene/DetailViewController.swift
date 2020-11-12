@@ -12,11 +12,8 @@ class DetailViewController: UIViewController {
     
     lazy var lblTask: UILabel = {
       let lbl = UILabel(frame: .zero)
-      lbl.layer.cornerRadius = 8
-      lbl.layer.borderColor = UIColor.black.cgColor
-      lbl.layer.borderWidth = 2
       lbl.textAlignment = .center
-      lbl.font = UIFont.systemFont(ofSize: 20, weight: .light)
+      lbl.font = UIFont.systemFont(ofSize: 22, weight: .light)
       lbl.text = "Task"
       
       view.addSubview(lbl)
@@ -37,18 +34,20 @@ class DetailViewController: UIViewController {
       return lbl
     }()
     
-    lazy var emojiIcon: UIImageView = {
-        let img = UIImageView(image: UIImage(named: "IMG_2"))
+    lazy var emojiIconView: UIImageView = {
+        let img = UIImageView(image: UIImage(named: "IMG_2.png"))
         img.translatesAutoresizingMaskIntoConstraints = false
         img.clipsToBounds = true
         img.contentMode = .scaleAspectFit
+        
+        view.addSubview(img)
 
       return img
     }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.backgroundColor = .red
+        setupConstraints()
     }
 
 }
