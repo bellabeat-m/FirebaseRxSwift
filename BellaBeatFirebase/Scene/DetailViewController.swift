@@ -18,25 +18,23 @@ class DetailViewController: UIViewController {
         lbl.textAlignment = .center
         lbl.numberOfLines = 0
         lbl.lineBreakMode = .byWordWrapping
-        lbl.font = UIFont.systemFont(ofSize: 22, weight: .light)
-        lbl.text = "Task"
+        lbl.font = UIFont.systemFont(ofSize: 22, weight: .medium)
+        lbl.textColor = .white
         
         view.addSubview(lbl)
         
         return lbl
     }()
     
-
     lazy var lblCompleted: UILabel = {
-      let lbl = UILabel(frame: .zero)
-      lbl.textAlignment = .center
-      lbl.font = UIFont.systemFont(ofSize: 24, weight: .semibold)
-      lbl.text = "✔️ Completed"
-      lbl.numberOfLines = 0
-      
-      view.addSubview(lbl)
-      
-      return lbl
+        let lbl = UILabel(frame: .zero)
+        lbl.textAlignment = .center
+        lbl.font = UIFont.systemFont(ofSize: 24, weight: .semibold)
+        lbl.numberOfLines = 0
+        
+        view.addSubview(lbl)
+        
+        return lbl
     }()
     
     lazy var emojiIconView: UIImageView = {
@@ -46,12 +44,13 @@ class DetailViewController: UIViewController {
         img.contentMode = .scaleAspectFit
         
         view.addSubview(img)
-
-      return img
+        
+        return img
     }()
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.applyGradient(withColors: [.systemIndigo, .systemIndigo, .systemTeal], locations: [CGPoint(x: 0.0, y: 1.0), CGPoint(x: 1.0, y: 0.0)] as? [NSNumber])
         setupConstraints()
         lblTask.text = "Your task: \(task?.name ?? "")"
         toggleCheckbox(lblCompleted, isCompleted: task?.completed ?? false)
@@ -62,30 +61,5 @@ class DetailViewController: UIViewController {
         text.text = isCompleted ? "✔️ completed"  : "➖ uncompleted"
         text.textColor = isCompleted ? .green : .red
     }
-
+    
 }
-
-public extension Array {
-    
-    /// Element at the given index if it exists.
-    ///
-    /// - Parameter index: index of element.
-    /// - Returns: optional element (if exists).
-     func item(at index: Int) -> Element? {
-        
-        if 0..<self.count ~= index {
-            return self[index]
-        }
-        
-        return nil
-    }
-    
-    
-    /// Return a random item from array
-     func randomItem() -> Element? {
-        
-        let index = Int(arc4random_uniform(UInt32(self.count)))
-        return self.item(at: index)
-    }
-}
-

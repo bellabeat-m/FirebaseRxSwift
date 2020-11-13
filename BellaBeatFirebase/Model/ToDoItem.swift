@@ -8,8 +8,8 @@
 
 import FirebaseDatabase
 
-struct ToDoItem {
-    
+struct ToDoItem: Hashable {
+
     var key: String
     let name: String
     var completed: Bool
@@ -18,6 +18,12 @@ struct ToDoItem {
         self.key = key
         self.name = name
         self.completed = completed
+    }
+    func hash(into hasher: inout Hasher) {
+       hasher.combine(key.hashValue)
+    }
+    static func == (lhs: ToDoItem, rhs: ToDoItem) -> Bool {
+        return lhs.key == rhs.key
     }
 /**
   Use this method to retrieve information of DataSnapshot(Any) and create the instance.
