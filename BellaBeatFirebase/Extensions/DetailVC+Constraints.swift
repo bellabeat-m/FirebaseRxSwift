@@ -29,6 +29,10 @@ extension DetailViewController {
             make.top.equalTo(lblCompleted.snp.bottom).offset(26)
             make.height.equalTo(300)
         }
+        svButtons.snp.makeConstraints { make in
+            make.leading.trailing.equalTo(view.safeAreaLayoutGuide).inset(10)
+            make.top.equalTo(lblCompleted.snp.bottom).offset(16)
+            make.height.equalTo(80)
+        }
     }
-    
 }

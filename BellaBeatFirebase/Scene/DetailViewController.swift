@@ -48,6 +48,45 @@ class DetailViewController: UIViewController {
         return img
     }()
     
+    
+    lazy var btnTrue: UIButton = {
+      let btn = UIButton(type: .custom)
+      btn.layer.cornerRadius = 12
+      btn.backgroundColor = .green
+      btn.setTitle("👍True", for: .normal)
+      btn.setTitleColor(.black, for: .normal)
+      btn.titleLabel?.font = .systemFont(ofSize: 22, weight: .semibold)
+      btn.showsTouchWhenHighlighted = true
+      //btn.addTarget(self, action: #selector(handleAnswer(_:)), for: .touchUpInside)
+      
+      return btn
+    }()
+    
+    lazy var btnFalse: UIButton = {
+      let btn = UIButton(type: .custom)
+      btn.layer.cornerRadius = 12
+      btn.backgroundColor = .red
+      btn.setTitle("👎False", for: .normal)
+      btn.setTitleColor(.black, for: .normal)
+      btn.titleLabel?.font = .systemFont(ofSize: 22, weight: .semibold)
+      btn.showsTouchWhenHighlighted = true
+     // btn.addTarget(self, action: #selector(handleAnswer(_:)), for: .touchUpInside)
+      
+      return btn
+    }()
+    
+    lazy var svButtons: UIStackView = {
+      let stackView = UIStackView(arrangedSubviews: [btnFalse, btnTrue])
+      stackView.alignment = .center
+      stackView.spacing = 16
+      stackView.axis = .horizontal
+      stackView.distribution = .fillEqually
+      
+      view.addSubview(stackView)
+      
+      return stackView
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.applyGradient(withColors: [.systemIndigo, .systemIndigo, .systemTeal], locations: [CGPoint(x: 0.0, y: 1.0), CGPoint(x: 1.0, y: 0.0)] as? [NSNumber])
@@ -57,6 +96,7 @@ class DetailViewController: UIViewController {
         emojiIconView.image = UIImage(named: "\(images.randomItem() ?? "")")
         
     }
+    
     func toggleCheckbox(_ text: UILabel, isCompleted: Bool) {
         text.text = isCompleted ? "✔️ completed"  : "➖ uncompleted"
         text.textColor = isCompleted ? .green : .red
