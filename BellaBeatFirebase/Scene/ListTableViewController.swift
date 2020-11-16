@@ -43,58 +43,58 @@ class ListTableViewController: UIViewController {
 // MARK: Add Task
     
     @IBAction func addButtonDidTouch(_ sender: AnyObject) {
-        let alert = UIAlertController(title: "Things to do",
-                                      message: "Add a task",
-                                      preferredStyle: .alert)
         
-        let saveAction = UIAlertAction(title: "Save", style: .default) { _ in
-            
-            guard let textField = alert.textFields?.first,
-                let text = textField.text else { return }
-            self.taskAPI.insertTask(with: text)
+        let controller = SnapkitTestVC()
+        self.navigationController?.pushViewController(controller, animated: true)
+//        let alert = UIAlertController(title: "Things to do",
+//                                      message: "Add a task",
+//                                      preferredStyle: .alert)
+//
+//        let saveAction = UIAlertAction(title: "Save", style: .default) { _ in
+//
+//            guard let textField = alert.textFields?.first,
+//
+//                let cancelAction = UIAlertAction(title: "Cancel",
+//                                                 style: .cancel)
+//
+//            alert.addTextField()
+//            alert.addAction(saveAction)
+//            alert.addAction(cancelAction)
+//
+//            present(alert, animated: true, completion: nil)
+        }
+    }
+    
+    // MARK: UITableView Delegate & DataSource methods
+    
+    extension ListTableViewController: UITableViewDataSource, UITableViewDelegate {
+        
+        func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+            return tasksList.count
         }
         
-        let cancelAction = UIAlertAction(title: "Cancel",
-                                         style: .cancel)
+        func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+            // cell as? TaskTableViewCell)?.configure(with: tasks.first)
+            let cell = tableView.dequeueReusableCell(withIdentifier: TaskTableViewCell.identifier) as! TaskTableViewCell
+            let item = tasksList[indexPath.row]
+            
+            
+            cell.lblTask.text = tasksList[indexPath.row].name
+            cell.lblComplete.text = "Set task complete"
+            toggleCellCheckbox(cell, isCompleted: item.completed)
+            
+            return cell
+        }
         
-        alert.addTextField()
-        alert.addAction(saveAction)
-        alert.addAction(cancelAction)
+        func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+            return true
+        }
         
-        present(alert, animated: true, completion: nil)
-    }
-}
-
-// MARK: UITableView Delegate & DataSource methods
-
-extension ListTableViewController: UITableViewDataSource, UITableViewDelegate {
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return tasksList.count
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-      // cell as? TaskTableViewCell)?.configure(with: tasks.first)
-        let cell = tableView.dequeueReusableCell(withIdentifier: TaskTableViewCell.identifier) as! TaskTableViewCell
-        let item = tasksList[indexPath.row]
-        
-        
-        cell.lblTask.text = tasksList[indexPath.row].name
-        cell.lblComplete.text = "Set task complete"
-        toggleCellCheckbox(cell, isCompleted: item.completed)
-        
-        return cell
-    }
-    
-    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        return true
-    }
-    
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            let taskSelected = tasksList[indexPath.row].key
-            self.tasksList.remove(at: indexPath.row) // remove from datasource
-            tableView.deleteRows(at: [indexPath], with: .fade) // delete the row
+        func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+            if editingStyle == .delete {
+                let taskSelected = tasksList[indexPath.row].key
+                self.tasksList.remove(at: indexPath.row) // remove from datasource
+                tableView.deleteRows(at: [indexPath], with: .fade) // delete the row
             
             taskAPI.removeTask(for: taskSelected) // remove from Firebase
 
@@ -105,11 +105,11 @@ extension ListTableViewController: UITableViewDataSource, UITableViewDelegate {
         guard let cell = tableView.cellForRow(at: indexPath) else { return }
         
         var task = tasksList[indexPath.row]
-        let toggledCompletion = !task.completed
-        toggleCellCheckbox(cell, isCompleted: toggledCompletion)
-        task.completed = toggledCompletion
-        
-        taskAPI.updateCheck(for: task)
+//        let toggledCompletion = !task.completed
+//        toggleCellCheckbox(cell, isCompleted: toggledCompletion)
+//        task.completed = toggledCompletion
+//        
+//        taskAPI.updateCheck(for: task)
         tableView.deselectRow(at: indexPath, animated: true)
          let storyboard: UIStoryboard = UIStoryboard(name: "Detail", bundle: nil)
         let controller: DetailViewController = storyboard.instantiateViewController(withIdentifier: "detail") as! DetailViewController

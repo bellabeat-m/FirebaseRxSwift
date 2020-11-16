@@ -11,6 +11,7 @@ import UIKit
 class DetailViewController: UIViewController {
     
     public var task: ToDoItem?
+    private let taskAPI = FireTaskAPI()
     private var images: [String] = ["IMG_0.png", "IMG_1.png","IMG_2.png","IMG_3.png","IMG_4.png","IMG_5.png","IMG_6.png", "IMG_8.png", "IMG_9.png", "IMG_7.png"]
     
     lazy var lblTask: UILabel = {
@@ -53,11 +54,11 @@ class DetailViewController: UIViewController {
       let btn = UIButton(type: .custom)
       btn.layer.cornerRadius = 12
       btn.backgroundColor = .green
-      btn.setTitle("👍True", for: .normal)
+      btn.setTitle("👍Done", for: .normal)
       btn.setTitleColor(.black, for: .normal)
       btn.titleLabel?.font = .systemFont(ofSize: 22, weight: .semibold)
       btn.showsTouchWhenHighlighted = true
-      //btn.addTarget(self, action: #selector(handleAnswer(_:)), for: .touchUpInside)
+      btn.addTarget(self, action: #selector(handleDone(_:)), for: .touchUpInside)
       
       return btn
     }()
@@ -66,11 +67,11 @@ class DetailViewController: UIViewController {
       let btn = UIButton(type: .custom)
       btn.layer.cornerRadius = 12
       btn.backgroundColor = .red
-      btn.setTitle("👎False", for: .normal)
+      btn.setTitle("👎Not done", for: .normal)
       btn.setTitleColor(.black, for: .normal)
       btn.titleLabel?.font = .systemFont(ofSize: 22, weight: .semibold)
       btn.showsTouchWhenHighlighted = true
-     // btn.addTarget(self, action: #selector(handleAnswer(_:)), for: .touchUpInside)
+      btn.addTarget(self, action: #selector(handleDone(_:)), for: .touchUpInside)
       
       return btn
     }()
@@ -89,11 +90,11 @@ class DetailViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        // guard if task is nil
         view.applyGradient(withColors: [.systemIndigo, .systemIndigo, .systemTeal], locations: [CGPoint(x: 0.0, y: 1.0), CGPoint(x: 1.0, y: 0.0)] as? [NSNumber])
         setupConstraints()
         lblTask.text = "Your task: \(task?.name ?? "")"
-        toggleCheckbox(lblCompleted, isCompleted: task?.completed ?? false)
-        emojiIconView.image = UIImage(named: "\(images.randomItem() ?? "")")
+        emojiIconView.isHidden = true
         
     }
     
@@ -103,3 +104,50 @@ class DetailViewController: UIViewController {
     }
     
 }
+// MARK: - Logic
+extension DetailViewController {
+    @objc func handleDone(_ sender: UIButton) {
+        let userSelection = sender == btnFalse
+        svButtons.isHidden = true
+        emojiIconView.isHidden = false
+        emojiIconView.image = UIImage(named: "\(images.randomItem() ?? "")")
+        let toggledCompletion = !(task?.completed ?? false) == userSelection
+        
+        if toggledCompletion {
+            toggleCheckbox(lblCompleted, isCompleted: task?.completed ?? false)
+            task?.completed = toggledCompletion
+            taskAPI.updateCheck(for: task!)
+        } else {
+            
+        }
+    }
+}
+// MARK: - Constraints
+extension DetailViewController {
+    
+    func setupConstraints() {
+        
+        lblTask.snp.makeConstraints { make in
+            make.width.equalToSuperview().multipliedBy(0.65).labeled("timerWidth")
+            make.top.equalTo(view.safeAreaLayoutGuide).offset(10)
+            make.centerX.equalToSuperview().labeled("timerCenterX")
+        }
+        
+        lblCompleted.snp.makeConstraints { make in
+            make.top.equalTo(lblTask.snp.bottom).offset(54)
+            make.centerX.equalToSuperview()
+        }
+        
+        emojiIconView.snp.makeConstraints { make in
+            make.leading.trailing.equalTo(view.safeAreaLayoutGuide)
+            make.top.equalTo(lblCompleted.snp.bottom).offset(26)
+            make.height.equalTo(300)
+        }
+        svButtons.snp.makeConstraints { make in
+            make.leading.trailing.equalTo(view.safeAreaLayoutGuide).inset(10)
+            make.top.equalTo(lblCompleted.snp.bottom).offset(16)
+            make.height.equalTo(80)
+        }
+    }
+}
+
