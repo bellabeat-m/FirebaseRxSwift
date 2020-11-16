@@ -107,11 +107,12 @@ class DetailViewController: UIViewController {
 // MARK: - Logic
 extension DetailViewController {
     @objc func handleDone(_ sender: UIButton) {
-        let userSelection = sender == btnFalse
+        let undoneSelection = sender == btnFalse
+        let doneSelection = sender == btnFalse
         svButtons.isHidden = true
         emojiIconView.isHidden = false
         emojiIconView.image = UIImage(named: "\(images.randomItem() ?? "")")
-        let toggledCompletion = !(task?.completed ?? false) == userSelection
+        let toggledCompletion = !(task?.completed ?? false) == doneSelection
         
         if toggledCompletion {
             toggleCheckbox(lblCompleted, isCompleted: task?.completed ?? false)
