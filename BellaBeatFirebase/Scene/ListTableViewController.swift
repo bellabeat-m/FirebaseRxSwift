@@ -15,21 +15,24 @@ class ListTableViewController: UIViewController {
     private var tasksList = [ToDoItem]()
     private let taskAPI = FireTaskAPI()
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         tableView.rowHeight = UITableView.automaticDimension
         tableView.allowsMultipleSelectionDuringEditing = false
         navigationController?.navigationBar.prefersLargeTitles = true
-        updateTasks()
         tableView.register(TaskTableViewCell.self, forCellReuseIdentifier: TaskTableViewCell.identifier)
     }
     
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        taskAPI.removeAllObservers()
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         
+        updateTasks()
+
     }
     func updateTasks() {
+        
         taskAPI.observeData(completed: { [weak self] tasks, error in
             if let error = error {
                 print(error.localizedDescription)
@@ -102,22 +105,17 @@ class ListTableViewController: UIViewController {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let cell = tableView.cellForRow(at: indexPath) else { return }
         
-        var task = tasksList[indexPath.row]
-//        let toggledCompletion = !task.completed
-//        toggleCellCheckbox(cell, isCompleted: toggledCompletion)
-//        task.completed = toggledCompletion
-//        
-//        taskAPI.updateCheck(for: task)
+        let task = tasksList[indexPath.row]
         tableView.deselectRow(at: indexPath, animated: true)
-         let storyboard: UIStoryboard = UIStoryboard(name: "Detail", bundle: nil)
+        let storyboard: UIStoryboard = UIStoryboard(name: "Detail", bundle: nil)
         let controller: DetailViewController = storyboard.instantiateViewController(withIdentifier: "detail") as! DetailViewController
         controller.task = task
         navigationController?.pushViewController(controller, animated: true)
     }
     
     func toggleCellCheckbox(_ cell: UITableViewCell, isCompleted: Bool) {
+        
         cell.accessoryType = isCompleted ? .checkmark : .none
         cell.textLabel?.textColor = isCompleted ? .gray : .black
         cell.detailTextLabel?.textColor = isCompleted ? .gray : .black
