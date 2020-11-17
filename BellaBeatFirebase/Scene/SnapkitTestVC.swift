@@ -7,9 +7,13 @@
 //
 
 import UIKit
-import  SnapKit
+import SnapKit
 
 class SnapkitTestVC: UIViewController {
+    
+     var images = [UIColor.green, UIColor.blue, UIColor.magenta, UIColor.cyan, UIColor.purple, UIColor.orange, UIColor.yellow, UIColor.red, UIColor.brown]
+    
+    var collectionView: UICollectionView?
     
     let whiteView = UIView()
     let yellowView = UIView()
@@ -20,6 +24,12 @@ class SnapkitTestVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .horizontal
+        layout.sectionInset = UIEdgeInsets(top:0, left: 10, bottom: 0, right: 10)
+        collectionView = UICollectionView(frame: self.view.frame, collectionViewLayout: layout)
+        collectionView?.dataSource = self
+        collectionView?.delegate = self
         view.backgroundColor = .red
         containerView.backgroundColor = .green
         yellowView.backgroundColor = .yellow
@@ -29,11 +39,13 @@ class SnapkitTestVC: UIViewController {
         whiteView.backgroundColor = .white
         
         view.addSubview(headerView)
+        headerView.addSubview(collectionView!)
         view.addSubview(containerView)
         view.addSubview(yellowView)
         view.addSubview(orangeView)
         view.addSubview(blueView)
         view.addSubview(whiteView)
+        collectionView?.register(CollectionCell.self, forCellWithReuseIdentifier: CollectionCell.identifier)
         setConstraints()
         
     }
@@ -44,6 +56,12 @@ class SnapkitTestVC: UIViewController {
             make.centerX.equalToSuperview()
             make.width.equalToSuperview().multipliedBy(0.9)
             make.height.equalTo(100)
+        }
+        collectionView?.snp.makeConstraints { (make) in
+            make.top.equalTo(headerView.snp.top)
+            make.bottom.equalTo(headerView.snp.bottom)
+            make.left.equalTo(headerView.snp.left)
+            make.right.equalTo(headerView.snp.right)
         }
         containerView.snp.makeConstraints { (make) in
             make.centerX.equalToSuperview()
@@ -79,6 +97,26 @@ class SnapkitTestVC: UIViewController {
             make.left.equalTo(containerView.snp.centerX)
             
         }
+    }
+}
+
+extension SnapkitTestVC: UICollectionViewDataSource {
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return images.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ColectionCell", for: indexPath) as! CollectionCell
         
+        cell.backgroundColor = images[indexPath.row]
+        return cell
+    }
+}
+
+extension SnapkitTestVC: UICollectionViewDelegateFlowLayout {
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+            return CGSize(width: 80, height: 80)
     }
 }

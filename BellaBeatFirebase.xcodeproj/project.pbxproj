@@ -19,6 +19,7 @@
 		9C91BCDC2552D9D100CA8BAD /* FireTaskAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C91BCDB2552D9D100CA8BAD /* FireTaskAPI.swift */; };
 		9C91BCE4255357F200CA8BAD /* FireAPIProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C91BCE3255357F200CA8BAD /* FireAPIProtocol.swift */; };
 		9CB024D325598CD2005F03EC /* ToDoList.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9CB024D225598CD2005F03EC /* ToDoList.storyboard */; };
+		9CDDC1F025643DC5003AC58F /* CollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CDDC1EF25643DC5003AC58F /* CollectionCell.swift */; };
 		9CF38AFE25504A6500A0D63E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CF38AFD25504A6500A0D63E /* AppDelegate.swift */; };
 		9CF38B0025504A6500A0D63E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CF38AFF25504A6500A0D63E /* SceneDelegate.swift */; };
 		9CF38B0225504A6500A0D63E /* ListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CF38B0125504A6500A0D63E /* ListTableViewController.swift */; };
@@ -67,6 +68,7 @@
 		9C91BCDB2552D9D100CA8BAD /* FireTaskAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FireTaskAPI.swift; sourceTree = "<group>"; };
 		9C91BCE3255357F200CA8BAD /* FireAPIProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FireAPIProtocol.swift; sourceTree = "<group>"; };
 		9CB024D225598CD2005F03EC /* ToDoList.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ToDoList.storyboard; sourceTree = "<group>"; };
+		9CDDC1EF25643DC5003AC58F /* CollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionCell.swift; sourceTree = "<group>"; };
 		9CE36FA169FBBD1578BA29D9 /* Pods-BellaBeatFirebase.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BellaBeatFirebase.release.xcconfig"; path = "Target Support Files/Pods-BellaBeatFirebase/Pods-BellaBeatFirebase.release.xcconfig"; sourceTree = "<group>"; };
 		9CF38AFA25504A6400A0D63E /* BellaBeatFirebase.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BellaBeatFirebase.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9CF38AFD25504A6500A0D63E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -119,6 +121,7 @@
 			isa = PBXGroup;
 			children = (
 				9C394E32255E7C9300815D86 /* TaskTableViewCell.swift */,
+				9CDDC1EF25643DC5003AC58F /* CollectionCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -509,6 +512,7 @@
 				9CF38B0025504A6500A0D63E /* SceneDelegate.swift in Sources */,
 				9C0A7E0F255F221D00891DF1 /* Array+Extention.swift in Sources */,
 				9C0A7E0D255F215C00891DF1 /* UITableView+Extention.swift in Sources */,
+				9CDDC1F025643DC5003AC58F /* CollectionCell.swift in Sources */,
 				9C0A7E132562830600891DF1 /* SnapkitTestVC.swift in Sources */,
 				9CF38B0825504A6500A0D63E /* BellaBeatFirebase.xcdatamodeld in Sources */,
 			);
