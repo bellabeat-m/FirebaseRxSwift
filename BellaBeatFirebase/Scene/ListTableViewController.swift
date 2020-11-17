@@ -15,21 +15,24 @@ class ListTableViewController: UIViewController {
     private var tasksList = [ToDoItem]()
     private let taskAPI = FireTaskAPI()
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         tableView.rowHeight = UITableView.automaticDimension
         tableView.allowsMultipleSelectionDuringEditing = false
         navigationController?.navigationBar.prefersLargeTitles = true
-        updateTasks()
         tableView.register(TaskTableViewCell.self, forCellReuseIdentifier: TaskTableViewCell.identifier)
     }
     
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        taskAPI.removeAllObservers()
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         
+        updateTasks()
+
     }
     func updateTasks() {
+        
         taskAPI.observeData(completed: { [weak self] tasks, error in
             if let error = error {
                 print(error.localizedDescription)
@@ -43,6 +46,7 @@ class ListTableViewController: UIViewController {
 // MARK: Add Task
     
     @IBAction func addButtonDidTouch(_ sender: AnyObject) {
+        
         let alert = UIAlertController(title: "Things to do",
                                       message: "Add a task",
                                       preferredStyle: .alert)
@@ -70,15 +74,14 @@ class ListTableViewController: UIViewController {
 extension ListTableViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        
         return tasksList.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-      // cell as? TaskTableViewCell)?.configure(with: tasks.first)
+        
         let cell = tableView.dequeueReusableCell(withIdentifier: TaskTableViewCell.identifier) as! TaskTableViewCell
         let item = tasksList[indexPath.row]
-        
-        
         cell.lblTask.text = tasksList[indexPath.row].name
         cell.lblComplete.text = "Set task complete"
         toggleCellCheckbox(cell, isCompleted: item.completed)
@@ -87,10 +90,12 @@ extension ListTableViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        
         return true
     }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        
         if editingStyle == .delete {
             let taskSelected = tasksList[indexPath.row].key
             self.tasksList.remove(at: indexPath.row) // remove from datasource
@@ -102,22 +107,17 @@ extension ListTableViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let cell = tableView.cellForRow(at: indexPath) else { return }
         
-        var task = tasksList[indexPath.row]
-        let toggledCompletion = !task.completed
-        toggleCellCheckbox(cell, isCompleted: toggledCompletion)
-        task.completed = toggledCompletion
-        
-        taskAPI.updateCheck(for: task)
+        let task = tasksList[indexPath.row]
         tableView.deselectRow(at: indexPath, animated: true)
-         let storyboard: UIStoryboard = UIStoryboard(name: "Detail", bundle: nil)
+        let storyboard: UIStoryboard = UIStoryboard(name: "Detail", bundle: nil)
         let controller: DetailViewController = storyboard.instantiateViewController(withIdentifier: "detail") as! DetailViewController
         controller.task = task
         navigationController?.pushViewController(controller, animated: true)
     }
     
     func toggleCellCheckbox(_ cell: UITableViewCell, isCompleted: Bool) {
+        
         cell.accessoryType = isCompleted ? .checkmark : .none
         cell.textLabel?.textColor = isCompleted ? .gray : .black
         cell.detailTextLabel?.textColor = isCompleted ? .gray : .black
