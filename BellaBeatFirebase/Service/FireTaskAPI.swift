@@ -45,6 +45,7 @@ class FireTaskAPI {
     }
     
     func insertTask(with name: String) {
+        
         guard let key = taskID else { return }
         
         let item = ToDoItem(name: name, completed: false, key: key)
@@ -54,16 +55,35 @@ class FireTaskAPI {
     }
         
     func removeTask(for taskKeyID: String) {
+        
         taskRef.child(taskKeyID).removeValue()
     }
     
     func updateCheck(for task: ToDoItem) {
+        
         taskRef.child(task.key).updateChildValues([
             "completed": task.completed
         ])
     }
     
     func removeAllObservers() {
+        
         taskRef.removeAllObservers()
+    }
+    
+    func downloadTaskImage() {
+//        let dbRef = database.reference().child("myFiles")
+//        dbRef.observeEventType(.ChildAdded, withBlock: { (snapshot) in
+//            // Get download URL from snapshot
+//            let downloadURL = snapshot.value() as! String
+//            // Create a storage reference from the URL
+//            let storageRef = storage.referenceFromURL(downloadURL)
+//            // Download the data, assuming a max size of 1MB (you can change this as necessary)
+//            storageRef.dataWithMaxSize(1 * 1024 * 1024) { (data, error) -> Void in
+//                // Create a UIImage, add it to the array
+//                let pic = UIImage(data: data)
+//                picArray.append(pic)
+//            }
+//        })
     }
 }
