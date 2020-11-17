@@ -122,26 +122,40 @@ extension DetailViewController {
     @objc func handleComplete(_ sender: UIButton) {
         let doneSelection = sender == trueButton
         let undoneSelection = sender == falseButton
-        completedQuestion.isHidden = true
-        emojiIconView.image = UIImage(named: "\(images.randomItem() ?? "")")
+        self.completedQuestion.isHidden = true
+        self.emojiIconView.image = UIImage(named: "\(images.randomItem() ?? "")")
+        self.emojiIconView.alpha = 0
+        self.emojiIconView.transform = CGAffineTransform(scaleX: 0.1, y: 0.1)
                 
         if doneSelection {
-            emojiIconView.isHidden = false
-            buttonsStack.isHidden = true
-            completedLabel.text = "✔️ completed"
-            completedLabel.isHidden = false
-            completedLabel.textColor = .green
+            showIconViewAnimate()
+            self.completedLabel.text = "✔️ completed"
+            self.completedLabel.isHidden = false
+            self.completedLabel.textColor = .green
             updateComplete()
             
         } else if undoneSelection {
-            completedLabel.text = "➖ uncompleted"
-            completedLabel.isHidden = false
-            completedLabel.textColor = .red
-            emojiIconView.isHidden = false
-            buttonsStack.isHidden = true
+            showIconViewAnimate()
+            self.completedLabel.text = "➖ uncompleted"
+            self.completedLabel.isHidden = false
+            self.completedLabel.textColor = .red
             updateComplete()
             
         }
+    }
+    
+    func showIconViewAnimate() {
+        UIView.animate(withDuration: 0.7,
+                       delay: 0.0,
+                       usingSpringWithDamping: 0.4,
+                       initialSpringVelocity: 0.8,
+                       options: .curveEaseIn,
+                       animations: {
+                        self.emojiIconView.alpha = 1
+                        self.emojiIconView.transform = .identity
+                        self.emojiIconView.isHidden = false
+                        self.buttonsStack.isHidden = true
+        }, completion: nil)
     }
     
     func updateComplete() {
