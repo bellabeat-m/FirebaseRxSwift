@@ -39,7 +39,25 @@ class ListTableViewController: UIViewController {
                 return
             }
             self?.tasksList = tasks
-            self?.tableView.reloadData()
+            self?.reloadTableUIAnimate()
+        })
+    }
+    
+    // MARK: - Reload UI
+    private func reloadTableUIAnimate() {
+        DispatchQueue.main.async(execute: { () -> Void in
+            self.tableView.reloadData()
+            let visibleInexPaths = self.tableView.indexPathsForVisibleRows
+
+            _ = visibleInexPaths.map {
+
+                $0.map {
+                    let cell = self.tableView.cellForRow(at: $0)
+                    cell?.animateStart(0.9, delay: Double($0.row) * 0.02, completion: {
+                        completed in
+                    })
+                }
+            }
         })
     }
     
