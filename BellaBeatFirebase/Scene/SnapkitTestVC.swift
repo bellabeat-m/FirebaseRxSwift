@@ -67,34 +67,34 @@ class SnapkitTestVC: UIViewController {
             make.centerX.equalToSuperview()
             make.top.equalTo(headerView.snp.bottom).offset(10)
             make.bottom.equalTo(view.safeAreaLayoutGuide).offset(-10)
-            make.width.equalTo(headerView.snp.width)
+            make.width.equalTo(view.safeAreaLayoutGuide)
         }
         yellowView.snp.makeConstraints { (make) in
             make.top.equalTo(containerView.snp.top).offset(10)
-            make.bottom.equalTo(containerView.snp.centerY)
+            make.bottom.equalTo(containerView.snp.top).offset(100)
             make.width.equalTo(containerView.snp.width).offset(-20)
             make.centerX.equalTo(containerView.snp.centerX)
             
         }
         orangeView.snp.makeConstraints { (make) in
-            make.top.equalTo(yellowView.snp.bottom)
-            make.bottom.equalTo(containerView.snp.bottom).offset(-10)
+            make.top.equalTo(yellowView.snp.bottom).offset(10)
+            make.bottom.equalTo(yellowView.snp.bottom).offset(200)
             make.width.equalTo(containerView.snp.width).offset(-20)
             make.centerX.equalTo(containerView.snp.centerX)
             
         }
         blueView.snp.makeConstraints { (make) in
-            make.top.equalTo(yellowView.snp.top)
-            make.bottom.equalTo(containerView.snp.centerY)
-            make.width.equalTo(containerView.snp.width).multipliedBy(0.5).offset(-10)
-            make.left.equalTo(containerView.snp.centerX)
-            
+            make.top.equalTo(orangeView.snp.bottom).offset(10)
+            make.bottom.equalTo(orangeView.snp.bottom).offset(100)
+            make.centerX.equalTo(containerView.snp.centerX)
+            make.left.equalTo(containerView.snp.left).offset(10)
+
         }
         whiteView.snp.makeConstraints { (make) in
-            make.top.equalTo(yellowView.snp.bottom)
-            make.bottom.equalTo(orangeView.snp.bottom)
-            make.width.equalTo(containerView.snp.width).multipliedBy(0.5).offset(-10)
-            make.left.equalTo(containerView.snp.centerX)
+            make.top.equalTo(blueView.snp.bottom).offset(10)
+            make.bottom.equalTo(blueView.snp.bottom).offset(90)
+            make.left.equalTo(containerView.snp.left).offset(10)
+            make.right.equalTo(containerView.snp.right).offset(-10)
             
         }
     }
