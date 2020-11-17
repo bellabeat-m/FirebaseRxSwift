@@ -23,17 +23,31 @@ class ListTableViewController: UIViewController {
         tableView.allowsMultipleSelectionDuringEditing = false
         navigationController?.navigationBar.prefersLargeTitles = true
         tableView.register(TaskTableViewCell.self, forCellReuseIdentifier: TaskTableViewCell.identifier)
+        observeTasks()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
+//    override func viewWillAppear(_ animated: Bool) {
+//        super.viewWillAppear(animated)
+//
+//        observeTasks()
+//
+//    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
         
-        updateTasks()
+      //  taskAPI.removeAllObservers()
 
     }
-    func updateTasks() {
+    deinit {
+        taskAPI.removeAllObservers()
+    }
+
+    
+    func observeTasks() {
         
         taskAPI.observeData(completed: { [weak self] tasks, error in
+            print("observe data")
             if let error = error {
                 print(error.localizedDescription)
                 return

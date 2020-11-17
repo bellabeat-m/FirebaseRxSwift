@@ -189,11 +189,11 @@ extension DetailViewController {
         
         emojiIconView.snp.makeConstraints { make in
             make.top.equalTo(completedLabel.snp.bottom).offset(20)
-            make.left.trailing.equalTo(view.safeAreaLayoutGuide)
+            make.left.right.equalTo(view.safeAreaLayoutGuide)
             make.height.equalTo(300)
         }
         buttonsStack.snp.makeConstraints { make in
-            make.leading.trailing.equalTo(view.safeAreaLayoutGuide).inset(10)
+            make.left.right.equalTo(view.safeAreaLayoutGuide).inset(10)
             make.top.equalTo(completedLabel.snp.bottom).offset(22)
             make.height.equalTo(100)
         }
