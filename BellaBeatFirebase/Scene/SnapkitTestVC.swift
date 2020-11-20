@@ -65,6 +65,7 @@ class SnapkitTestVC: UIViewController {
         }
         contentView.snp.makeConstraints { (make) in
             make.top.bottom.equalToSuperview()
+            make.left.right.equalToSuperview()
             make.width.equalToSuperview()
             make.height.equalToSuperview()
         }
@@ -79,22 +80,22 @@ class SnapkitTestVC: UIViewController {
         }
         yellowView.snp.makeConstraints { (make) in
             make.top.equalTo(headerView.snp.bottom).offset(10)
+            make.centerX.equalTo(contentView.snp.centerX)
             make.height.equalTo(150)
             make.width.equalTo(contentView.snp.width).offset(-40)
-            make.centerX.equalTo(contentView.snp.centerX)
 
         }
         orangeView.snp.makeConstraints { (make) in
             make.top.equalTo(yellowView.snp.bottom).offset(10)
+            make.centerX.equalTo(contentView.snp.centerX)
             make.height.equalTo(250)
             make.width.equalTo(contentView.snp.width).offset(-40)
-            make.centerX.equalTo(contentView.snp.centerX)
         }
         blueView.snp.makeConstraints { (make) in
             make.top.equalTo(orangeView.snp.bottom).offset(10)
+            make.centerX.equalTo(contentView.snp.centerX)
             make.height.equalTo(50)
             make.width.equalTo(contentView.snp.width).offset(-40)
-            make.centerX.equalTo(contentView.snp.centerX)
         }
         whiteView.snp.makeConstraints { (make) in
             make.top.equalTo(blueView.snp.bottom).offset(10)

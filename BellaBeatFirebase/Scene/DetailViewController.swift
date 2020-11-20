@@ -12,7 +12,7 @@ class DetailViewController: UIViewController {
     
     public var task: ToDoItem?
     private let taskAPI = FireTaskAPI()
-    private var images: [String] = ["IMG_0.png", "IMG_1.png","IMG_2.png","IMG_3.png","IMG_4.png","IMG_5.png","IMG_6.png", "IMG_8.png", "IMG_9.png", "IMG_7.png"]
+    private var images: [String] = ["IMG_0.png","IMG_1.png","IMG_2.png","IMG_3.png","IMG_4.png","IMG_5.png","IMG_6.png", "IMG_8.png", "IMG_9.png", "IMG_7.png"]
     
     lazy var lblTask: UILabel = {
         let lbl = UILabel(frame: .zero)
