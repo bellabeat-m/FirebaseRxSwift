@@ -26,19 +26,6 @@ class ListTableViewController: UIViewController {
         observeTasks()
     }
     
-//    override func viewWillAppear(_ animated: Bool) {
-//        super.viewWillAppear(animated)
-//
-//        observeTasks()
-//
-//    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        
-      //  taskAPI.removeAllObservers()
-
-    }
     deinit {
         taskAPI.removeAllObservers()
     }
@@ -47,7 +34,6 @@ class ListTableViewController: UIViewController {
     func observeTasks() {
         
         taskAPI.observeData(completed: { [weak self] tasks, error in
-            print("observe data")
             if let error = error {
                 print(error.localizedDescription)
                 return

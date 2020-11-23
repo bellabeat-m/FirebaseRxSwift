@@ -52,7 +52,8 @@ class DetailViewController: UIViewController {
     }()
     
     lazy var emojiIconView: UIImageView = {
-        let img = UIImageView(image: UIImage(named: "\(images.randomItem() ?? "")"))
+       // let img = UIImageView(image: UIImage(named: "\(images.randomItem() ?? "")"))
+        let img = UIImageView()
         img.translatesAutoresizingMaskIntoConstraints = false
         img.clipsToBounds = true
         img.contentMode = .scaleAspectFit
@@ -104,6 +105,15 @@ class DetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         guard let task = task else { return }
+        if task.imageURL != "" {
+        taskAPI.getImage(from: (task.imageURL ?? ""), completion: { (image) in
+            
+            self.emojiIconView.image = image
+        })
+        } else {
+             self.emojiIconView.image = UIImage(named: "\(images.randomItem() ?? "")")
+        }
+         
         if !task.completed {
             falseButton.isHidden = true
         }
@@ -123,7 +133,6 @@ extension DetailViewController {
         let doneSelection = sender == trueButton
         let undoneSelection = sender == falseButton
         self.completedQuestion.isHidden = true
-        self.emojiIconView.image = UIImage(named: "\(images.randomItem() ?? "")")
         self.emojiIconView.alpha = 0
         self.emojiIconView.transform = CGAffineTransform(scaleX: 0.1, y: 0.1)
                 
