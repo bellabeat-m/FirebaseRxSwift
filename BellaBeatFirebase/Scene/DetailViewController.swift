@@ -11,8 +11,8 @@ import UIKit
 class DetailViewController: UIViewController {
     
     public var task: ToDoItem?
-    private var taskAPI = FireTaskAPI()
-    private var images: [String] = ["IMG_0.png", "IMG_1.png","IMG_2.png","IMG_3.png","IMG_4.png","IMG_5.png","IMG_6.png", "IMG_8.png", "IMG_9.png", "IMG_7.png"]
+    private var taskService = FireTaskAPI()
+
     
     lazy var taskLabel: UILabel = {
         let lbl = UILabel(frame: .zero)
@@ -52,7 +52,6 @@ class DetailViewController: UIViewController {
     }()
     
     lazy var emojiIconView: UIImageView = {
-       // let img = UIImageView(image: UIImage(named: "\(images.randomItem() ?? "")"))
         let img = UIImageView()
         img.translatesAutoresizingMaskIntoConstraints = false
         img.clipsToBounds = true
@@ -105,15 +104,9 @@ class DetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         guard let task = task else { return }
-        if task.imageURL != "" {
-        taskAPI.getImage(from: (task.imageURL ?? ""), completion: { (image) in
-            
+        taskService.getImage(from: (task.imageURL ?? ""), completion: { (image) in
             self.emojiIconView.image = image
         })
-        } else {
-             self.emojiIconView.image = UIImage(named: "\(images.randomItem() ?? "")")
-        }
-         
         if !task.completed {
             falseButton.isHidden = true
         }
@@ -168,10 +161,9 @@ extension DetailViewController {
     }
     
     func updateComplete() {
-        guard var completedTask = task else { return }
-        let toggledCompletion = !completedTask.completed
-        completedTask.completed = toggledCompletion
-        taskAPI.updateCheck(for: completedTask)
+        guard var task = task else { return }
+        task.completed.toggle()
+        taskService.updateCheck(for: task)
     }
 }
 // MARK: - Constraints

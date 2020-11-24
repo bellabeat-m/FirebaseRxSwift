@@ -22,15 +22,10 @@ class FireTaskAPI {
         return taskRef.childByAutoId().key
     }
     
+    private var images: [String] = ["IMG_0.png", "IMG_1.png","IMG_2.png","IMG_3.png","IMG_4.png","IMG_5.png","IMG_6.png", "IMG_8.png", "IMG_9.png", "IMG_7.png"]
     init() { }
     
     // MARK: OBSERVE
-    
-    /**
-     Asynchronously observe all chages of the object at the FirebaseDatabase.
-     
-     @param block to create DB Object
-     */
     
     
     func observeData(completed: @escaping ([ToDoItem], Error?) -> Void) {
@@ -56,12 +51,6 @@ class FireTaskAPI {
     
     // MARK: UPLOAD
     
-    /**
-     Asynchronously upload the object at the FB
-     
-     @param key Unique key to be observed
-     */
-    
     func insertTask(with name: String) {
         
         guard let key = taskID else { return }
@@ -74,26 +63,12 @@ class FireTaskAPI {
     
     // MARK: DELETE
     
-    /**
-     Asynchronously deltet the object at the FBDatabase.
-     
-     @param key Unique key to be remove or sorted
-     */
-    
     func removeTask(for taskKeyID: String) {
         
         taskRef.child(taskKeyID).removeValue()
     }
     
     // MARK: UPDATE
-    
-    /**
-     Asynchronously updates the object at the FBDatabase.
-     An NSData of the provided max size will be allocated, so ensure that the device has enough free
-     memory to complete the update.
-     
-     @param Object
-     */
     
     func updateCheck(for task: ToDoItem) {
         
@@ -104,9 +79,6 @@ class FireTaskAPI {
     
     // MARK: REMOVE
     
-    /**
-     Asynchronously removes all obsever signals at the FirebaseDatabase.
-     */
     func removeAllObservers() {
         
         taskRef.removeAllObservers()
@@ -114,33 +86,31 @@ class FireTaskAPI {
     
     // MARK: DOWNLOAD
     
-    /**
-     Asynchronously downloads the object at the FIRStorageReference to an NSData Object in memory.
-     An NSData of the provided max size will be allocated, so ensure that the device has enough free
-     memory to complete the download. For downloading large files, writeToFile may be a better option.
-     
-     @param size The maximum size in bytes to download.  If the download exceeds this size the task will be cancelled and an error will be returned.
-     @param block to create UIImage
-     */
-    
     let bucket: String = "gs://bellabeat-e59b7.appspot.com"
     
     
+    fileprivate func getRandomImage(_ completion: (UIImage?) -> Void) {
+        let image = UIImage(named: images.randomElement() ?? "")
+        completion(image)
+    }
+    
     func getImage(from urlString: String, completion: @escaping (UIImage?) -> Void) {
+        if urlString.isEmpty == true {
+            getRandomImage(completion)
+            return
+        }
         let storageRef = storage.reference(forURL: bucket)
         let path = storageRef.child("\(urlString)")
         
-        path.getData(maxSize: 1024 * 1024) { (data, error) in
+        path.getData(maxSize: 1024 * 1024) { [weak self] (data, error) in
             guard let data = data else { return }
             if (error != nil) {
-                print(error!.localizedDescription)
+                self?.getRandomImage(completion)
+                print("Error getting data. Returning local stored image: \(String(describing: error?.localizedDescription))")
             } else {
                 let image = UIImage(data: data)
                 completion(image)
-                
             }
         }
     }
-    
-    
 }

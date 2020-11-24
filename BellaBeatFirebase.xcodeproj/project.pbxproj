@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		7AEF2EF64A44CBE1EC1AB33E /* Pods_BellaBeatFirebaseTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 236770F46A2435F41484785E /* Pods_BellaBeatFirebaseTests.framework */; };
 		9C0A7E0D255F215C00891DF1 /* UITableView+Extention.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C0A7E0C255F215C00891DF1 /* UITableView+Extention.swift */; };
-		9C0A7E0F255F221D00891DF1 /* Array+Extention.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C0A7E0E255F221D00891DF1 /* Array+Extention.swift */; };
 		9C0A7E11255F225000891DF1 /* UIView+Extention.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C0A7E10255F225000891DF1 /* UIView+Extention.swift */; };
 		9C394E2D255D418B00815D86 /* Detail.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9C394E2C255D418B00815D86 /* Detail.storyboard */; };
 		9C394E33255E7C9300815D86 /* TaskTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C394E32255E7C9300815D86 /* TaskTableViewCell.swift */; };
@@ -56,7 +55,6 @@
 		57284376BD7E601DC46E89F2 /* Pods-BellaBeatFirebase.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BellaBeatFirebase.debug.xcconfig"; path = "Target Support Files/Pods-BellaBeatFirebase/Pods-BellaBeatFirebase.debug.xcconfig"; sourceTree = "<group>"; };
 		68C2C3F562C78FD857085D5E /* Pods_BellaBeatFirebase.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BellaBeatFirebase.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9C0A7E0C255F215C00891DF1 /* UITableView+Extention.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Extention.swift"; sourceTree = "<group>"; };
-		9C0A7E0E255F221D00891DF1 /* Array+Extention.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Extention.swift"; sourceTree = "<group>"; };
 		9C0A7E10255F225000891DF1 /* UIView+Extention.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extention.swift"; sourceTree = "<group>"; };
 		9C394E2C255D418B00815D86 /* Detail.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Detail.storyboard; sourceTree = "<group>"; };
 		9C394E32255E7C9300815D86 /* TaskTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskTableViewCell.swift; sourceTree = "<group>"; };
@@ -125,7 +123,6 @@
 			isa = PBXGroup;
 			children = (
 				9C0A7E0C255F215C00891DF1 /* UITableView+Extention.swift */,
-				9C0A7E0E255F221D00891DF1 /* Array+Extention.swift */,
 				9C0A7E10255F225000891DF1 /* UIView+Extention.swift */,
 			);
 			path = Extensions;
@@ -504,7 +501,6 @@
 				9C5462ED25520ED00010C9C0 /* DetailViewController.swift in Sources */,
 				9C0A7E11255F225000891DF1 /* UIView+Extention.swift in Sources */,
 				9CF38B0025504A6500A0D63E /* SceneDelegate.swift in Sources */,
-				9C0A7E0F255F221D00891DF1 /* Array+Extention.swift in Sources */,
 				9C0A7E0D255F215C00891DF1 /* UITableView+Extention.swift in Sources */,
 				9CF38B0825504A6500A0D63E /* BellaBeatFirebase.xcdatamodeld in Sources */,
 			);
