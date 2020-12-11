@@ -8,17 +8,18 @@
 2. Create a git SSH key and paste it into Github
 3. Set up you global and local config file: add username and email for user-
 
-" [user]
-	name = marko markic
+        [user] name = marko markic 
 	
 	email = marko.markic@bellabeat.com "
 	
 4. Download in app content framework from submodule in terminal
 
 git submodule update --recursive
+
 5. Update Carthage
 
 carthage bootstrap --platform iOS --use-ssh
+
 (Ili za sve targets)
 
 carthage bootstrap --platform iOS --use-ssh --cache-builds
@@ -29,9 +30,10 @@ carthage bootstrap --platform iOS --use-ssh --cache-builds
 
 ![alt tag](https://img.shields.io/badge/git%20-Rebase%20project-blue)
 ### How to Rebase it via Sourcetree?
+This was a process of customising Sourcetree so it has more information upon Pushes and changes happening remote/local.
 
 ![alt text](https://firebasestorage.googleapis.com/v0/b/bellabeat-e59b7.appspot.com/o/Screen%20Shot%202020-12-09%20at%207.48.16%20PM.png?alt=media&token=2775d14a-c8d5-444a-8235-62d1808fa3c1)
-This was a process of customising Sourcetree so it has more information upon Pushes and changes happening remote/local.
+
 1. Checkout to branch you want to rebase (in this case MASTER)
 2. Move to the feture branch you want to take, and go to the LAST commit
 3. Righ-click and choose REBASE , not Rebase childrens...
