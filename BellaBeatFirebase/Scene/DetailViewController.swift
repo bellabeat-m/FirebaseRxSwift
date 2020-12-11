@@ -200,51 +200,5 @@ extension DetailViewController {
         }
     }
 }
-// MARK: - Logic
-extension DetailViewController {
-    @objc func handleDone(_ sender: UIButton) {
-        let undoneSelection = sender == btnFalse
-        let doneSelection = sender == btnFalse
-        svButtons.isHidden = true
-        emojiIconView.isHidden = false
-        emojiIconView.image = UIImage(named: "\(images.randomItem() ?? "")")
-        let toggledCompletion = !(task?.completed ?? false) == doneSelection
-        
-        if toggledCompletion {
-            toggleCheckbox(lblCompleted, isCompleted: task?.completed ?? false)
-            task?.completed = toggledCompletion
-            taskAPI.updateCheck(for: task!)
-        } else {
-            
-        }
-    }
-}
-// MARK: - Constraints
-extension DetailViewController {
-    
-    func setupConstraints() {
-        
-        lblTask.snp.makeConstraints { make in
-            make.width.equalToSuperview().multipliedBy(0.65).labeled("timerWidth")
-            make.top.equalTo(view.safeAreaLayoutGuide).offset(10)
-            make.centerX.equalToSuperview().labeled("timerCenterX")
-        }
-        
-        lblCompleted.snp.makeConstraints { make in
-            make.top.equalTo(lblTask.snp.bottom).offset(54)
-            make.centerX.equalToSuperview()
-        }
-        
-        emojiIconView.snp.makeConstraints { make in
-            make.leading.trailing.equalTo(view.safeAreaLayoutGuide)
-            make.top.equalTo(lblCompleted.snp.bottom).offset(26)
-            make.height.equalTo(300)
-        }
-        svButtons.snp.makeConstraints { make in
-            make.leading.trailing.equalTo(view.safeAreaLayoutGuide).inset(10)
-            make.top.equalTo(lblCompleted.snp.bottom).offset(16)
-            make.height.equalTo(80)
-        }
-    }
-}
+
 
