@@ -14,19 +14,19 @@
 	
 4. Download in app content framework from submodule in terminal
 
-git submodule update --recursive
+git submodule update --init --recursive
 
 5. Update Carthage
 
 carthage bootstrap --platform iOS --use-ssh
 
-(Ili za sve targets)
+(Later for faster builds use flag)
 
-carthage bootstrap --platform iOS --use-ssh --cache-builds
+carthage bootstrap --platform iOS --use-ssh --cache-builds 😇
 
 
 
-📌  Common prectice: merge when bigger and longer features all other cases rebase
+📌  Common practice: merge when bigger and longer features all other cases rebase
 
 ![alt tag](https://img.shields.io/badge/git%20-Rebase%20project-blue)
 ### How to Rebase it via Sourcetree?
