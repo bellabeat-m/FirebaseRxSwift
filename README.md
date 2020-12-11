@@ -35,17 +35,17 @@ This was a process of customising Sourcetree so it has more information upon Pus
 ![alt text](https://firebasestorage.googleapis.com/v0/b/bellabeat-e59b7.appspot.com/o/Screen%20Shot%202020-12-09%20at%207.48.16%20PM.png?alt=media&token=2775d14a-c8d5-444a-8235-62d1808fa3c1)
 
 1. Checkout to branch you want to rebase (in this case MASTER)
-2. Move to the feture branch you want to take, and go to the LAST commit
+2. Move to the feature branch you want to take, and go to the LAST commit
 3. Right-click and choose REBASE, not Rebase children...
 ![alt text](https://firebasestorage.googleapis.com/v0/b/bellabeat-e59b7.appspot.com/o/Screen%20Shot%202020-12-10%20at%204.26.00%20PM.png?alt=media&token=e564220e-0741-438a-b531-c3b773fb22db)
-4. If there are conflict you will be blocked(if you do not see the Sourcetree messages log, enable them in Preference-Advenced)
+4. If there are conflict you will be blocked (if you do not see the Sourcetree messages log, enable them in Preference-Advenced)
 
 5. Solve Conflicts by external tools, editors or Xcode
 6. Back in Sourcetree history check commits, and click again on the same feature branch as on the start of rebase
 7. Right click there choose again REBASE, will as to Continue Rebase
 8. Go to github project and create the Pull request for the rebase
 9. Set up members to approve/reject
-10. Once one approves you can Forec Push in source tree to remote(we want from 4 commits to have only 3)
+10. Once one approves you can Force Push in source tree to remote(we want from 4 commits to have only 3)
 
 You will need to enable FORCE PUSH in Preference-Advenced-Allow Force Push
 
