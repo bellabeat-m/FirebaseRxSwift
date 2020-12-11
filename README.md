@@ -36,7 +36,7 @@ This was a process of customising Sourcetree so it has more information upon Pus
 
 1. Checkout to branch you want to rebase (in this case MASTER)
 2. Move to the feture branch you want to take, and go to the LAST commit
-3. Righ-click and choose REBASE , not Rebase childrens...
+3. Right-click and choose REBASE, not Rebase children...
 ![alt text](https://firebasestorage.googleapis.com/v0/b/bellabeat-e59b7.appspot.com/o/Screen%20Shot%202020-12-10%20at%204.26.00%20PM.png?alt=media&token=e564220e-0741-438a-b531-c3b773fb22db)
 4. If there are conflict you will be blocked(if you do not see the Sourcetree messages log, enable them in Preference-Advenced)
 
