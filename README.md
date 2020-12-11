@@ -1,7 +1,8 @@
 ### Bellabeat project set up WORKFLOW
 
 📌  Steps in setting up git project on your local machine
-![alt tag](https://img.shields.io/badge/git%205-Rebase%20project-blue)
+
+![alt tag](https://img.shields.io/badge/git%20-Config%20project-blue)
 
 1. Clone a repo from Github
 2. Create a git SSH key and paste it into Github
@@ -19,6 +20,8 @@ carthage bootstrap --platform iOS --use-ssh --cache-builds
 
 
 📌  Common prectice: merge when bigger and longer features all other cases rebase
+
+![alt tag](https://img.shields.io/badge/git%20-Rebase%20project-blue)
 ### How to do it via Sourcetree?
 This was a long process of customising Sourcetree so it has more information upon Pushes and changes happening remote/local.
 
