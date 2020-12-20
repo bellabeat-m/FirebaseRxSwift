@@ -44,7 +44,7 @@ class ListTableViewController: UIViewController {
     
     @IBAction func addButtonDidTouch(_ sender: AnyObject) {
         
-        let controller = SnapkitTestVC()
+        let controller = SettingsProgramTableViewController()
         self.navigationController?.pushViewController(controller, animated: true)
 //        let alert = UIAlertController(title: "Things to do",
 //                                      message: "Add a task",
