@@ -9,20 +9,11 @@ import UIKit
 
 class ProgramCell: UITableViewCell {
     
-    static let identifier = "Cell"
-    private var images: [String] = []
-    
-    override func awakeFromNib() {
-        super.awakeFromNib()
-    }
-    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-        super.init(style: style, reuseIdentifier: reuseIdentifier)
-        setupConstraints()
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-    }
+    static let identifier = "ProgramSettingsCell"
+    var image1: String?
+    var kTableViewCornerRadius: CGFloat = 13.0
+    var top = false
+    var bottom = false
     
     lazy var titleLabel: UILabel = {
         let title = UILabel(frame: .zero)
@@ -37,7 +28,7 @@ class ProgramCell: UITableViewCell {
     
     
     lazy var iconImage: UIImageView = {
-        let img = UIImageView(image: UIImage(named: "\(images)"))
+        let img = UIImageView(image: UIImage(named: "\(image1)"))
         img.translatesAutoresizingMaskIntoConstraints = false
         img.clipsToBounds = true
         img.contentMode = .scaleAspectFit
@@ -45,41 +36,80 @@ class ProgramCell: UITableViewCell {
         return img
     }()
     
-    lazy var viewCell: UIView = {
+    lazy var container: UIView = {
         let view = UIView(frame: .zero)
         view.translatesAutoresizingMaskIntoConstraints = false
         view.clipsToBounds = true
-        view.contentMode = .scaleAspectFit
+        view.contentMode = .scaleAspectFill
         view.backgroundColor = .white
         
         return view
     }()
     
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
+        setupViews()
+        setupConstraints()
+    }
     
-    func setupConstraints() {
-        contentView.addSubview(viewCell)
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+    }
+    
+    func setupViews() {
+        contentView.addSubview(container)
         contentView.addSubview(titleLabel)
         contentView.addSubview(iconImage)
-        contentView.layer.backgroundColor = UIColor.systemGray6.cgColor
-        
-        viewCell.snp.makeConstraints { make in
-            make.top.bottom.equalToSuperview()
+        contentView.layer.backgroundColor = UIColor.clear.cgColor
+    }
+    
+    override func layoutSubviews() {
+        // Set the width of the cell
+        super.layoutSubviews()
+          if top {
+            container.roundCorners([.topLeft, .topRight], radius: kTableViewCornerRadius)
+            container.snp.updateConstraints { make in
+                make.top.equalToSuperview().offset(2)
+            }
+          } else if bottom {
+            container.roundCorners([.bottomLeft, .bottomRight], radius: kTableViewCornerRadius)
+            container.snp.updateConstraints { make in
+                make.bottom.equalToSuperview().offset(-2)
+            }
+        }
+            container.layer.borderColor = UIColor.systemGray4.cgColor
+            container.layer.borderWidth = 2
+            container.layer.masksToBounds = true
+
+      }
+    
+    func setupConstraints() {
+        container.snp.makeConstraints { make in
+            make.top.equalToSuperview().offset(-2)
+            make.bottom.equalToSuperview().offset(2)
             make.centerX.equalToSuperview()
             make.width.equalToSuperview().multipliedBy(0.9)
         }
         
         iconImage.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(7)
-            make.leading.equalTo(viewCell.safeAreaLayoutGuide).offset(10)
+            make.leading.equalTo(container.safeAreaLayoutGuide).offset(10)
             make.width.equalTo(25)
             make.height.equalTo(25)
         }
         
         titleLabel.snp.makeConstraints { make in
             make.leading.equalTo(iconImage.snp.leading).offset(35)
-            make.top.equalTo(contentView.safeAreaLayoutGuide).offset(10)
+            make.top.equalTo(container.safeAreaLayoutGuide).offset(10)
         }
     }
+    
+    //    func setupCell(data: ProgramContent) {
+    //        self.titleLabel.text = data.name
+    //    }
+        
+
+
     
 }
 
@@ -87,18 +117,25 @@ class ProgramCell: UITableViewCell {
 class SettingsProgramTableViewController: UIViewController {
 
     fileprivate var tableView = UITableView()
-    fileprivate var restartProgramInfoLabel = UILabel()
     fileprivate var readMoreLabel = UILabel()
-
-    
-    deinit {
-       // Debug.log("SettingsChooseProgramsViewController deinit")
+    fileprivate var isFirstSection = false
+    init() {
+        super.init(nibName: nil, bundle: nil)
     }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setupNavigationBar()
-        self.setupTableView()
+        self.tableView = UITableView(frame: .zero)
+        self.view.addSubview(self.tableView)
+        self.setupTableView(view: tableView)
+        tableView.register(ProgramCell.self, forCellReuseIdentifier: ProgramCell.identifier)
+
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -107,7 +144,9 @@ class SettingsProgramTableViewController: UIViewController {
     
     //  MARK: - setup methods
     private func setupNavigationBar() {
-        self.title = "Your personilized program"
+        self.title = "settings"
+        self.view.backgroundColor = .systemGray5
+
     }
     
     private func setupDataV0() {
@@ -119,38 +158,32 @@ class SettingsProgramTableViewController: UIViewController {
     }
 
 
-    private func setupTableView() {
-        self.view.addSubview(self.tableView)
+    private func setupTableView(view: UITableView) {
         tableView.rowHeight = 100
         tableView = UITableView(frame: .zero)
         self.view.addSubview(tableView)
         tableView.snp.makeConstraints {
             $0.edges.equalToSuperview()
         }
-        tableView.backgroundColor = .systemGray6
+        tableView.backgroundColor = .systemGray5
         tableView.register(ProgramCell.self, forCellReuseIdentifier: ProgramCell.identifier)
         tableView.dataSource = self
         tableView.delegate = self
+        tableView.separatorColor = .clear
+        
+        
     }
-    
     
     private func addPrograms() {
 
     }
-    
-    private func updateReadMoreLabelConstraints() {
-        self.readMoreLabel.snp.remakeConstraints { (make) in
-            make.centerX.equalToSuperview()
-            make.top.equalTo(self.restartProgramInfoLabel.snp.bottom).offset(15)
-            make.bottom.equalTo(0).offset(-Constants.edgeOffset)
-        }
-    }
+
     
  
     fileprivate func setupReadMoreLabel() {
-        self.readMoreLabel.text = "general_read_more"
+        self.readMoreLabel.text = "Read more"
         self.readMoreLabel.textColor = .systemBlue
-        self.readMoreLabel.font = UIFont(name: "", size: 12)
+        self.readMoreLabel.font = UIFont(name: "Futura", size: 12)
         self.readMoreLabel.textAlignment = .center
     }
 }
@@ -162,44 +195,78 @@ extension SettingsProgramTableViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 4
+        if section == 0 {
+            return 4
+        } else {
+            return 2
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: ProgramCell.identifier, for: indexPath) as! ProgramCell
-        cell.titleLabel.text = "data missing"
-        cell.iconImage.image = UIImage(named: "IMG_0")
+        if indexPath.row == 0 && indexPath.section == 0 {
+            cell.top = true
+        } else if indexPath.row == 3 {
+            cell.bottom = true
+        } else if indexPath.row == 0 && indexPath.section == 1 {
+            cell.top = true
+        } else if indexPath.row == 1 && indexPath.section == 1{
+            cell.bottom = true
+        }
+        cell.backgroundColor = .clear
+        cell.titleLabel.text = "data here to ..."
+        cell.iconImage.image = UIImage(named: "IMG_8")
         return cell
     }
     
+    func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+        let headerView = view as! UITableViewHeaderFooterView
+        headerView.textLabel?.font = UIFont(name: "Futura", size: 16)
+        headerView.backgroundView?.backgroundColor = .systemGray5
+    }
+    //TODO: Resizable footer view
+    func tableView(_ tableView: UITableView, willDisplayFooterView view: UIView, forSection section: Int) {
+        let headerView = view as! UITableViewHeaderFooterView
+        headerView.textLabel?.font = UIFont(name: "Futura", size: 11)
+        headerView.backgroundView?.backgroundColor = .systemGray5
+    }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection
-                                section: Int) -> String? {
-       return "Main"
+        section: Int) -> String? {
+        isFirstSection = section == 0
+        let headerTitle = isFirstSection ? "Main" : "Supportive"
+        return headerTitle
     }
-
-   func tableView(_ tableView: UITableView, titleForFooterInSection
-                                section: Int) -> String? {
-       return "Supportive"
+    
+    func tableView(_ tableView: UITableView, titleForFooterInSection
+        section: Int) -> String? {
+        isFirstSection = section == 0
+        let footerTitle = isFirstSection ? "If you want to restart your program, deselect and than reselect the..." : "Based on your personal want to restart your program, deselect and than reselect the want to deselect and than reselect the.."
+        return footerTitle
     }
-}
-
- extension SettingsProgramTableViewController: UITableViewDelegate {
     
     
+    func tableView(_ tableView: UITableView, didEndDisplaying cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        DispatchQueue.main.async {
+            for index in 0 ..< tableView.visibleCells.count {
+                let zPosition = CGFloat(tableView.visibleCells.count - index)
+                tableView.visibleCells[index].layer.zPosition = zPosition
+            }
+        }
+    }
 }
 
-fileprivate struct Constants {
-    static let componentDistance = 15.0
-    static let edgeOffset: CGFloat = 15.0
-    static let borderWidth = 1
-    static let borderColor = UIColor.systemGray6
-}
+ extension SettingsProgramTableViewController: UITableViewDelegate { }
 
 fileprivate extension UIView {
-    func setBorders() {
-        self.layer.borderColor = Constants.borderColor.cgColor
-        self.layer.borderWidth = CGFloat(Constants.borderWidth)
+
+    func roundCorners(_ corners: UIRectCorner, radius: CGFloat) {
+        self.layer.borderColor = UIColor.systemGray4.cgColor
+        self.layer.borderWidth = 2
+        self.layer.masksToBounds = true
+        let path = UIBezierPath(roundedRect: self.bounds, byRoundingCorners: corners, cornerRadii: CGSize(width: radius, height: radius))
+        let mask = CAShapeLayer()
+        mask.path = path.cgPath
+        self.layer.mask = mask
     }
 }
-

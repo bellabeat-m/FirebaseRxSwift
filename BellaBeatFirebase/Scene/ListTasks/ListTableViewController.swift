@@ -17,6 +17,7 @@ class ListTableViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.view.backgroundColor = .white
         tableView.rowHeight = UITableView.automaticDimension
         tableView.allowsMultipleSelectionDuringEditing = false
         navigationController?.navigationBar.prefersLargeTitles = true
