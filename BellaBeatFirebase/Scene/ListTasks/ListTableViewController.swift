@@ -20,7 +20,7 @@ class ListTableViewController: UIViewController {
         self.view.backgroundColor = .white
         tableView.rowHeight = UITableView.automaticDimension
         tableView.allowsMultipleSelectionDuringEditing = false
-        navigationController?.navigationBar.prefersLargeTitles = true
+        navigationController?.navigationBar.prefersLargeTitles = false
         updateTasks()
         tableView.register(TaskTableViewCell.self, forCellReuseIdentifier: TaskTableViewCell.identifier)
     }
@@ -45,7 +45,7 @@ class ListTableViewController: UIViewController {
     
     @IBAction func addButtonDidTouch(_ sender: AnyObject) {
         
-        let controller = SettingsProgramTableViewController()
+        let controller = WorkoutViewController()
         self.navigationController?.pushViewController(controller, animated: true)
 //        let alert = UIAlertController(title: "Things to do",
 //                                      message: "Add a task",

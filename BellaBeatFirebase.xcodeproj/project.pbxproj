@@ -22,6 +22,8 @@
 		9CA5194225900DD3004224C0 /* SettingProgramViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CA5194125900DD3004224C0 /* SettingProgramViewModel.swift */; };
 		9CB024D325598CD2005F03EC /* ToDoList.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9CB024D225598CD2005F03EC /* ToDoList.storyboard */; };
 		9CDDC1F025643DC5003AC58F /* CollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CDDC1EF25643DC5003AC58F /* CollectionCell.swift */; };
+		9CE1592725CC1580001CEBAB /* WorkoutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CE1592625CC1580001CEBAB /* WorkoutViewController.swift */; };
+		9CE1592C25CC159D001CEBAB /* WorkoutHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CE1592B25CC159D001CEBAB /* WorkoutHeaderView.swift */; };
 		9CF38AFE25504A6500A0D63E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CF38AFD25504A6500A0D63E /* AppDelegate.swift */; };
 		9CF38B0025504A6500A0D63E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CF38AFF25504A6500A0D63E /* SceneDelegate.swift */; };
 		9CF38B0225504A6500A0D63E /* ListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CF38B0125504A6500A0D63E /* ListTableViewController.swift */; };
@@ -73,6 +75,8 @@
 		9CA5194125900DD3004224C0 /* SettingProgramViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingProgramViewModel.swift; sourceTree = "<group>"; };
 		9CB024D225598CD2005F03EC /* ToDoList.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ToDoList.storyboard; sourceTree = "<group>"; };
 		9CDDC1EF25643DC5003AC58F /* CollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionCell.swift; sourceTree = "<group>"; };
+		9CE1592625CC1580001CEBAB /* WorkoutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutViewController.swift; sourceTree = "<group>"; };
+		9CE1592B25CC159D001CEBAB /* WorkoutHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutHeaderView.swift; sourceTree = "<group>"; };
 		9CE36FA169FBBD1578BA29D9 /* Pods-BellaBeatFirebase.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BellaBeatFirebase.release.xcconfig"; path = "Target Support Files/Pods-BellaBeatFirebase/Pods-BellaBeatFirebase.release.xcconfig"; sourceTree = "<group>"; };
 		9CF38AFA25504A6400A0D63E /* BellaBeatFirebase.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BellaBeatFirebase.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9CF38AFD25504A6500A0D63E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -164,6 +168,8 @@
 				9CA5194525900E03004224C0 /* SnapKitViews */,
 				9CA5194425900DF4004224C0 /* DetailVC */,
 				9CA5194325900DDD004224C0 /* ListTasks */,
+				9CE1592625CC1580001CEBAB /* WorkoutViewController.swift */,
+				9CE1592B25CC159D001CEBAB /* WorkoutHeaderView.swift */,
 			);
 			path = Scene;
 			sourceTree = "<group>";
@@ -548,7 +554,9 @@
 				9C5462ED25520ED00010C9C0 /* DetailViewController.swift in Sources */,
 				9C0A7E11255F225000891DF1 /* UIView+Extention.swift in Sources */,
 				9CF38B0025504A6500A0D63E /* SceneDelegate.swift in Sources */,
+				9CE1592C25CC159D001CEBAB /* WorkoutHeaderView.swift in Sources */,
 				9C0A7E0F255F221D00891DF1 /* Array+Extention.swift in Sources */,
+				9CE1592725CC1580001CEBAB /* WorkoutViewController.swift in Sources */,
 				9CA5194225900DD3004224C0 /* SettingProgramViewModel.swift in Sources */,
 				9C0A7E0D255F215C00891DF1 /* UITableView+Extention.swift in Sources */,
 				9CDDC1F025643DC5003AC58F /* CollectionCell.swift in Sources */,
