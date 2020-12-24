@@ -12,8 +12,8 @@ class ProgramCell: UITableViewCell {
     static let identifier = "ProgramSettingsCell"
     var image1: String?
     var kTableViewCornerRadius: CGFloat = 13.0
-    var top = false
-    var bottom = false
+    var topCorners = false
+    var bottomCorners = false
     
     lazy var titleLabel: UILabel = {
         let title = UILabel(frame: .zero)
@@ -36,7 +36,7 @@ class ProgramCell: UITableViewCell {
         return img
     }()
     
-    lazy var container: UIView = {
+    let container: UIView = {
         let view = UIView(frame: .zero)
         view.translatesAutoresizingMaskIntoConstraints = false
         view.clipsToBounds = true
@@ -60,28 +60,26 @@ class ProgramCell: UITableViewCell {
         contentView.addSubview(container)
         contentView.addSubview(titleLabel)
         contentView.addSubview(iconImage)
-        contentView.layer.backgroundColor = UIColor.clear.cgColor
+        //contentView.layer.backgroundColor = UIColor.clear.cgColor
     }
     
     override func layoutSubviews() {
-        // Set the width of the cell
         super.layoutSubviews()
-          if top {
-            container.roundCorners([.topLeft, .topRight], radius: kTableViewCornerRadius)
-            container.snp.updateConstraints { make in
+        container.clipsToBounds = true
+        container.layer.borderColor = UIColor.systemGray4.cgColor
+        container.layer.borderWidth = 2
+        if topCorners {
+            container.roundBorderCorners([.topLeft, .topRight], radius: kTableViewCornerRadius)
+            container.snp.makeConstraints { make in
                 make.top.equalToSuperview().offset(2)
             }
-          } else if bottom {
-            container.roundCorners([.bottomLeft, .bottomRight], radius: kTableViewCornerRadius)
-            container.snp.updateConstraints { make in
+        } else if bottomCorners {
+            container.roundBorderCorners([.bottomLeft, .bottomRight], radius: kTableViewCornerRadius)
+            container.snp.makeConstraints { make in
                 make.bottom.equalToSuperview().offset(-2)
             }
         }
-            container.layer.borderColor = UIColor.systemGray4.cgColor
-            container.layer.borderWidth = 2
-            container.layer.masksToBounds = true
-
-      }
+    }
     
     func setupConstraints() {
         container.snp.makeConstraints { make in
@@ -170,21 +168,11 @@ class SettingsProgramTableViewController: UIViewController {
         tableView.dataSource = self
         tableView.delegate = self
         tableView.separatorColor = .clear
-        
-        
+
     }
     
     private func addPrograms() {
 
-    }
-
-    
- 
-    fileprivate func setupReadMoreLabel() {
-        self.readMoreLabel.text = "Read more"
-        self.readMoreLabel.textColor = .systemBlue
-        self.readMoreLabel.font = UIFont(name: "Futura", size: 12)
-        self.readMoreLabel.textAlignment = .center
     }
 }
 
@@ -204,14 +192,21 @@ extension SettingsProgramTableViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: ProgramCell.identifier, for: indexPath) as! ProgramCell
+        
         if indexPath.row == 0 && indexPath.section == 0 {
-            cell.top = true
-        } else if indexPath.row == 3 {
-            cell.bottom = true
+            cell.container.roundBorderCorners([.topLeft, .topRight], radius: 13)
+            cell.container.snp.makeConstraints { make in
+                make.top.equalToSuperview().offset(2)
+            }
+            cell.topCorners = true
+            
+        }
+         if indexPath.row == 3 {
+            cell.bottomCorners = true
         } else if indexPath.row == 0 && indexPath.section == 1 {
-            cell.top = true
+            cell.topCorners = true
         } else if indexPath.row == 1 && indexPath.section == 1{
-            cell.bottom = true
+            cell.bottomCorners = true
         }
         cell.backgroundColor = .clear
         cell.titleLabel.text = "data here to ..."
@@ -226,9 +221,10 @@ extension SettingsProgramTableViewController: UITableViewDataSource {
     }
     //TODO: Resizable footer view
     func tableView(_ tableView: UITableView, willDisplayFooterView view: UIView, forSection section: Int) {
-        let headerView = view as! UITableViewHeaderFooterView
-        headerView.textLabel?.font = UIFont(name: "Futura", size: 11)
-        headerView.backgroundView?.backgroundColor = .systemGray5
+        let footerView = view as! UITableViewHeaderFooterView
+        footerView.textLabel?.font = UIFont(name: "Futura", size: 11)
+        footerView.textLabel?.numberOfLines = 0
+        footerView.backgroundView?.backgroundColor = .systemGray5
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection
@@ -244,29 +240,27 @@ extension SettingsProgramTableViewController: UITableViewDataSource {
         let footerTitle = isFirstSection ? "If you want to restart your program, deselect and than reselect the..." : "Based on your personal want to restart your program, deselect and than reselect the want to deselect and than reselect the.."
         return footerTitle
     }
-    
-    
-    func tableView(_ tableView: UITableView, didEndDisplaying cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        DispatchQueue.main.async {
-            for index in 0 ..< tableView.visibleCells.count {
-                let zPosition = CGFloat(tableView.visibleCells.count - index)
-                tableView.visibleCells[index].layer.zPosition = zPosition
-            }
-        }
-    }
+
 }
 
  extension SettingsProgramTableViewController: UITableViewDelegate { }
 
 fileprivate extension UIView {
+    
+    func roundBorderCorners(_ corners: UIRectCorner, radius: CGFloat) {
+           let path = UIBezierPath(roundedRect: self.bounds,
+                                   byRoundingCorners: corners,
+                                   cornerRadii: CGSize(width: radius, height: radius))
+           let mask = CAShapeLayer()
+           mask.path = path.cgPath
+           self.layer.mask = mask
+           let borderLayer = CAShapeLayer()
+           borderLayer.path = mask.path // Reuse the Bezier path
+           borderLayer.fillColor = UIColor.clear.cgColor
+           borderLayer.strokeColor = UIColor.systemGray4.cgColor
+           borderLayer.lineWidth = 2
+           borderLayer.frame = self.bounds
+           self.layer.addSublayer(borderLayer)
+       }
 
-    func roundCorners(_ corners: UIRectCorner, radius: CGFloat) {
-        self.layer.borderColor = UIColor.systemGray4.cgColor
-        self.layer.borderWidth = 2
-        self.layer.masksToBounds = true
-        let path = UIBezierPath(roundedRect: self.bounds, byRoundingCorners: corners, cornerRadii: CGSize(width: radius, height: radius))
-        let mask = CAShapeLayer()
-        mask.path = path.cgPath
-        self.layer.mask = mask
-    }
 }
