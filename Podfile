@@ -8,7 +8,8 @@ target 'BellaBeatFirebase' do
   pod 'Firebase/Analytics'
   pod 'Firebase/Database'
   pod 'Firebase/Storage'
-  pod 'SnapKit' 
+  pod 'SnapKit'
+  pod 'AAInfographics', :git => 'https://github.com/AAChartModel/AAChartKit-Swift.git' 
 
   target 'BellaBeatFirebaseTests' do
     inherit! :search_paths

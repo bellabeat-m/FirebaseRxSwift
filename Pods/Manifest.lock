@@ -1,4 +1,5 @@
 PODS:
+  - AAInfographics (6.0.0)
   - Firebase/Analytics (6.32.2):
     - Firebase/Core
   - Firebase/Core (6.32.2):
@@ -79,13 +80,14 @@ PODS:
   - SnapKit (5.0.1)
 
 DEPENDENCIES:
+  - AAInfographics (from `https://github.com/AAChartModel/AAChartKit-Swift.git`)
   - Firebase/Analytics
   - Firebase/Database
   - Firebase/Storage
   - SnapKit
 
 SPEC REPOS:
-  https://github.com/cocoapods/specs.git:
+  https://github.com/CocoaPods/Specs.git:
     - Firebase
     - FirebaseAnalytics
     - FirebaseCore
@@ -102,7 +104,17 @@ SPEC REPOS:
     - PromisesObjC
     - SnapKit
 
+EXTERNAL SOURCES:
+  AAInfographics:
+    :git: https://github.com/AAChartModel/AAChartKit-Swift.git
+
+CHECKOUT OPTIONS:
+  AAInfographics:
+    :commit: 7b18dfc2ad6da8e8299f8ca08954dc65872011d4
+    :git: https://github.com/AAChartModel/AAChartKit-Swift.git
+
 SPEC CHECKSUMS:
+  AAInfographics: e57c6cc15ddc17df3555db6f586fb0e1b911a0b7
   Firebase: 47176280bfba198e531f909cfb1612dad216cb96
   FirebaseAnalytics: 3c2fee6a922023ccfda7af87e4e641bad1fc11ba
   FirebaseCore: 1d697bb944bf2af5fc248f1a66e165c9dd88bf97
@@ -119,6 +131,6 @@ SPEC CHECKSUMS:
   PromisesObjC: b14b1c6b68e306650688599de8a45e49fae81151
   SnapKit: 97b92857e3df3a0c71833cce143274bf6ef8e5eb
 
-PODFILE CHECKSUM: bc0459f5121bb07358a1b93aad825bfa67034480
+PODFILE CHECKSUM: 85abd85611a8d0adfc2f892b22b935eeecf94f5f
 
-COCOAPODS: 1.6.1
+COCOAPODS: 1.10.1

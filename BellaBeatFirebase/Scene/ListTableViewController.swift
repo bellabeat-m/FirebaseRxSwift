@@ -65,25 +65,27 @@ class ListTableViewController: UIViewController {
     
     @IBAction func addButtonDidTouch(_ sender: AnyObject) {
         
-        let alert = UIAlertController(title: "Things to do",
-                                      message: "Add a task",
-                                      preferredStyle: .alert)
-        
-        let saveAction = UIAlertAction(title: "Save", style: .default) { _ in
-            
-            guard let textField = alert.textFields?.first,
-                let text = textField.text else { return }
-            self.taskAPI.insertTask(with: text)
-        }
-        
-        let cancelAction = UIAlertAction(title: "Cancel",
-                                         style: .cancel)
-        
-        alert.addTextField()
-        alert.addAction(saveAction)
-        alert.addAction(cancelAction)
-        
-        present(alert, animated: true, completion: nil)
+        let vc = ChartViewController()
+        self.navigationController?.pushViewController(vc, animated: true)
+//        let alert = UIAlertController(title: "Things to do",
+//                                      message: "Add a task",
+//                                      preferredStyle: .alert)
+//
+//        let saveAction = UIAlertAction(title: "Save", style: .default) { _ in
+//
+//            guard let textField = alert.textFields?.first,
+//                let text = textField.text else { return }
+//            self.taskAPI.insertTask(with: text)
+//        }
+//
+//        let cancelAction = UIAlertAction(title: "Cancel",
+//                                         style: .cancel)
+//
+//        alert.addTextField()
+//        alert.addAction(saveAction)
+//        alert.addAction(cancelAction)
+//
+//        present(alert, animated: true, completion: nil)
     }
 }
 
