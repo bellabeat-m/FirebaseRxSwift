@@ -8,45 +8,39 @@
 
 import UIKit
 import AAInfographics
+import SnapKit
 
 public struct HeartRateAggregateItem {
     let max: Int
     let min: Int
     let avg: Int
-  
 }
 
 class ChartViewController: UIViewController, AAChartViewDelegate {
     
     private var aaChartView = AAChartView()
-    public var chartType: AAChartType?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.backgroundColor = .white
-        setupChartView()
-        configureColumnrangeMixedLineChartFirst()
-        configureColumnrangeMixedLineChart()
-    }
-    
-    private func getRandomNumbersArrAvg(numbers: Int) -> [Int] {
-        let randomNumArr = NSMutableArray()
-        for _ in 0 ..< numbers {
-            
-            let min = Int.random(in: 50...100)
-            let max = min + Int.random(in: 10...70)
-            let avg = (max + min) / 2
-            let lineGramphField = HeartRateAggregateItem(max: max, min: min, avg: avg)
-            randomNumArr.add(lineGramphField.avg)
+        self.view.backgroundColor = .systemGray6
+        let chartView = ChartView(frame: .zero)
+        self.view.addSubview(chartView)
+        
+       chartView.snp.makeConstraints { (make) in
+            make.top.equalToSuperview().offset(100)
+            make.width.equalToSuperview().offset(-20)
+            make.centerX.equalTo(self.view.snp.centerX)
+            make.height.equalTo(400)
         }
-        return randomNumArr as! [Int]
     }
     
+
+  //not used
     private func getRandomNumbersArrMinMax(numbers: Int) -> [Int : Int] {
         let randomNumArr = NSMutableArray()
         for _ in 0 ..< numbers {
             
-            let min = Int.random(in: 50...100)
+            let min = Int.random(in: -50...100)
             let max = min + Int.random(in: 10...70)
             let avg = (max + min) / 2
             let lineGramphField = HeartRateAggregateItem(max: max, min: min, avg: avg)
@@ -55,87 +49,6 @@ class ChartViewController: UIViewController, AAChartViewDelegate {
         return randomNumArr as! [Int: Int]
     }
 
-    private func setupChartView() {
-        self.aaChartView.scrollEnabled = false
-        let chartViewWidth  = view.frame.size.width
-        let screenHeight = view.frame.size.height / 3
-        
-        self.aaChartView.frame = CGRect(x: 0,
-                                    y: 120,
-                                    width: chartViewWidth,
-                                    height: screenHeight)
-        self.aaChartView.contentHeight = self.view.frame.size.height / 3
-        self.view.addSubview(self.aaChartView)
-        
-        aaChartView.translatesAutoresizingMaskIntoConstraints = false
-        aaChartView.scrollView.contentInsetAdjustmentBehavior = .never
-    }
-    
-    func configureColumnrangeMixedLineChartFirst() {
-       let aaChartModel = AAChartModel()
-           .colorsTheme(["#FFE5E5"])
-           .chartType(.columnrange)
-           .borderRadius(6)
-           .yAxisTitle("heartbeat")
-           .animationType(.easeInCirc)
-           .stacking(.normal)
-           .touchEventEnabled(false)
-           .dataLabelsEnabled(false)
-           .categories(["AM", "", "", "", "" ,"", "", "", "", "", "" ,"", "", "", "", "", "" ,"", "", "", "", "", "PM"])
-           .series([
-               AASeriesElement()
-                   .name("Heart beat")
-                   .type(.line)
-                   .color("#FF0000")
-                   .threshold(0)
-                   .zIndex(1)
-                   .data(getRandomNumbersArrAvg(numbers: 24))
-               ,
-               AASeriesElement()
-                   .name("Daily")
-                   .allowPointSelect(false)
-                   .data([
-                       [(59.7), 119.4],
-                       [(58.7), 116.5],
-                       [(53.5), 113.4],
-                       [(51.4), 110.9],
-                       [50.0 ,  122.6],
-                       [52.9 ,  129.5],
-                       [59.2 ,  130.7],
-                       [57.3 ,  126.5],
-                       [54.4 ,  118.0],
-                       [(63.1),111.4],
-                       [(75.2),110.4],
-                       [(79.9),116.8],
-                       [(53.5), 113.4],
-                       [(51.4), 110.9],
-                       [50.0 ,  122.6],
-                       [52.9 ,  129.5],
-                    [59.2 ,  130.7],
-                    [57.3 ,  126.5],
-                    [54.4 ,  118.0],
-                    [(63.1),111.4],
-                    [(75.2),110.4],
-                    [(79.9),116.8],
-                    [(59.7), 119.4],
-                    [(58.7), 116.5]
-                   ])
-           ])
-       let aaOptions = AAOptionsConstructor.configureChartOptions(aaChartModel)
-
-              aaOptions.plotOptions?.columnrange?
-                  .grouping(false)
-                .dataLabels?.enabled = false
-       self.aaChartView.aa_drawChartWithChartModel(aaChartModel)
-   }
-    
-//    func addChartConstraints() {
-//        self.aaChartView.snp.makeConstraints { (make) in
-//            make.top.equalToSuperview().offset(20)
-//            make.bottom.equalToSuperview().offset(20)
-//            make.centerX.centerY.equalToSuperview().offset(-20)
-//        }
-//    }
 
  func configureColumnrangeMixedLineChart() {
     let aaChartModel = AAChartModel()
