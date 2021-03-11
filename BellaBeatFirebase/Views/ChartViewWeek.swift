@@ -1,8 +1,8 @@
 //
-//  ChartView.swift
+//  ChartViewWeek.swift
 //  BellaBeatFirebase
 //
-//  Created by Marina Huber on 08.03.2021..
+//  Created by Marina Huber on 11.03.2021..
 //  Copyright © 2021 Marina Huber. All rights reserved.
 //
 
@@ -10,22 +10,21 @@ import UIKit
 import AAInfographics
 import SnapKit
 
-class ChartView: UIView {
-    
+class ChartViewWeek: UIView {
     private var iconView = UIImageView(frame: .zero)
     private var bgImageView = UIImageView(frame: .zero)
     private var roundView = UIView(frame: .zero)
     private var titleLabel = UILabel()
     private var subTitleLabel = UILabel()
     private var aaChartView = AAChartView()
-    lazy private var mockData: [HeartRateAggregateItem] = self.generateMockData(24)
+    lazy private var mockData: [HeartRateAggregateItem] = self.generateMockData(7)
     
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         titleLabel.text = "HEART RATE"
         self.titleLabel.font = UIFont.systemFont(ofSize: 14, weight: .bold)
-        self.subTitleLabel.text = "Average \(setupDayAverage()) bpm"
+        self.subTitleLabel.text = "Average \(setupWeekAverage()) bpm"
         self.subTitleLabel.font = UIFont.systemFont(ofSize: 14, weight: .regular)
         self.iconView.contentMode = .scaleAspectFit
         self.bgImageView.contentMode = .scaleToFill
@@ -47,6 +46,7 @@ class ChartView: UIView {
         super.init(coder: aDecoder)
     }
     
+    
     private func setupViews() {
         self.addSubview(self.bgImageView)
         self.setupChartView()
@@ -57,34 +57,34 @@ class ChartView: UIView {
     }
     
     private func setupConstraints() {
-        self.roundView.snp.makeConstraints { (make) in
+        roundView.snp.makeConstraints { (make) in
             make.center.equalTo(self.iconView.snp.center)
             make.height.width.equalTo(37)
         }
         
-        self.iconView.snp.makeConstraints { (make) in
+        iconView.snp.makeConstraints { (make) in
             make.top.equalToSuperview().offset(33) //from figma
             make.left.equalToSuperview().offset(28)
             make.height.width.equalTo(15)
         }
-        self.titleLabel.snp.makeConstraints { (make) in
+        titleLabel.snp.makeConstraints { (make) in
             make.top.equalToSuperview().offset(22)
             make.centerX.equalTo(self.snp.centerX)
             
         }
-        self.subTitleLabel.snp.makeConstraints { (make) in
-            make.top.equalTo(titleLabel.snp.bottom).offset(2)
+        subTitleLabel.snp.makeConstraints { (make) in
+            make.top.equalTo(self.titleLabel.snp.bottom).offset(2)
             make.centerX.equalTo(self.snp.centerX)
         }
         
-        self.aaChartView.snp.makeConstraints { (make) in
+        aaChartView.snp.makeConstraints { (make) in
             make.top.equalTo(self.subTitleLabel.snp.bottom).offset(40)
             make.width.equalToSuperview().offset(-40)
             make.centerX.equalTo(self.snp.centerX)
             make.height.equalTo(280)
         }
         
-        self.bgImageView.snp.makeConstraints { (make) in
+        bgImageView.snp.makeConstraints { (make) in
             make.top.equalTo(aaChartView.snp.top)
             make.right.equalTo(aaChartView.snp.right)
             make.left.equalTo(aaChartView.snp.left).offset(40)
@@ -95,6 +95,8 @@ class ChartView: UIView {
     private func setupChartView() {
         self.aaChartView.isClearBackgroundColor = true
         self.aaChartView.scrollEnabled = false
+//        self.aaChartView.layer.borderColor = UIColor.red.cgColor
+//        self.aaChartView.layer.borderWidth = 1
         self.addSubview(self.aaChartView)
         aaChartView.translatesAutoresizingMaskIntoConstraints = false
         aaChartView.scrollView.contentInsetAdjustmentBehavior = .never
@@ -142,15 +144,17 @@ class ChartView: UIView {
                                             .fontWeight(AAChartFontWeightType.regular)
                                             .fontSize(13)))
         aaOptions.xAxis?.labels(AALabels()
-                                    .step(2)
                                     .y(20)
-                                    .x(-9)
-                                    .align("left")
+                                    .align("center")
                                     .style(AAStyle()
                                             .color(AAColor.black)
                                             .fontWeight(AAChartFontWeightType.regular)
                                             .fontSize(13)))
-        aaOptions.xAxis?.categories(createXAxisLabels(24))
+        aaOptions.xAxis?.categories(["S", "null", "T", "W", "T", "F", "S"])
+        
+        aaOptions.plotOptions?.columnrange(AAColumnrange()
+                                            .borderRadius(10)
+                                            .borderWidth(0))
         
         self.aaChartView.aa_drawChartWithChartOptions(aaOptions)
     }
@@ -170,18 +174,7 @@ class ChartView: UIView {
         return HeartRateAggregateItem(max: max, min: min, avg: avg)
     }
     
-    func createXAxisLabels(_ units: Int) -> [String] {
-        var array = [String]()
-        array.append("AM <br> 00:00")
-        for _ in 0..<units - 3 {
-            array.append("")
-        }
-        array.append("PM <br> 11:59")
-        print(array.count)
-        return array
-    }
-    
-    func setupDayAverage() -> Int {
+    func setupWeekAverage() -> Int {
         let arrayAverage = mockData.map{ $0.avg }
         let addArrayAverage = arrayAverage.reduce(0, +)
         let dailyAverage = addArrayAverage / arrayAverage.count

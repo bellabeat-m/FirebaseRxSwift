@@ -14,6 +14,8 @@
 		9C394E33255E7C9300815D86 /* TaskTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C394E32255E7C9300815D86 /* TaskTableViewCell.swift */; };
 		9C5462E825520CA50010C9C0 /* ToDoItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C5462E725520CA50010C9C0 /* ToDoItem.swift */; };
 		9C5462ED25520ED00010C9C0 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C5462EC25520ED00010C9C0 /* DetailViewController.swift */; };
+		9C56741925FA1C280082858D /* ChartViewWeek.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C56741825FA1C280082858D /* ChartViewWeek.swift */; };
+		9C56741E25FA1C420082858D /* ChartViewMonth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C56741D25FA1C420082858D /* ChartViewMonth.swift */; };
 		9C91BCDC2552D9D100CA8BAD /* FireTaskAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C91BCDB2552D9D100CA8BAD /* FireTaskAPI.swift */; };
 		9C91BCE4255357F200CA8BAD /* FireAPIProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C91BCE3255357F200CA8BAD /* FireAPIProtocol.swift */; };
 		9CA323D425F1797B00566A2D /* ChartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CA323D325F1797B00566A2D /* ChartViewController.swift */; };
@@ -62,6 +64,8 @@
 		9C394E32255E7C9300815D86 /* TaskTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskTableViewCell.swift; sourceTree = "<group>"; };
 		9C5462E725520CA50010C9C0 /* ToDoItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoItem.swift; sourceTree = "<group>"; };
 		9C5462EC25520ED00010C9C0 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		9C56741825FA1C280082858D /* ChartViewWeek.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartViewWeek.swift; sourceTree = "<group>"; };
+		9C56741D25FA1C420082858D /* ChartViewMonth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartViewMonth.swift; sourceTree = "<group>"; };
 		9C91BCDB2552D9D100CA8BAD /* FireTaskAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FireTaskAPI.swift; sourceTree = "<group>"; };
 		9C91BCE3255357F200CA8BAD /* FireAPIProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FireAPIProtocol.swift; sourceTree = "<group>"; };
 		9CA323D325F1797B00566A2D /* ChartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartViewController.swift; sourceTree = "<group>"; };
@@ -120,6 +124,8 @@
 			children = (
 				9C394E32255E7C9300815D86 /* TaskTableViewCell.swift */,
 				9CACF6DC25F6CC24005E2E54 /* ChartView.swift */,
+				9C56741825FA1C280082858D /* ChartViewWeek.swift */,
+				9C56741D25FA1C420082858D /* ChartViewMonth.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -487,6 +493,7 @@
 				9CACF6DD25F6CC24005E2E54 /* ChartView.swift in Sources */,
 				9CF38AFE25504A6500A0D63E /* AppDelegate.swift in Sources */,
 				9C91BCE4255357F200CA8BAD /* FireAPIProtocol.swift in Sources */,
+				9C56741E25FA1C420082858D /* ChartViewMonth.swift in Sources */,
 				9C91BCDC2552D9D100CA8BAD /* FireTaskAPI.swift in Sources */,
 				9C394E33255E7C9300815D86 /* TaskTableViewCell.swift in Sources */,
 				9CA323D425F1797B00566A2D /* ChartViewController.swift in Sources */,
@@ -496,6 +503,7 @@
 				9CF38B0025504A6500A0D63E /* SceneDelegate.swift in Sources */,
 				9C0A7E0D255F215C00891DF1 /* UITableView+Extention.swift in Sources */,
 				9CF38B0825504A6500A0D63E /* BellaBeatFirebase.xcdatamodeld in Sources */,
+				9C56741925FA1C280082858D /* ChartViewWeek.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
