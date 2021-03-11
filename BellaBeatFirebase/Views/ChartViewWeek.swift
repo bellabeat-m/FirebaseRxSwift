@@ -30,7 +30,7 @@ class ChartViewWeek: UIView {
         self.bgImageView.contentMode = .scaleToFill
         self.bgImageView.alpha = 0.2
         self.iconView.image = UIImage(named: "heart.png")
-        self.bgImageView.image = UIImage(named: "background-image.png")
+        self.bgImageView.image = UIImage(named: "backgroundey.png")
         self.roundView.layer.cornerRadius = 19
         self.roundView.layer.borderWidth = 0.8
         self.roundView.layer.borderColor = UIColor.lightGray.cgColor
@@ -78,15 +78,15 @@ class ChartViewWeek: UIView {
         }
         
         aaChartView.snp.makeConstraints { (make) in
-            make.top.equalTo(self.subTitleLabel.snp.bottom).offset(40)
+            make.top.equalTo(self.subTitleLabel.snp.bottom).offset(25)
             make.width.equalToSuperview().offset(-40)
             make.centerX.equalTo(self.snp.centerX)
-            make.height.equalTo(280)
+            make.height.equalTo(220)
         }
         
         bgImageView.snp.makeConstraints { (make) in
             make.top.equalTo(aaChartView.snp.top)
-            make.right.equalTo(aaChartView.snp.right)
+            make.right.equalTo(aaChartView.snp.right).offset(10)
             make.left.equalTo(aaChartView.snp.left).offset(40)
             make.bottom.equalTo(aaChartView.snp.bottom).offset(-40)
         }
@@ -95,8 +95,6 @@ class ChartViewWeek: UIView {
     private func setupChartView() {
         self.aaChartView.isClearBackgroundColor = true
         self.aaChartView.scrollEnabled = false
-//        self.aaChartView.layer.borderColor = UIColor.red.cgColor
-//        self.aaChartView.layer.borderWidth = 1
         self.addSubview(self.aaChartView)
         aaChartView.translatesAutoresizingMaskIntoConstraints = false
         aaChartView.scrollView.contentInsetAdjustmentBehavior = .never
@@ -110,7 +108,7 @@ class ChartViewWeek: UIView {
             .xAxisVisible(true)
             .legendEnabled(false)
             .yAxisMin(40) //start showing data from 40bpm
-            .margin(top: 10.0, right: 10.0, bottom: 40.0, left: 50.0)
+            .margin(top: 10.0, right: 10.0, bottom: 40.0, left: 40.0)
             
             .series([
                 AASeriesElement()
@@ -121,6 +119,8 @@ class ChartViewWeek: UIView {
                     .zIndex(1)
                     .data(mockData.map{ $0.avg })
                     .marker(AAMarker()
+                                .lineWidth(0.5)
+                                .lineColor(AAColor.white)
                                 .states(AAMarkerStates()
                                             .hover(AAMarkerHover()
                                                     .enabled(false)))
@@ -137,12 +137,15 @@ class ChartViewWeek: UIView {
             .tickInterval(20) //space between yaxis labels proportional to data
             .gridLineWidth(0)
         aaOptions.yAxis?.labels(AALabels()
-                                    .x(-45)
+                                    .x(-35)
                                     .align("left")
                                     .style(AAStyle()
                                             .color(AAColor.black)
                                             .fontWeight(AAChartFontWeightType.regular)
                                             .fontSize(13)))
+        aaOptions.xAxis?
+            .gridLineWidth(0)
+            .tickWidth(1)
         aaOptions.xAxis?.labels(AALabels()
                                     .y(20)
                                     .align("center")
@@ -150,7 +153,7 @@ class ChartViewWeek: UIView {
                                             .color(AAColor.black)
                                             .fontWeight(AAChartFontWeightType.regular)
                                             .fontSize(13)))
-        aaOptions.xAxis?.categories(["S", "null", "T", "W", "T", "F", "S"])
+        aaOptions.xAxis?.categories(["S", "M", "T", "W", "T", "F", "S"])
         
         aaOptions.plotOptions?.columnrange(AAColumnrange()
                                             .borderRadius(10)
@@ -175,9 +178,9 @@ class ChartViewWeek: UIView {
     }
     
     func setupWeekAverage() -> Int {
-        let arrayAverage = mockData.map{ $0.avg }
-        let addArrayAverage = arrayAverage.reduce(0, +)
-        let dailyAverage = addArrayAverage / arrayAverage.count
-        return dailyAverage
+//        let arrayAverage = mockData.map{ $0.avg }
+//        let addArrayAverage = arrayAverage.reduce(0, +)
+//        let dailyAverage = addArrayAverage / arrayAverage.count
+        return 0
     }
 }

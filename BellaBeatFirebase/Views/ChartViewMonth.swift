@@ -29,7 +29,7 @@ class ChartViewMonth: UIView {
         self.bgImageView.contentMode = .scaleToFill
         self.bgImageView.alpha = 0.2
         self.iconView.image = UIImage(named: "heart.png")
-        self.bgImageView.image = UIImage(named: "background-image.png")
+        self.bgImageView.image = UIImage(named: "backgroundey.png")
         self.roundView.layer.cornerRadius = 19
         self.roundView.layer.borderWidth = 0.8
         self.roundView.layer.borderColor = UIColor.lightGray.cgColor
@@ -79,13 +79,13 @@ class ChartViewMonth: UIView {
             make.top.equalTo(self.subTitleLabel.snp.bottom).offset(40)
             make.width.equalToSuperview().offset(-40)
             make.centerX.equalTo(self.snp.centerX)
-            make.height.equalTo(280)
+            make.height.equalTo(220)
         }
         
         bgImageView.snp.makeConstraints { (make) in
             make.top.equalTo(aaChartView.snp.top)
-            make.right.equalTo(aaChartView.snp.right)
-            make.left.equalTo(aaChartView.snp.left).offset(40)
+            make.right.equalTo(aaChartView.snp.right).offset(-10)
+            make.left.equalTo(aaChartView.snp.left).offset(35)
             make.bottom.equalTo(aaChartView.snp.bottom).offset(-40)
         }
     }
@@ -106,7 +106,7 @@ class ChartViewMonth: UIView {
             .xAxisVisible(true)
             .legendEnabled(false)
             .yAxisMin(40) //start showing data from 40bpm
-            .margin(top: 10.0, right: 10.0, bottom: 40.0, left: 50.0)
+            .margin(top: 10.0, right: 10.0, bottom: 40.0, left: 40.0)
             
             .series([
                 AASeriesElement()
@@ -117,6 +117,8 @@ class ChartViewMonth: UIView {
                     .zIndex(1)
                     .data(mockData.map{ $0.avg })
                     .marker(AAMarker()
+                                .lineWidth(0.5)
+                                .lineColor(AAColor.white)
                                 .states(AAMarkerStates()
                                             .hover(AAMarkerHover()
                                                     .enabled(false)))
@@ -146,6 +148,12 @@ class ChartViewMonth: UIView {
                                             .color(AAColor.black)
                                             .fontWeight(AAChartFontWeightType.regular)
                                             .fontSize(13)))
+        aaOptions.plotOptions?.columnrange(AAColumnrange()
+                                            .borderRadius(5)
+                                            .borderWidth(0))
+        aaOptions.xAxis?
+            .gridLineWidth(0)
+            .tickWidth(1)
         aaOptions.xAxis?.categories(["01", "07", "14", "21", "28", "30"])
         
         self.aaChartView.aa_drawChartWithChartOptions(aaOptions)
@@ -167,9 +175,9 @@ class ChartViewMonth: UIView {
     }
     
     func setupMonthAverage() -> Int {
-        let arrayAverage = mockData.map{ $0.avg }
-        let addArrayAverage = arrayAverage.reduce(0, +)
-        let dailyAverage = addArrayAverage / arrayAverage.count
-        return dailyAverage
+//        let arrayAverage = mockData.map{ $0.avg }
+//        let addArrayAverage = arrayAverage.reduce(0, +)
+//        let dailyAverage = addArrayAverage / arrayAverage.count
+        return 0
     }
 }

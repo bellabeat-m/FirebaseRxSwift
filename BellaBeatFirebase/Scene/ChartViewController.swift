@@ -11,9 +11,9 @@ import AAInfographics
 import SnapKit
 
 public struct HeartRateAggregateItem {
-    let max: Int
-    let min: Int
-    let avg: Int
+    let max: Int?
+    let min: Int?
+    let avg: Int?
 }
 
 class ChartViewController: UIViewController, AAChartViewDelegate {
@@ -42,30 +42,29 @@ class ChartViewController: UIViewController, AAChartViewDelegate {
             make.top.bottom.equalToSuperview()
             make.left.right.equalToSuperview()
             make.width.equalToSuperview()
-            make.height.equalToSuperview()
         }
         
         self.chartViewDay.snp.makeConstraints { (make) in
             make.top.equalToSuperview().offset(20)
             make.width.equalTo(contentView.snp.width).offset(-20)
             make.centerX.equalTo(contentView.snp.centerX)
-            make.height.equalTo(390)
+            make.height.equalTo(330)
         }
         
         self.chartViewWeek.snp.makeConstraints { (make) in
             make.top.equalTo(chartViewDay.snp.bottom).offset(20)
             make.width.equalToSuperview().offset(-20)
             make.centerX.equalTo(contentView.snp.centerX)
-            make.height.equalTo(390)
+            make.height.equalTo(330)
         }
         
         self.chartViewMonth.snp.makeConstraints { (make) in
             make.top.equalTo(chartViewWeek.snp.bottom).offset(20)
             make.centerX.equalTo(contentView.snp.centerX)
-            make.height.equalTo(390)
+            make.height.equalTo(330)
             make.width.equalTo(contentView.snp.width).offset(-20)
             
-            make.bottom.equalTo(contentView.snp.bottom).offset(600)
+            make.bottom.equalTo(contentView.snp.bottom)
         }
     }
 
