@@ -10,7 +10,8 @@
 		7AEF2EF64A44CBE1EC1AB33E /* Pods_BellaBeatFirebaseTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 236770F46A2435F41484785E /* Pods_BellaBeatFirebaseTests.framework */; };
 		9C0A7E0D255F215C00891DF1 /* UITableView+Extention.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C0A7E0C255F215C00891DF1 /* UITableView+Extention.swift */; };
 		9C0A7E11255F225000891DF1 /* UIView+Extention.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C0A7E10255F225000891DF1 /* UIView+Extention.swift */; };
-		9C13790B25FF8E180065C800 /* MeasuringHeartRateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C13790A25FF8E180065C800 /* MeasuringHeartRateViewController.swift */; };
+		9C13790B25FF8E180065C800 /* MeasuringHeartRateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C13790A25FF8E180065C800 /* MeasuringHeartRateView.swift */; };
+		9C13793B2600EEBA0065C800 /* AnimationTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C13793A2600EEBA0065C800 /* AnimationTest.swift */; };
 		9C394E2D255D418B00815D86 /* Detail.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9C394E2C255D418B00815D86 /* Detail.storyboard */; };
 		9C394E33255E7C9300815D86 /* TaskTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C394E32255E7C9300815D86 /* TaskTableViewCell.swift */; };
 		9C5462E825520CA50010C9C0 /* ToDoItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C5462E725520CA50010C9C0 /* ToDoItem.swift */; };
@@ -61,7 +62,8 @@
 		68C2C3F562C78FD857085D5E /* Pods_BellaBeatFirebase.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BellaBeatFirebase.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9C0A7E0C255F215C00891DF1 /* UITableView+Extention.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Extention.swift"; sourceTree = "<group>"; };
 		9C0A7E10255F225000891DF1 /* UIView+Extention.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extention.swift"; sourceTree = "<group>"; };
-		9C13790A25FF8E180065C800 /* MeasuringHeartRateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeasuringHeartRateViewController.swift; sourceTree = "<group>"; };
+		9C13790A25FF8E180065C800 /* MeasuringHeartRateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeasuringHeartRateView.swift; sourceTree = "<group>"; };
+		9C13793A2600EEBA0065C800 /* AnimationTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationTest.swift; sourceTree = "<group>"; };
 		9C394E2C255D418B00815D86 /* Detail.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Detail.storyboard; sourceTree = "<group>"; };
 		9C394E32255E7C9300815D86 /* TaskTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskTableViewCell.swift; sourceTree = "<group>"; };
 		9C5462E725520CA50010C9C0 /* ToDoItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoItem.swift; sourceTree = "<group>"; };
@@ -164,7 +166,8 @@
 				9CF38B0125504A6500A0D63E /* ListTableViewController.swift */,
 				9C5462EC25520ED00010C9C0 /* DetailViewController.swift */,
 				9CA323D325F1797B00566A2D /* ChartViewController.swift */,
-				9C13790A25FF8E180065C800 /* MeasuringHeartRateViewController.swift */,
+				9C13790A25FF8E180065C800 /* MeasuringHeartRateView.swift */,
+				9C13793A2600EEBA0065C800 /* AnimationTest.swift */,
 			);
 			path = Scene;
 			sourceTree = "<group>";
@@ -500,10 +503,11 @@
 				9C91BCDC2552D9D100CA8BAD /* FireTaskAPI.swift in Sources */,
 				9C394E33255E7C9300815D86 /* TaskTableViewCell.swift in Sources */,
 				9CA323D425F1797B00566A2D /* ChartViewController.swift in Sources */,
+				9C13793B2600EEBA0065C800 /* AnimationTest.swift in Sources */,
 				9C5462E825520CA50010C9C0 /* ToDoItem.swift in Sources */,
 				9C5462ED25520ED00010C9C0 /* DetailViewController.swift in Sources */,
 				9C0A7E11255F225000891DF1 /* UIView+Extention.swift in Sources */,
-				9C13790B25FF8E180065C800 /* MeasuringHeartRateViewController.swift in Sources */,
+				9C13790B25FF8E180065C800 /* MeasuringHeartRateView.swift in Sources */,
 				9CF38B0025504A6500A0D63E /* SceneDelegate.swift in Sources */,
 				9C0A7E0D255F215C00891DF1 /* UITableView+Extention.swift in Sources */,
 				9CF38B0825504A6500A0D63E /* BellaBeatFirebase.xcdatamodeld in Sources */,

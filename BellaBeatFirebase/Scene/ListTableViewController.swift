@@ -65,7 +65,7 @@ class ListTableViewController: UIViewController {
     
     @IBAction func addButtonDidTouch(_ sender: AnyObject) {
         
-        let vc = MeasuringHeartRateViewController()
+        let vc = AnimationTest()
         self.navigationController?.present(vc, animated: true, completion: nil)
 //        let alert = UIAlertController(title: "Things to do",
 //                                      message: "Add a task",

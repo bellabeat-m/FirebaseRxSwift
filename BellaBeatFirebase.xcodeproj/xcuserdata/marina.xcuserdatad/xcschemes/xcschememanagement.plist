@@ -7,7 +7,25 @@
 		<key>BellaBeatFirebase.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>18</integer>
+			<integer>19</integer>
+		</dict>
+	</dict>
+	<key>SuppressBuildableAutocreation</key>
+	<dict>
+		<key>9CF38AF925504A6400A0D63E</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>9CF38B1225504A6D00A0D63E</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>9CF38B1D25504A6D00A0D63E</key>
+		<dict>
+			<key>primary</key>
+			<true/>
 		</dict>
 	</dict>
 </dict>
