@@ -27,24 +27,25 @@ class AnimationTest: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.addSubview(self.measureView)
-        view.backgroundColor = .lightGray
-
+        view.backgroundColor = .white
         
         self.measureView.snp.makeConstraints { (make) in
             make.top.equalToSuperview().offset(30)
             make.centerX.equalToSuperview()
-            make.height.equalTo(610)
+            make.bottom.equalTo(self.view.safeAreaLayoutGuide.snp.bottom).offset(-30)
             make.width.equalToSuperview().offset(-60)
         }
     }
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        self.measureView.startTimer()
+        self.measureView.transitionFromWaitingToPresentingData()
     }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         self.measureView.layer.cornerRadius = 10
     }
+    
+
     
 }

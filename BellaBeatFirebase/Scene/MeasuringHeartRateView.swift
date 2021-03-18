@@ -14,21 +14,29 @@ class MeasuringHeartRateView: UIView {
     private var heartInfoImage = UIImageView(frame: .zero)
     private var subTitleHeartRateLabel: UILabel = UILabel(frame: .zero)
     private var okButton = UIButton(frame: .zero)//OnboardingButton()
+    private var dismissButton = UIButton(frame: .zero)
     private var animatingView = UIView(frame: .zero)
-    private var outerCircleLayer = CAShapeLayer()
-    private var innerCircleLayer = CAShapeLayer()
-    private var timer: Foundation.Timer?
     var listOfNumbers = [Int]()
+    
     init() {
         super.init(frame: .zero)
+        setupUI()
+        setupViews()
+        setupConstraints()
+        setOkButton()
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    private func setupUI() {
+        self.setShadow(color: .gray, offset: CGSize(width: 0, height: 3), opacity: 0.5)
         self.backgroundColor = .white
-        heartMiddleLabel.alpha = 0
-        heartMiddleLabel.font = UIFont.systemFont(ofSize: 23)
+        heartMiddleLabel.font = UIFont.systemFont(ofSize: 40)
         heartMiddleLabel.textColor = .white
         
-        heartInfoImage.alpha = 0
         heartInfoImage.contentMode = .scaleAspectFit
-        animatingView.alpha = 1
         heartRateImage.image = UIImage(named: "heart-1")
         heartRateImage.contentMode = .scaleAspectFit
         
@@ -37,41 +45,57 @@ class MeasuringHeartRateView: UIView {
         titleHeartRateLabel.textAlignment = .center
         titleHeartRateLabel.numberOfLines = 0
         
+        self.subTitleHeartRateLabel.text = "Stay still for few seconds"
         subTitleHeartRateLabel.textAlignment = .center
-        subTitleHeartRateLabel.text = "Stay still for few seconds"
-        self.subTitleHeartRateLabel.numberOfLines = 0
+        subTitleHeartRateLabel.numberOfLines = 0
         subTitleHeartRateLabel.font = UIFont.systemFont(ofSize: 16)
         subTitleHeartRateLabel.adjustsFontSizeToFitWidth = true
         subTitleHeartRateLabel.minimumScaleFactor = 0.5
         
         okButton.backgroundColor = .black
         okButton.alpha = 0
-
-        setupViews()
-        setupConstraints()
-        setOkutton()
+        dismissButton.setImage(UIImage(named: "icClose"), for: .normal)
     }
     
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+    func setShadow(color: UIColor, offset: CGSize, opacity: Float) {
+        self.layer.shadowColor = color.cgColor
+        self.layer.shadowOffset = offset
+        self.layer.shadowOpacity = opacity
+        self.layer.shadowRadius = 3
+        self.setNeedsLayout()
+      }
+    
+    private func showIdleData() {
+        self.heartInfoImage.alpha = 0
+        self.heartMiddleLabel.alpha = 0
+        self.animatingView.alpha = 1
+        self.okButton.alpha = 0
+        
     }
-
+    
+    private func showLoadedData() {
+        self.heartInfoImage.alpha = 1
+        self.heartInfoImage.image = UIImage(named: "heart-measure")
+        self.heartMiddleLabel.alpha = 1
+        self.animatingView.alpha = 0
+        self.okButton.alpha = 1
+        self.subTitleHeartRateLabel.text = "A normal resting heart rate is between 60 and 100 beats per minute (bpm), depending on the person's physical condition and age."
+    }
+    
 
 // MARK: - setup methods
-    
-    func startTimer() {
+
+     func transitionFromWaitingToPresentingData() {
+        self.showIdleData()
         let randomNumber = Int.random(in: 64...82)
-        
-        UIView.transition(with: self, duration: 2.5, options: .transitionCrossDissolve, animations: {
-            self.heartInfoImage.alpha = 1
-            self.heartInfoImage.image = UIImage(named: "heart-measure")
-            self.addHeartRate(bpm: randomNumber)
-            self.heartMiddleLabel.alpha = 1
-            self.animatingView.alpha = 0
-            self.okButton.alpha = 1
-            self.subTitleHeartRateLabel.text = "A normal resting heart rate is between 60 and 100 beats per minute (bpm), depending on the person's physical condition and age."
+        UIView.transition(with: self, duration: 3.0, options: .transitionCrossDissolve, animations: {
+            self.showLoadedData()
+        }, completion: { _ in
+            UIView.transition(with: self, duration: 0.5, options: .transitionCrossDissolve, animations: {
             self.titleHeartRateLabel.text = "Current heart rate"
-        }, completion: nil)
+            self.addHeartRate(bpm: randomNumber)
+            })
+        })
         
     }
     
@@ -82,10 +106,11 @@ class MeasuringHeartRateView: UIView {
         }
         let sum = listOfNumbers.reduce(0, +)
         let average = sum / listOfNumbers.count
-        self.heartMiddleLabel.text = "\(average) bpm"
+        self.heartMiddleLabel.text = "\(average)"
     }
     
   private func setupViews() {
+    self.addSubview(self.dismissButton)
     self.addSubview(self.titleHeartRateLabel)
     self.addSubview(self.animatingView)
     self.addSubview(self.heartInfoImage)
@@ -96,31 +121,30 @@ class MeasuringHeartRateView: UIView {
   }
   private func setupConstraints() {
     self.titleHeartRateLabel.snp.makeConstraints { (make) in
-        make.top.equalToSuperview().offset(100)
+        make.top.equalToSuperview().offset(90)
         make.centerX.equalToSuperview()
         make.width.equalToSuperview().offset(-180)
     }
     
     self.heartRateImage.snp.makeConstraints { (make) in
-        make.top.equalTo(self.titleHeartRateLabel.snp.bottom).offset(80)
+        make.top.equalTo(self.titleHeartRateLabel.snp.bottom).offset(90)
         make.centerX.equalTo(self.titleHeartRateLabel.snp.centerX)
-        make.height.width.equalTo(40)
+        make.height.width.equalTo(35)
     }
     self.heartInfoImage.snp.makeConstraints { (make) in
-        make.top.equalTo(self.titleHeartRateLabel.snp.bottom).offset(60)
+        make.top.equalTo(self.titleHeartRateLabel.snp.bottom).offset(50)
         make.centerX.equalTo(self.titleHeartRateLabel.snp.centerX)
-        make.height.width.equalTo(90)
-        make.width.equalTo(110)
+        make.height.width.equalTo(120)
+        make.width.equalTo(150)
     }
     
     self.heartMiddleLabel.snp.makeConstraints { (make) in
-        make.top.equalTo(self.heartRateImage.snp.top).offset(10)
-        make.centerX.equalTo(self.heartRateImage.snp.centerX)
+        make.center.equalTo(self.heartRateImage.snp.center)
     }
     
     self.animatingView.snp.makeConstraints { (make) in
         make.center.equalTo(self.heartRateImage.snp.center)
-        make.height.width.equalTo(150)
+        make.height.width.equalTo(180)
     }
     
     self.subTitleHeartRateLabel.snp.makeConstraints { (make) in
@@ -135,9 +159,14 @@ class MeasuringHeartRateView: UIView {
         make.height.equalTo(55)
         make.bottom.equalTo(self.safeAreaLayoutGuide.snp.bottom).offset(-30)
     }
+    self.dismissButton.snp.makeConstraints { (make) in
+        make.right.equalTo(self.safeAreaLayoutGuide.snp.right).offset(-15)
+        make.height.width.equalTo(35)
+        make.top.equalTo(self.safeAreaLayoutGuide.snp.top).offset(15)
+    }
   }
     
-    func setOkutton() {
+    func setOkButton() {
 //        self.okButton.mainColor = DeviceSelectAssets.Colors.MainBackgroundColor()
 //        self.okButton.invertedColors = true
         self.okButton.layer.cornerRadius = 27
@@ -145,79 +174,40 @@ class MeasuringHeartRateView: UIView {
         self.okButton.titleLabel?.font = UIFont.systemFont(ofSize: 16)
         self.okButton.setTitle("OK", for: .normal)
     }
+    
     private func setUpAnimations() {
             self.animatingView.scaleAnimtation()
-            self.heartRateImage.animaterView()
 
     }
-    
-    private func removeAnimations() {
-        self.animatingView.layer.removeAllAnimations()
-        self.animatingView.layer.removeFromSuperlayer()
-    }
-    
     override func layoutSubviews() {
         super.layoutSubviews()
         self.setUpAnimations()
     }
-    
-    
 }
 
-
 extension UIView {
-    func animaterView() {
-        let pulse = CASpringAnimation(keyPath: "transform.scale")
-        pulse.duration = 0.7
-        pulse.fromValue = 0.95
-        pulse.toValue = 1.0
-        pulse.autoreverses = true
-        pulse.repeatCount = 7
-        pulse.initialVelocity = 0.4
-        pulse.damping = 1.0
-        layer.add(pulse, forKey: "pulsing")
-    }
-    
     func scaleAnimtation() {
         let outerCircleLayer = CAShapeLayer()
-        let innerCircleLayer = CAShapeLayer()
         self.layer.addSublayer(outerCircleLayer)
-       // self.layer.addSublayer(innerCircleLayer)
 
-        innerCircleLayer.borderColor = UIColor(hexString: "#FF8BA1").cgColor
         outerCircleLayer.borderColor = UIColor(hexString: "#FF8BA1").cgColor
-        innerCircleLayer.borderWidth = 2
-        outerCircleLayer.borderWidth = 2
-        innerCircleLayer.cornerRadius = 37
-        outerCircleLayer.cornerRadius = 70
-        innerCircleLayer.fillColor = UIColor.white.cgColor
+        outerCircleLayer.borderWidth = 4
+        outerCircleLayer.cornerRadius = 90
         outerCircleLayer.fillColor = UIColor.white.cgColor
         
         outerCircleLayer.path = UIBezierPath(ovalIn: self.bounds).cgPath
         outerCircleLayer.frame = self.bounds
-
-        innerCircleLayer.path = UIBezierPath(ovalIn: outerCircleLayer.bounds.applying(CGAffineTransform(scaleX: 0.5, y: 0.5))).cgPath
-        innerCircleLayer.frame = CGRect(origin: CGPoint(x: self.bounds.width / 4, y: self.bounds.height / 4), size: innerCircleLayer.path!.boundingBox.size)
         
         let anim = CABasicAnimation(keyPath: "transform.scale")
         anim.fromValue = 1
         anim.toValue =  0.5
         anim.timingFunction = CAMediaTimingFunction(name: .easeIn)
-        anim.duration = 0.8
-        // 2
+        anim.duration = 1.2
+
         anim.autoreverses = true
         anim.repeatCount = .infinity
-        // 3
+        
         outerCircleLayer.add(anim, forKey: nil)
-        // 4
-        anim.fromValue =  0
-        anim.toValue =  1
-        innerCircleLayer.add(anim, forKey: nil)
-    }
-    
-    func rotate(angle: CGFloat) {
-        let radians = angle / 180.0 * CGFloat.pi
-        self.transform = self.transform.rotated(by: radians)
     }
 }
 
