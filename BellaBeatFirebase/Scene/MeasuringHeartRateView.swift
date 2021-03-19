@@ -18,12 +18,12 @@ class MeasuringHeartRateView: UIView {
     private var animatingView = UIView(frame: .zero)
     var listOfNumbers = [Int]()
     
-    init() {
+    override init(frame: CGRect) {
         super.init(frame: .zero)
-        setupUI()
-        setupViews()
-        setupConstraints()
-        setOkButton()
+        self.setupUI()
+        self.setupViews()
+        self.setupConstraints()
+        self.setOkButton()
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -33,28 +33,28 @@ class MeasuringHeartRateView: UIView {
     private func setupUI() {
         self.setShadow(color: .gray, offset: CGSize(width: 0, height: 3), opacity: 0.5)
         self.backgroundColor = .white
-        heartMiddleLabel.font = UIFont.systemFont(ofSize: 40)
-        heartMiddleLabel.textColor = .white
+        self.heartMiddleLabel.font = UIFont.systemFont(ofSize: 40)
+        self.heartMiddleLabel.textColor = .white
         
-        heartInfoImage.contentMode = .scaleAspectFit
-        heartRateImage.image = UIImage(named: "heart-1")
-        heartRateImage.contentMode = .scaleAspectFit
+        self.heartInfoImage.contentMode = .scaleAspectFit
+        self.heartRateImage.image = UIImage(named: "heart-1")
+        self.heartRateImage.contentMode = .scaleAspectFit
         
-        titleHeartRateLabel.text = "Measuring heart rate"
-        titleHeartRateLabel.font = UIFont.systemFont(ofSize: 20)
-        titleHeartRateLabel.textAlignment = .center
-        titleHeartRateLabel.numberOfLines = 0
+        self.titleHeartRateLabel.text = "Measuring heart rate"
+        self.titleHeartRateLabel.font = UIFont.systemFont(ofSize: 20)
+        self.titleHeartRateLabel.textAlignment = .center
+        self.titleHeartRateLabel.numberOfLines = 0
         
         self.subTitleHeartRateLabel.text = "Stay still for few seconds"
-        subTitleHeartRateLabel.textAlignment = .center
-        subTitleHeartRateLabel.numberOfLines = 0
-        subTitleHeartRateLabel.font = UIFont.systemFont(ofSize: 16)
-        subTitleHeartRateLabel.adjustsFontSizeToFitWidth = true
-        subTitleHeartRateLabel.minimumScaleFactor = 0.5
+        self.subTitleHeartRateLabel.textAlignment = .center
+        self.subTitleHeartRateLabel.numberOfLines = 0
+        self.subTitleHeartRateLabel.font = UIFont.systemFont(ofSize: 16)
+        self.subTitleHeartRateLabel.adjustsFontSizeToFitWidth = true
+        self.subTitleHeartRateLabel.minimumScaleFactor = 0.5
         
-        okButton.backgroundColor = .black
-        okButton.alpha = 0
-        dismissButton.setImage(UIImage(named: "icClose"), for: .normal)
+        self.okButton.backgroundColor = .black
+        self.okButton.alpha = 0
+        self.dismissButton.setImage(UIImage(named: "icClose"), for: .normal)
     }
     
     func setShadow(color: UIColor, offset: CGSize, opacity: Float) {
@@ -99,7 +99,7 @@ class MeasuringHeartRateView: UIView {
     }
     
     private func addHeartRate(bpm: Int) {
-        listOfNumbers.append(bpm)
+        self.listOfNumbers.append(bpm)
         if listOfNumbers.count > 30 {
             listOfNumbers.remove(at: 0)
         }
@@ -166,8 +166,6 @@ class MeasuringHeartRateView: UIView {
   }
     
     func setOkButton() {
-//        self.okButton.mainColor = DeviceSelectAssets.Colors.MainBackgroundColor()
-//        self.okButton.invertedColors = true
         self.okButton.layer.cornerRadius = 27
         self.okButton.tintColor = .white
         self.okButton.titleLabel?.font = UIFont.systemFont(ofSize: 16)
