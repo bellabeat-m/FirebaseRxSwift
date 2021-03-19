@@ -65,7 +65,7 @@ class MeasuringHeartRateView: UIView {
         self.setNeedsLayout()
       }
     
-    private func showIdleData() {
+    private func showUIForIdleData() {
         self.heartInfoImage.alpha = 0
         self.heartMiddleLabel.alpha = 0
         self.animatingView.alpha = 1
@@ -73,7 +73,7 @@ class MeasuringHeartRateView: UIView {
         
     }
     
-    private func showLoadedData() {
+    private func showUIForLoadedData() {
         self.heartInfoImage.alpha = 1
         self.heartInfoImage.image = UIImage(named: "heart-measure")
         self.heartMiddleLabel.alpha = 1
@@ -86,17 +86,16 @@ class MeasuringHeartRateView: UIView {
 // MARK: - setup methods
 
      func transitionFromWaitingToPresentingData() {
-        self.showIdleData()
+        self.showUIForIdleData()
         let randomNumber = Int.random(in: 64...82)
         UIView.transition(with: self, duration: 3.0, options: .transitionCrossDissolve, animations: {
-            self.showLoadedData()
+            self.showUIForLoadedData()
         }, completion: { _ in
             UIView.transition(with: self, duration: 0.5, options: .transitionCrossDissolve, animations: {
             self.titleHeartRateLabel.text = "Current heart rate"
             self.addHeartRate(bpm: randomNumber)
             })
         })
-        
     }
     
     private func addHeartRate(bpm: Int) {
@@ -135,7 +134,7 @@ class MeasuringHeartRateView: UIView {
         make.top.equalTo(self.titleHeartRateLabel.snp.bottom).offset(50)
         make.centerX.equalTo(self.titleHeartRateLabel.snp.centerX)
         make.height.width.equalTo(120)
-        make.width.equalTo(150)
+       // make.width.equalTo(150)
     }
     
     self.heartMiddleLabel.snp.makeConstraints { (make) in
